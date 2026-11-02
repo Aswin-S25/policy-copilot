@@ -6,10 +6,16 @@ from fastapi import FastAPI, File, HTTPException, UploadFile
 from celery.result import AsyncResult
 from sqlalchemy import select
 from pydantic import BaseModel
+from fastapi.responses import StreamingResponse
 
+from app.citations import remove_invalid_citations
+from app.llm import stream_answer
+from app.prompt import SYSTEM_PROMPT, build_user_prompt
+from app.rag_stream import stream_question
 from app.celery_app import celery_app
 from app.db import SessionLocal
 from app.models import Document
+from app.sse import sse_event
 from ingest.tasks import ingest_file
 from app.retrieval import retrieve_chunks
 from app.context import build_context
@@ -177,3 +183,124 @@ def ask(request: AskRequest):
         }
     finally:
         db.close()
+
+
+@app.post("/ask/stream")
+def ask_stream(request: AskRequest):
+
+    def event_generator():
+
+        db = SessionLocal()
+
+        try:
+            yield sse_event(
+                "status",
+                {
+                    "stage": "retrieval",
+                },
+            )
+
+            retrieved = retrieve_chunks(
+                db=db,
+                query=request.question,
+                top_k=request.top_k,
+                min_score=request.min_score,
+            )
+
+            if not retrieved:
+                yield sse_event(
+                    "answer",
+                    {
+                        "text": (
+                            "I could not find relevant information "
+                            "in the available policies."
+                        )
+                    },
+                )
+
+                yield sse_event(
+                    "done",
+                    {},
+                )
+
+                return
+
+            yield sse_event(
+                "status",
+                {
+                    "stage": "generation",
+                },
+            )
+
+            context = build_context(
+                retrieved_chunks=retrieved,
+                max_tokens=request.max_context_tokens,
+            )
+
+            prompt = build_user_prompt(
+                question=request.question,
+                context=context.text,
+            )
+
+            answer_parts = []
+
+            for token in stream_answer(
+                system_prompt=SYSTEM_PROMPT,
+                user_prompt=prompt,
+            ):
+                answer_parts.append(token)
+
+                yield sse_event(
+                    "token",
+                    {
+                        "text": token,
+                    },
+                )
+
+            answer = "".join(answer_parts)
+
+            available_sources = {
+                item.source_number
+                for item in context.chunks
+            }
+
+            answer = remove_invalid_citations(
+                answer,
+                available_sources,
+            )
+
+            citations = [
+                {
+                    "source": item.source_number,
+                    "document": item.chunk.document_title,
+                    "section": item.chunk.section_path,
+                    "chunk_id": str(item.chunk.chunk_id),
+                    "score": item.chunk.score,
+                }
+                for item in context.chunks
+            ]
+
+            yield sse_event(
+                "citations",
+                {
+                    "sources": citations,
+                },
+            )
+
+            yield sse_event(
+                "done",
+                {},
+            )
+
+        finally:
+            db.close()
+
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
+        },
+    )
