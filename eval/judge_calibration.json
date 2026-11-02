@@ -1,0 +1,182 @@
+[
+  {
+    "id": "cal-001",
+    "question": "How many days of annual leave do employees get?",
+    "answer": "Employees receive 20 days of annual leave. [Source 1]",
+    "context": "[Source 1]\nAnnual leave entitlement is 20 working days per year.",
+    "human_faithfulness": 1.0,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 1.0
+  },
+  {
+    "id": "cal-002",
+    "question": "How many days of annual leave do employees get?",
+    "answer": "Employees receive 30 days of annual leave. [Source 1]",
+    "context": "[Source 1]\nAnnual leave entitlement is 20 working days per year.",
+    "human_faithfulness": 0.0,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 0.0
+  },
+  {
+    "id": "cal-003",
+    "question": "How many days of annual leave do employees get?",
+    "answer": "The policy provides 20 days of annual leave.",
+    "context": "[Source 1]\nAnnual leave entitlement is 20 working days per year.",
+    "human_faithfulness": 1.0,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 0.0
+  },
+  {
+    "id": "cal-004",
+    "question": "How many days of casual leave do employees get per year?",
+    "answer": "Employees receive 8 working days of casual leave per calendar year [Source 1].",
+    "context": "[Source 1]\nSection: 1. Leave and Time Off > 1.2 Casual Leave\n\nEmployees receive 8 working days of casual leave per calendar year. Casual leave may be used for short-term personal matters or unforeseen circumstances. Unused casual leave expires at the end of the calendar year and is not carried forward.",
+    "human_faithfulness": 1.0,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 1.0
+  },
+  {
+    "id": "cal-005",
+    "question": "How many sick days do employees get, and what happens to unused ones?",
+    "answer": "Employees receive 12 working days of sick leave per year [Source 1]. Unused sick days are paid out at the end of the year [Source 1].",
+    "context": "[Source 1]\nSection: 1. Leave and Time Off > 1.3 Sick Leave\n\nEmployees receive 12 working days of sick leave per calendar year. For sick leave lasting more than 3 consecutive working days, the company may request appropriate medical documentation. Unused sick leave is not convertible to annual leave and does not normally carry forward.",
+    "human_faithfulness": 0.5,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 0.5
+  },
+  {
+    "id": "cal-006",
+    "question": "How many days of annual leave do employees get?",
+    "answer": "Full-time employees receive 24 working days of annual leave per calendar year [Source 1].",
+    "context": "[Source 1]\nSection: 1. Leave and Time Off > 1.2 Casual Leave\n\nEmployees receive 8 working days of casual leave per calendar year.\n\n[Source 2]\nSection: 1. Leave and Time Off > 1.1 Annual Leave\n\nFull-time employees receive 24 working days of annual leave per calendar year. Annual leave should normally be requested at least 5 working days in advance through the company's leave-management system.",
+    "human_faithfulness": 1.0,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 0.0
+  },
+  {
+    "id": "cal-007",
+    "question": "How many days of annual leave do employees get?",
+    "answer": "Employees receive 12 working days of sick leave per calendar year [Source 2].",
+    "context": "[Source 1]\nSection: 1. Leave and Time Off > 1.1 Annual Leave\n\nFull-time employees receive 24 working days of annual leave per calendar year.\n\n[Source 2]\nSection: 1. Leave and Time Off > 1.3 Sick Leave\n\nEmployees receive 12 working days of sick leave per calendar year.",
+    "human_faithfulness": 1.0,
+    "human_relevance": 0.0,
+    "human_citation_correctness": 1.0
+  },
+  {
+    "id": "cal-008",
+    "question": "How many days of bereavement leave are employees entitled to?",
+    "answer": "The provided policies do not contain information about bereavement leave.",
+    "context": "[Source 1]\nSection: 1. Leave and Time Off > 1.1 Annual Leave\n\nFull-time employees receive 24 working days of annual leave per calendar year.\n\n[Source 2]\nSection: 1. Leave and Time Off > 1.3 Sick Leave\n\nEmployees receive 12 working days of sick leave per calendar year.",
+    "human_faithfulness": 1.0,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 1.0
+  },
+  {
+    "id": "cal-009",
+    "question": "How many weeks of paid parental leave do employees get?",
+    "answer": "Employees get 16 weeks of paid parental leave [Source 1].",
+    "context": "[Source 1]\nSection: 1. Leave and Time Off > 1.4 Parental Leave\n\nEligible employees may take parental leave in accordance with applicable law and company policy. Employees should notify People Operations as early as reasonably possible when planning parental leave.",
+    "human_faithfulness": 0.0,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 0.0
+  },
+  {
+    "id": "cal-010",
+    "question": "How many annual leave days do employees get, and how many can be carried forward?",
+    "answer": "Full-time employees receive 24 working days of annual leave per calendar year [Source 1].",
+    "context": "[Source 1]\nSection: 1. Leave and Time Off > 1.1 Annual Leave\n\nFull-time employees receive 24 working days of annual leave per calendar year. Unused annual leave may be carried forward for up to 12 working days into the following calendar year.",
+    "human_faithfulness": 1.0,
+    "human_relevance": 0.5,
+    "human_citation_correctness": 1.0
+  },
+  {
+    "id": "cal-011",
+    "question": "How should I secure my company accounts?",
+    "answer": "Use a strong, unique password of at least 12 characters [Source 1], and use multi-factor authentication on systems that support it [Source 2].",
+    "context": "[Source 1]\nSection: 3. Security and Access > 3.1 Password Policy\n\nEmployees must use strong, unique passwords for company accounts. Passwords must contain at least 12 characters and should include a combination of letters, numbers, and symbols.\n\n[Source 2]\nSection: 3. Security and Access > 3.2 Multi-Factor Authentication\n\nMulti-factor authentication (MFA) is required for company systems that support it.",
+    "human_faithfulness": 1.0,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 1.0
+  },
+  {
+    "id": "cal-012",
+    "question": "Can I work from home?",
+    "answer": "Yes, all employees may work remotely whenever they choose [Source 1].",
+    "context": "[Source 1]\nSection: 2. Working Hours and Attendance > 2.4 Remote Work\n\nRemote work is permitted for eligible roles subject to team and manager approval. Employees working remotely must maintain a suitable work environment, protect company information, and remain reachable through approved communication channels during agreed working hours.",
+    "human_faithfulness": 0.0,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 0.0
+  },
+  {
+    "id": "cal-013",
+    "question": "What are the rules for submitting expense claims?",
+    "answer": "Expense claims should be submitted within 30 days of the expense date [Source 1]. Claims must include receipts or invoices [Source 1]. All claims must be approved by the CEO [Source 1].",
+    "context": "[Source 1]\nSection: 7. Expenses and Business Travel > 7.2 Expense Claims\n\nExpense claims should normally be submitted within 30 days of the expense date. Claims must include sufficient documentation, such as receipts, invoices, or other evidence required by Finance. False, duplicated, or deliberately misleading expense claims are prohibited.",
+    "human_faithfulness": 0.67,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 0.67
+  },
+  {
+    "id": "cal-014",
+    "question": "When can the company ask for medical documentation for sick leave?",
+    "answer": "The company may request medical documentation for sick leave lasting more than 2 consecutive working days [Source 1].",
+    "context": "[Source 1]\nSection: 1. Leave and Time Off > 1.3 Sick Leave\n\nEmployees receive 12 working days of sick leave per calendar year. For sick leave lasting more than 3 consecutive working days, the company may request appropriate medical documentation.",
+    "human_faithfulness": 0.0,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 0.0
+  },
+  {
+    "id": "cal-015",
+    "question": "How much notice do I need to give for annual leave?",
+    "answer": "Annual leave should be requested at least 5 working days in advance [Source 1]. Shorter-notice requests are never allowed [Source 1].",
+    "context": "[Source 1]\nSection: 1. Leave and Time Off > 1.1 Annual Leave\n\nAnnual leave should normally be requested at least 5 working days in advance through the company's leave-management system. Managers may approve shorter-notice requests when business requirements permit.",
+    "human_faithfulness": 0.5,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 0.5
+  },
+  {
+    "id": "cal-016",
+    "question": "How often are formal performance reviews conducted?",
+    "answer": "The provided policies do not specify how often performance reviews are conducted.",
+    "context": "[Source 1]\nSection: 10. Performance and Development > 10.2 Performance Reviews\n\nFormal performance reviews are conducted twice per year. Performance reviews may consider delivery against objectives, quality of work, collaboration, communication, ownership, and role-specific competencies.",
+    "human_faithfulness": 0.0,
+    "human_relevance": 0.0,
+    "human_citation_correctness": 0.0
+  },
+  {
+    "id": "cal-017",
+    "question": "Is multi-factor authentication required?",
+    "answer": "Yes, MFA is required for company systems that support it [Source 1]. Authenticator apps are more secure than SMS codes, so employees should always use an app [Source 1].",
+    "context": "[Source 1]\nSection: 3. Security and Access > 3.2 Multi-Factor Authentication\n\nMulti-factor authentication (MFA) is required for company systems that support it. Employees must register an approved authentication method and must not approve an unexpected MFA request.",
+    "human_faithfulness": 0.5,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 0.5
+  },
+  {
+    "id": "cal-018",
+    "question": "Within how many days should expense claims be submitted?",
+    "answer": "Expense claims should normally be submitted within 30 days of the expense date [Source 3].",
+    "context": "[Source 1]\nSection: 7. Expenses and Business Travel > 7.2 Expense Claims\n\nExpense claims should normally be submitted within 30 days of the expense date. Claims must include sufficient documentation, such as receipts, invoices, or other evidence required by Finance.",
+    "human_faithfulness": 1.0,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 0.0
+  },
+  {
+    "id": "cal-019",
+    "question": "Can employees accept gifts from vendors?",
+    "answer": "Cash gifts must not be accepted from vendors [Source 1]. Nominal business courtesies may be accepted when they are infrequent, transparent, and consistent with applicable law and company policy [Source 1].",
+    "context": "[Source 1]\nSection: 9. Code of Conduct > 9.4 Gifts and Hospitality\n\nEmployees must not accept gifts or hospitality that could reasonably influence a business decision. Nominal business courtesies may be accepted when they are infrequent, transparent, and consistent with applicable law and company policy. Cash gifts must not be accepted from vendors, customers, or business partners.",
+    "human_faithfulness": 1.0,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 1.0
+  },
+  {
+    "id": "cal-020",
+    "question": "Can I paste customer data into a public AI chatbot to summarize it?",
+    "answer": "No. Customer data must not be submitted to public AI services unless the service and use case have been explicitly approved [Source 1].",
+    "context": "[Source 1]\nSection: 6. Artificial Intelligence and Generative AI > 6.2 Confidential Data and AI\n\nEmployees must not submit confidential company information, customer data, credentials, source code, or other restricted information to public AI services unless the service and use case have been explicitly approved.",
+    "human_faithfulness": 1.0,
+    "human_relevance": 1.0,
+    "human_citation_correctness": 1.0
+  }
+]

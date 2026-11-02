@@ -26,7 +26,8 @@ class RagResponse:
     citations: list[Citation]
     retrieved_count: int
     context_tokens: int
-
+    context: str = ""
+     
 
 def answer_question(
     db: Session,
@@ -52,6 +53,7 @@ def answer_question(
             citations=[],
             retrieved_count=0,
             context_tokens=0,
+            context=""
         )
     
     context = build_context(
@@ -68,6 +70,7 @@ def answer_question(
             citations=[],
             retrieved_count=len(retrieved),
             context_tokens=0,
+            context="",
         )
     
     
@@ -115,5 +118,6 @@ def answer_question(
         answer=answer,
         citations=citations,
         retrieved_count=len(retrieved),
-        context_tokens=context.estimated_tokens
+        context_tokens=context.estimated_tokens,
+        context=context.text
     )

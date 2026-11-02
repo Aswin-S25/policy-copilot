@@ -1,0 +1,24 @@
+{
+  "timestamp": "2026-11-02T18:25:03.953061+00:00",
+  "dataset": {
+    "cases": 80,
+    "answerable_cases": 70,
+    "unanswerable_cases": 10
+  },
+  "retrieval": {
+    "recall_at_5": 0.9535714285714286,
+    "mrr": 0.9885714285714287
+  },
+  "answers": {
+    "refusal_accuracy": 0.925,
+    "faithfulness": 1.0,
+    "relevance": 0.9875,
+    "citation_correctness": 0.975
+  },
+  "targets": {
+    "recall_at_5": 0.85,
+    "mrr": 0.7,
+    "faithfulness": 0.9,
+    "refusal_accuracy": 0.9
+  }
+}
