@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+
+sqlalchemy
+psycopg[binary]
+alembic
+pgvector
+pydantic-settings
+
+celery
+redis
+
+python-multipart
+sentence-transformers
+ollama
