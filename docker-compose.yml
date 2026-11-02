@@ -1,0 +1,44 @@
+services:
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: policy-copilot-db
+
+    environment:
+      POSTGRES_DB: policy_copilot
+      POSTGRES_USER: policy_user
+      POSTGRES_PASSWORD: policy_password
+
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U policy_user -d policy_copilot"
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+  redis:
+    image: redis:7-alpine
+    container_name: policy-copilot-redis
+
+    ports:
+      - "6379:6379"
+
+    volumes:
+      - redis_data:/data
+
+    command: redis-server --appendonly yes
+
+
+volumes:
+  postgres_data:
+  redis_data:
