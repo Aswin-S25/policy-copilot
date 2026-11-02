@@ -10,9 +10,9 @@ class RankedItem:
 def reciprocal_rank_fusion(
     rankings: list[list[RankedItem]],
     k: int = 60
-) -> list[list[UUID, float]]:
-    
-    scores = dict[UUID, float] = []
+) -> list[tuple[UUID, float]]:
+
+    scores: dict[UUID, float] = {}
     for ranking in rankings:
         for rank, item in enumerate(
             ranking,

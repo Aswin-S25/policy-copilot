@@ -6,29 +6,31 @@ from eval.models import (
     RetrievalMetrics,
     RetrievalResult,
 )
+from eval.retrieval_strategy import retrieve_by_strategy
 
 def evaluate_retrieval_case(
     db: Session,
     case: GoldenCase,
     top_k: int = 5,
+    strategy: str = "dense",
 ) -> RetrievalResult:
-    
-    results = retrieve_chunks(
+
+    results = retrieve_by_strategy(
         db=db,
         query=case.question,
+        strategy=strategy,
         top_k=top_k,
-        min_score=0.0,
     )
-    
+
     retrieved_ids = [
         str(result.chunk_id)
         for result in results
     ]
-    
+
     return RetrievalResult(
         case_id=case.id,
         retrieved_chunk_ids=retrieved_ids,
-        relevant_chunk_ids=case.relevant_chunk_ids
+        relevant_chunk_ids=case.relevant_chunk_ids,
     )
 
 def recall_at_k(

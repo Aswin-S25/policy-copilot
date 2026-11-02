@@ -11,14 +11,14 @@ from app.models import Chunk, Document, Section
 class LexicalResult:
     chunk_id: UUID
     document_id: UUID
-    documet_title: str
+    document_title: str
     section_path: str | None
     content: str
     chunk_index: int
     score: float
 
 
-def retrieve_lexeical(
+def retrieve_lexical(
     db: Session,
     query: str,
     top_k:int = 5,
