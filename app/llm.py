@@ -28,7 +28,7 @@ def generate_answer(
         options={
             "temperature": 0.0,
         },
-        think=False
+        think=True
     )
     
     return response["message"]["content"]
