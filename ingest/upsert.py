@@ -1,7 +1,7 @@
 
 from collections import defaultdict
 
-from sqlalchemy import select, delete
+from sqlalchemy import select, delete, text
 from sqlalchemy.orm import Session
 
 from app.models import Document, Section, Chunk
@@ -171,6 +171,41 @@ def ingest_document(
         for old_chunk in old_chunks:
             if old_chunk.id not in reused_ids:
                 db.delete(old_chunk)
+        
+        
+        db.execute(
+            text("""
+                UPDATE chunks c
+                SET search_vector =
+                    setweight(
+                        to_tsvector(
+                            'english',
+                            coalesce(d.title, '')
+                        ),
+                        'A'
+                    )
+                    ||
+                    setweight(
+                        to_tsvector(
+                            'english',
+                            coalesce(s.section_path, '')
+                        ),
+                        'B'
+                    )
+                    ||
+                    setweight(
+                        to_tsvector(
+                            'english',
+                            coalesce(c.content, '')
+                        ),
+                        'C'
+                    )
+                FROM documents d
+                LEFT JOIN sections s
+                    ON s.id = c.section_id
+                WHERE c.document_id = d.id
+            """)
+        )
 
         db.commit()
 

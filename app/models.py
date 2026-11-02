@@ -11,7 +11,7 @@ from sqlalchemy import (
     UniqueConstraint,
     func
 )
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.dialects.postgresql import UUID, TSVECTOR
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db import Base
@@ -178,6 +178,11 @@ class Chunk(Base):
     
     embedding_model: Mapped[str | None] = mapped_column(
         String(200),
+        nullable=True
+    )
+    
+    search_vector: Mapped[str | None] = mapped_column(
+        TSVECTOR,
         nullable=True
     )
     
