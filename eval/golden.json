@@ -1,0 +1,760 @@
+[
+  {
+    "id": "leave-001",
+    "category": "direct",
+    "question": "How many days of annual leave do employees get?",
+    "relevant_chunk_ids": [
+      "dfd57419-6ec2-4159-8cda-789c138861e2",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "security-001",
+    "category": "direct",
+    "question": "What is the password policy?",
+    "relevant_chunk_ids": [
+      "ec7457e7-4cdc-4721-b33d-7ec7377a5b9e",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "leave-002",
+    "category": "direct",
+    "question": "How many days of casual leave do employees get per year?",
+    "relevant_chunk_ids": [
+      "66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "leave-003",
+    "category": "direct",
+    "question": "How many sick days do employees get each year?",
+    "relevant_chunk_ids": [
+      "a56592d5-c8b3-48e8-aaa9-8d1748f54efd",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "leave-004",
+    "category": "direct",
+    "question": "How far in advance should annual leave be requested?",
+    "relevant_chunk_ids": [
+      "dfd57419-6ec2-4159-8cda-789c138861e2"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "leave-005",
+    "category": "direct",
+    "question": "How many annual leave days can be carried forward to the next year?",
+    "relevant_chunk_ids": [
+      "dfd57419-6ec2-4159-8cda-789c138861e2",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "leave-006",
+    "category": "direct",
+    "question": "After how many consecutive days of sick leave can the company ask for medical documentation?",
+    "relevant_chunk_ids": [
+      "a56592d5-c8b3-48e8-aaa9-8d1748f54efd"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "leave-007",
+    "category": "direct",
+    "question": "Who approves leave requests?",
+    "relevant_chunk_ids": [
+      "cd7a11d9-c6bc-4bd3-ab56-4b19c4378627"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "hours-001",
+    "category": "direct",
+    "question": "What are the standard working hours?",
+    "relevant_chunk_ids": [
+      "9b634a76-2adc-4d4e-900a-5355a15d5079",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "hours-002",
+    "category": "direct",
+    "question": "How long is the meal break in the standard working day?",
+    "relevant_chunk_ids": [
+      "9b634a76-2adc-4d4e-900a-5355a15d5079"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "security-002",
+    "category": "direct",
+    "question": "What is the minimum password length?",
+    "relevant_chunk_ids": [
+      "ec7457e7-4cdc-4721-b33d-7ec7377a5b9e",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "security-003",
+    "category": "direct",
+    "question": "How quickly must a suspected security incident be reported?",
+    "relevant_chunk_ids": [
+      "c25274e3-5c3b-476a-9459-c212037369a7",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "security-004",
+    "category": "direct",
+    "question": "Is multi-factor authentication required for company systems?",
+    "relevant_chunk_ids": [
+      "20e4ba56-5fc6-4bcb-bdb5-ac7ca2165abd",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "security-005",
+    "category": "direct",
+    "question": "Will IT support ever ask me for my password?",
+    "relevant_chunk_ids": [
+      "ec7457e7-4cdc-4721-b33d-7ec7377a5b9e"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "security-006",
+    "category": "direct",
+    "question": "What should I do if I receive an MFA request I did not initiate?",
+    "relevant_chunk_ids": [
+      "20e4ba56-5fc6-4bcb-bdb5-ac7ca2165abd"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "expense-001",
+    "category": "direct",
+    "question": "Within how many days should expense claims be submitted?",
+    "relevant_chunk_ids": [
+      "25dbde6c-ea23-4c84-9836-cffe4b5c36a0",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "expense-002",
+    "category": "direct",
+    "question": "What documentation is required for an expense claim?",
+    "relevant_chunk_ids": [
+      "25dbde6c-ea23-4c84-9836-cffe4b5c36a0"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "travel-001",
+    "category": "direct",
+    "question": "Does business travel need approval before booking?",
+    "relevant_chunk_ids": [
+      "2388ea1a-f6eb-4c67-9914-c4cd25508783"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "perf-001",
+    "category": "direct",
+    "question": "How often are formal performance reviews conducted?",
+    "relevant_chunk_ids": [
+      "a2f8442f-75eb-4a3a-96a1-6324b5cdfc09",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "conduct-001",
+    "category": "direct",
+    "question": "Can employees accept cash gifts from vendors?",
+    "relevant_chunk_ids": [
+      "156144ef-2918-4d81-a35c-d6c6f0bc07e6"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "handbook-001",
+    "category": "direct",
+    "question": "Who owns the employee policy handbook?",
+    "relevant_chunk_ids": [
+      "6db456b7-6651-431a-a1b7-0633a6511189"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "handbook-002",
+    "category": "direct",
+    "question": "When did the employee policy handbook take effect?",
+    "relevant_chunk_ids": [
+      "6db456b7-6651-431a-a1b7-0633a6511189"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "handbook-003",
+    "category": "direct",
+    "question": "How often is the employee handbook reviewed?",
+    "relevant_chunk_ids": [
+      "6db456b7-6651-431a-a1b7-0633a6511189"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "contacts-001",
+    "category": "direct",
+    "question": "Who should I contact about expenses and reimbursements?",
+    "relevant_chunk_ids": [
+      "9fffbfba-383f-4be3-8546-9ee4e8cb380b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "safety-001",
+    "category": "direct",
+    "question": "Who should unsafe workplace conditions be reported to?",
+    "relevant_chunk_ids": [
+      "a43646a4-e81f-42ae-acf3-b67b3c2e5495"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "leave-008",
+    "category": "interpretation",
+    "question": "If I submit a leave request, is it automatically approved?",
+    "relevant_chunk_ids": [
+      "cd7a11d9-c6bc-4bd3-ab56-4b19c4378627"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "leave-009",
+    "category": "interpretation",
+    "question": "I have 15 unused annual leave days at the end of the year. What happens to them?",
+    "relevant_chunk_ids": [
+      "dfd57419-6ec2-4159-8cda-789c138861e2",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "leave-010",
+    "category": "interpretation",
+    "question": "Can I carry forward unused casual leave into next year?",
+    "relevant_chunk_ids": [
+      "66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "leave-011",
+    "category": "interpretation",
+    "question": "Can unused sick leave be converted into annual leave?",
+    "relevant_chunk_ids": [
+      "a56592d5-c8b3-48e8-aaa9-8d1748f54efd"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "ai-001",
+    "category": "interpretation",
+    "question": "Can I paste customer data into a public AI chatbot to summarize it?",
+    "relevant_chunk_ids": [
+      "3538737f-f672-48c6-953f-9b24e79f4df1",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "ai-002",
+    "category": "interpretation",
+    "question": "Can AI-generated code go to production if it compiles and passes a quick test?",
+    "relevant_chunk_ids": [
+      "3e83f174-dfc8-45f9-9122-f1468bc25940"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "procure-001",
+    "category": "interpretation",
+    "question": "Can I split a large purchase into smaller orders so it stays under the approval threshold?",
+    "relevant_chunk_ids": [
+      "65bc6a97-390f-495a-9f9c-200e50b19ba0"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "security-007",
+    "category": "interpretation",
+    "question": "My manager asked for my password to fix something. Can I share it?",
+    "relevant_chunk_ids": [
+      "ec7457e7-4cdc-4721-b33d-7ec7377a5b9e"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "devices-001",
+    "category": "interpretation",
+    "question": "Can I turn off disk encryption on my company laptop to make it faster?",
+    "relevant_chunk_ids": [
+      "76ace989-a676-4be1-8509-6d3c93b0c7d2"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "devices-002",
+    "category": "interpretation",
+    "question": "Am I allowed to use my company laptop for personal browsing?",
+    "relevant_chunk_ids": [
+      "2f3d2944-ace1-46af-8d3c-ab6a0500cd8d"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "data-001",
+    "category": "interpretation",
+    "question": "Can I keep a copy of customer personal data in my personal cloud storage?",
+    "relevant_chunk_ids": [
+      "6861ef2c-9526-43f8-89ba-8ccb4357cac9"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "data-002",
+    "category": "interpretation",
+    "question": "Can I delete old records that are under a legal hold if we no longer need them?",
+    "relevant_chunk_ids": [
+      "cc895ba2-a49d-479d-98bd-e68785fbfb0c"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "exceptions-001",
+    "category": "interpretation",
+    "question": "My manager verbally agreed to an exception to a policy. Does that override the written policy?",
+    "relevant_chunk_ids": [
+      "0277bd0c-aafd-4233-8208-22cd6d0d3965"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "travel-002",
+    "category": "interpretation",
+    "question": "Can I upgrade my hotel room at the company's expense on a business trip?",
+    "relevant_chunk_ids": [
+      "41e9be47-66a7-4e8e-84f5-d02932a5bbd3"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "security-008",
+    "category": "interpretation",
+    "question": "I received a suspicious phishing email. Should I investigate the sender myself?",
+    "relevant_chunk_ids": [
+      "c25274e3-5c3b-476a-9459-c212037369a7"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-001",
+    "category": "multi_section",
+    "question": "How many days of annual, casual, and sick leave do employees get in total per year?",
+    "relevant_chunk_ids": [
+      "dfd57419-6ec2-4159-8cda-789c138861e2",
+      "66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70",
+      "a56592d5-c8b3-48e8-aaa9-8d1748f54efd",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-002",
+    "category": "multi_section",
+    "question": "Can I combine casual leave with a week of annual leave, and how much notice do I need?",
+    "relevant_chunk_ids": [
+      "dfd57419-6ec2-4159-8cda-789c138861e2",
+      "66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-003",
+    "category": "multi_section",
+    "question": "What are the conflict-of-interest rules for vendor selection and for employees in general?",
+    "relevant_chunk_ids": [
+      "b94f236c-ccdb-447a-bc7a-b1d98a7a93e5",
+      "54a195d0-b312-4e4a-953d-83b7148f93c5"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-004",
+    "category": "multi_section",
+    "question": "I lost my company laptop. What are my obligations and how quickly must I report it?",
+    "relevant_chunk_ids": [
+      "c25274e3-5c3b-476a-9459-c212037369a7",
+      "76ace989-a676-4be1-8509-6d3c93b0c7d2"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-005",
+    "category": "multi_section",
+    "question": "What rules apply when using AI tools with company information, and who must review the output?",
+    "relevant_chunk_ids": [
+      "31348222-e994-4c6a-8543-143396dd31aa",
+      "3538737f-f672-48c6-953f-9b24e79f4df1",
+      "e4cf1b2e-5d51-493c-be37-70b5618cee88"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-006",
+    "category": "multi_section",
+    "question": "Can I work remotely on a flexible schedule, and what approvals do I need?",
+    "relevant_chunk_ids": [
+      "564a7e5e-5397-4940-abc8-77152ed9396a",
+      "1ffc5375-a552-47a0-a431-a374d8ea85e9"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-007",
+    "category": "multi_section",
+    "question": "How should I secure my company accounts?",
+    "relevant_chunk_ids": [
+      "ec7457e7-4cdc-4721-b33d-7ec7377a5b9e",
+      "20e4ba56-5fc6-4bcb-bdb5-ac7ca2165abd"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-008",
+    "category": "multi_section",
+    "question": "What must happen before sharing customer data with an external vendor?",
+    "relevant_chunk_ids": [
+      "6861ef2c-9526-43f8-89ba-8ccb4357cac9",
+      "cd21d535-51a0-4975-9c49-5875eb9283f1",
+      "0b958d1f-ec73-4291-97fd-6797e820d6f3"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-009",
+    "category": "multi_section",
+    "question": "What approval do I need before a business trip, and how do I claim the expenses afterwards?",
+    "relevant_chunk_ids": [
+      "25dbde6c-ea23-4c84-9836-cffe4b5c36a0",
+      "2388ea1a-f6eb-4c67-9914-c4cd25508783"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-010",
+    "category": "multi_section",
+    "question": "What can happen if I am repeatedly late or absent without explanation?",
+    "relevant_chunk_ids": [
+      "1100bf5f-99bd-4e39-8a7d-63ebeccd8419",
+      "271d0022-4658-4138-bab2-e428f8529776"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-011",
+    "category": "multi_section",
+    "question": "Can I install a new AI tool on my company laptop?",
+    "relevant_chunk_ids": [
+      "288c4b8f-b911-4280-a599-a2ed600088c3",
+      "31348222-e994-4c6a-8543-143396dd31aa"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-012",
+    "category": "multi_section",
+    "question": "What is the difference between casual leave and sick leave?",
+    "relevant_chunk_ids": [
+      "66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70",
+      "a56592d5-c8b3-48e8-aaa9-8d1748f54efd"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-013",
+    "category": "multi_section",
+    "question": "If I get an unexpected MFA prompt, what should I do and how quickly must it be reported?",
+    "relevant_chunk_ids": [
+      "20e4ba56-5fc6-4bcb-bdb5-ac7ca2165abd",
+      "c25274e3-5c3b-476a-9459-c212037369a7"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-014",
+    "category": "multi_section",
+    "question": "What are the consequences of accepting a gift that influences a business decision?",
+    "relevant_chunk_ids": [
+      "156144ef-2918-4d81-a35c-d6c6f0bc07e6",
+      "271d0022-4658-4138-bab2-e428f8529776"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-015",
+    "category": "multi_section",
+    "question": "How is my performance evaluated and how can I develop my skills?",
+    "relevant_chunk_ids": [
+      "fe883143-a002-47a4-92e8-92a22be1957e",
+      "a2f8442f-75eb-4a3a-96a1-6324b5cdfc09",
+      "558a2500-a970-461b-819c-f1ed4eb18507"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-016",
+    "category": "multi_section",
+    "question": "How should confidential information be protected and when can it be shared externally?",
+    "relevant_chunk_ids": [
+      "0bceb248-cd35-4ba8-931b-015b2ff82624",
+      "cd21d535-51a0-4975-9c49-5875eb9283f1"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-017",
+    "category": "multi_section",
+    "question": "How should I handle personal data, and how long should it be kept?",
+    "relevant_chunk_ids": [
+      "6861ef2c-9526-43f8-89ba-8ccb4357cac9",
+      "cc895ba2-a49d-479d-98bd-e68785fbfb0c"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-018",
+    "category": "multi_section",
+    "question": "Which business expenses are reimbursable and what is the deadline for claiming them?",
+    "relevant_chunk_ids": [
+      "c851b03e-6b51-4ad5-a8f5-cc51a3a0200a",
+      "25dbde6c-ea23-4c84-9836-cffe4b5c36a0",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-019",
+    "category": "multi_section",
+    "question": "How should disagreements with colleagues be handled, and what behaviour is not permitted?",
+    "relevant_chunk_ids": [
+      "09e45a0b-cf3f-4f49-80ca-ce56b82ca086",
+      "b1e3aa73-bae5-44d9-bba2-bacb10228e58"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "multi-020",
+    "category": "multi_section",
+    "question": "Who do I contact about a security incident, and how quickly must it be reported?",
+    "relevant_chunk_ids": [
+      "c25274e3-5c3b-476a-9459-c212037369a7",
+      "9fffbfba-383f-4be3-8546-9ee4e8cb380b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "amb-001",
+    "category": "ambiguous",
+    "question": "How many days of leave do I get?",
+    "relevant_chunk_ids": [
+      "dfd57419-6ec2-4159-8cda-789c138861e2",
+      "66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70",
+      "a56592d5-c8b3-48e8-aaa9-8d1748f54efd",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "amb-002",
+    "category": "ambiguous",
+    "question": "What is the policy on conflicts of interest?",
+    "relevant_chunk_ids": [
+      "b94f236c-ccdb-447a-bc7a-b1d98a7a93e5",
+      "54a195d0-b312-4e4a-953d-83b7148f93c5"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "amb-003",
+    "category": "ambiguous",
+    "question": "Who do I contact with questions?",
+    "relevant_chunk_ids": [
+      "4b7f4b9d-57cd-4ebd-a485-e3e2af518a0b",
+      "9fffbfba-383f-4be3-8546-9ee4e8cb380b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "amb-004",
+    "category": "ambiguous",
+    "question": "What is the 12-day rule?",
+    "relevant_chunk_ids": [
+      "dfd57419-6ec2-4159-8cda-789c138861e2",
+      "a56592d5-c8b3-48e8-aaa9-8d1748f54efd",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "amb-005",
+    "category": "ambiguous",
+    "question": "What needs my manager's approval?",
+    "relevant_chunk_ids": [
+      "cd7a11d9-c6bc-4bd3-ab56-4b19c4378627",
+      "564a7e5e-5397-4940-abc8-77152ed9396a",
+      "1ffc5375-a552-47a0-a431-a374d8ea85e9",
+      "2388ea1a-f6eb-4c67-9914-c4cd25508783"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "amb-006",
+    "category": "ambiguous",
+    "question": "Can I work from home?",
+    "relevant_chunk_ids": [
+      "564a7e5e-5397-4940-abc8-77152ed9396a",
+      "1ffc5375-a552-47a0-a431-a374d8ea85e9"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "amb-007",
+    "category": "ambiguous",
+    "question": "What is the reporting deadline?",
+    "relevant_chunk_ids": [
+      "c25274e3-5c3b-476a-9459-c212037369a7",
+      "25dbde6c-ea23-4c84-9836-cffe4b5c36a0",
+      "edd53068-7dd5-4d55-be6f-7d219d173b9b"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "amb-008",
+    "category": "ambiguous",
+    "question": "Can I use AI at work?",
+    "relevant_chunk_ids": [
+      "31348222-e994-4c6a-8543-143396dd31aa",
+      "3538737f-f672-48c6-953f-9b24e79f4df1",
+      "e4cf1b2e-5d51-493c-be37-70b5618cee88",
+      "3e83f174-dfc8-45f9-9122-f1468bc25940"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "amb-009",
+    "category": "ambiguous",
+    "question": "What are the rules for my laptop?",
+    "relevant_chunk_ids": [
+      "76ace989-a676-4be1-8509-6d3c93b0c7d2",
+      "288c4b8f-b911-4280-a599-a2ed600088c3",
+      "2f3d2944-ace1-46af-8d3c-ab6a0500cd8d"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "amb-010",
+    "category": "ambiguous",
+    "question": "What happens if I break a rule?",
+    "relevant_chunk_ids": [
+      "0277bd0c-aafd-4233-8208-22cd6d0d3965",
+      "271d0022-4658-4138-bab2-e428f8529776"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "unknown-001",
+    "category": "unanswerable",
+    "question": "What is the company's policy for operating a submarine on Mars?",
+    "relevant_chunk_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "unknown-002",
+    "category": "unanswerable",
+    "question": "Can employees convert unused leave into cryptocurrency?",
+    "relevant_chunk_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "unknown-003",
+    "category": "unanswerable",
+    "question": "What is the company's 401(k) matching percentage?",
+    "relevant_chunk_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "unknown-004",
+    "category": "unanswerable",
+    "question": "How much is the monthly internet stipend for remote workers?",
+    "relevant_chunk_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "unknown-005",
+    "category": "unanswerable",
+    "question": "How many weeks of paid parental leave do employees get?",
+    "relevant_chunk_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "unknown-006",
+    "category": "unanswerable",
+    "question": "What is the daily meal allowance during business travel?",
+    "relevant_chunk_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "unknown-007",
+    "category": "unanswerable",
+    "question": "What is the office dress code?",
+    "relevant_chunk_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "unknown-008",
+    "category": "unanswerable",
+    "question": "How many days of bereavement leave are employees entitled to?",
+    "relevant_chunk_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "unknown-009",
+    "category": "unanswerable",
+    "question": "What is the notice period for resignation?",
+    "relevant_chunk_ids": [],
+    "answerable": false
+  },
+  {
+    "id": "unknown-010",
+    "category": "unanswerable",
+    "question": "Are pets allowed in the office?",
+    "relevant_chunk_ids": [],
+    "answerable": false
+  }
+]
