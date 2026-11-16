@@ -30,6 +30,7 @@ def seed_document(db):
                 ),
             ],
         ),
+        allowed_roles=["employee"],
     )
 
 
@@ -40,6 +41,7 @@ def test_lexical_retrieval(db):
         db=db,
         query="annual leave",
         top_k=5,
+        roles=["employee"],
     )
 
     assert len(results) > 0

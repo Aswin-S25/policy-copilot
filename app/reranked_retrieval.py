@@ -1,3 +1,5 @@
+from collections.abc import Sequence
+
 from sqlalchemy.orm import Session
 
 from app.hybrid_retrieval import retrieve_hybrid
@@ -10,6 +12,8 @@ def retrieve_reranked(
     query: str,
     top_k: int = 5,
     candidate_k: int = 20,
+    *,
+    roles: Sequence[str],
 ) -> list[RetrievedChunk]:
 
     candidates = retrieve_hybrid(
@@ -17,6 +21,7 @@ def retrieve_reranked(
         query=query,
         top_k=candidate_k,
         candidate_k=candidate_k,
+        roles=roles,
     )
 
     return rerank_chunks(

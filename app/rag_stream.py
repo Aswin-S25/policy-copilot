@@ -1,4 +1,4 @@
-from collections.abc import Iterator
+from collections.abc import Iterator, Sequence
 
 from sqlalchemy.orm import Session
 
@@ -18,6 +18,8 @@ def stream_question(
     top_k: int=5,
     min_score: float = 0.45,
     max_context_tokens: int = 3000,
+    *,
+    roles: Sequence[str],
 ) -> Iterator[str]:
     
     retrieved = retrieve_chunks(
@@ -25,6 +27,7 @@ def stream_question(
         query=question,
         top_k=top_k,
         min_score=min_score,
+        roles=roles,
     )
     
     

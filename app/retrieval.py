@@ -1,9 +1,11 @@
 from dataclasses import dataclass
 from uuid import UUID
+from collections.abc import Sequence
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from app.authz import readable_by
 from app.models import Chunk, Document, Section
 from ingest.embeddings import embed_text
 
@@ -22,8 +24,13 @@ def retrieve_chunks(
     db: Session,
     query: str,
     top_k: int=5,
-    min_score: float = 0.45
+    min_score: float = 0.45,
+    *,
+    roles: Sequence[str]
 ) -> list[RetrievedChunk]:
+    
+    if not roles:
+        return []
     
     query_embedding = embed_text(query)
     
@@ -39,6 +46,7 @@ def retrieve_chunks(
         .join(Document, Document.id == Chunk.document_id)
         .outerjoin(Section, Section.id == Chunk.section_id)
         .where(Chunk.embedding.is_not(None))
+        .where(readable_by(roles))
         .order_by(distance)
         .limit(top_k)
     ).all()

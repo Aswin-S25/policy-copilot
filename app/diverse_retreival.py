@@ -1,3 +1,5 @@
+from collections.abc import Sequence
+
 from sqlalchemy.orm import Session
 
 from app.diversity import apply_document_cap
@@ -10,7 +12,9 @@ def retreive_diverse(
     query: str,
     top_k: int = 5,
     candidate_k: int = 20,
-    max_per_document: int = 2
+    max_per_document: int = 2,
+    *,
+    roles: Sequence[str],
 ) -> list[RetrievedChunk]:
     
     # Fetch the full candidate pool so the cap has chunks to fall back on.
@@ -18,7 +22,8 @@ def retreive_diverse(
         db=db,
         query=query,
         top_k=candidate_k,
-        candidate_k=candidate_k
+        candidate_k=candidate_k,
+        roles=roles,
     )
     
     

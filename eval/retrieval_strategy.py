@@ -1,5 +1,8 @@
+from collections.abc import Sequence
+
 from sqlalchemy.orm import Session
 
+from app.authz import ALL_ROLES
 from app.reranked_retrieval import retrieve_reranked
 from app.retrieval import retrieve_chunks
 from app.hybrid_retrieval import retrieve_hybrid
@@ -13,6 +16,7 @@ def retrieve_by_strategy(
     query: str,
     strategy: str,
     top_k: int = 5,
+    roles: Sequence[str] = ALL_ROLES,
 ):
     if strategy == "auto":
         plan = plan_query(query)

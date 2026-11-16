@@ -1,4 +1,5 @@
 from collections import defaultdict
+from collections.abc import Sequence
 
 from sqlalchemy.orm import Session
 
@@ -15,6 +16,8 @@ def retrieve_hybrid(
     top_k: int = 5,
     candidate_k: int = 20,
     rrf_k: int = 60,
+    *,
+    roles: Sequence[str],
 ) -> list[RetrievedChunk]:
 
     # 1. Dense retrieval
@@ -23,6 +26,7 @@ def retrieve_hybrid(
         query=query,
         top_k=candidate_k,
         min_score=0.0,
+        roles=roles,
     )
 
     # 2. Lexical retrieval
@@ -30,6 +34,7 @@ def retrieve_hybrid(
         db=db,
         query=query,
         top_k=candidate_k,
+        roles=roles,
     )
 
     # 3. Calculate RRF scores

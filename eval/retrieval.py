@@ -1,5 +1,8 @@
+from collections.abc import Sequence
+
 from sqlalchemy.orm import Session
 
+from app.authz import ALL_ROLES
 from app.retrieval import retrieve_chunks
 from eval.models import (
     GoldenCase,
@@ -13,6 +16,7 @@ def evaluate_retrieval_case(
     case: GoldenCase,
     top_k: int = 5,
     strategy: str = "dense",
+    roles: Sequence[str] = ALL_ROLES,
 ) -> RetrievalResult:
 
     results = retrieve_by_strategy(
@@ -20,6 +24,7 @@ def evaluate_retrieval_case(
         query=case.question,
         strategy=strategy,
         top_k=top_k,
+        roles=roles,
     )
 
     retrieved_ids = [

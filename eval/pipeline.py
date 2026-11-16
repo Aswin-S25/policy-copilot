@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from app.db import SessionLocal
+from app.authz import ALL_ROLES
 from app.rag import answer_question
 
 from eval.answers import evaluate_refusal
@@ -76,6 +77,7 @@ def run_evaluation(update_baseline: bool = False):
                 top_k=5,
                 min_score=0.45,
                 max_context_tokens=3000,
+                roles=ALL_ROLES,
             )
 
             print()

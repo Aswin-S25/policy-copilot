@@ -29,6 +29,7 @@ from pathlib import Path
 
 from sqlalchemy import text
 
+from app.authz import ALL_ROLES
 from app.citations import exact_citations
 from app.db import SessionLocal
 from app.diversity import apply_document_cap
@@ -55,7 +56,8 @@ REPORT_PATH = Path("eval/reports/cap_comparison.json")
 
 def retrieve(db, question):
     candidates = retrieve_hybrid(
-        db=db, query=question, top_k=CANDIDATE_K, candidate_k=CANDIDATE_K
+        db=db, query=question, top_k=CANDIDATE_K, candidate_k=CANDIDATE_K,
+        roles=ALL_ROLES,
     )
     out = {}
     for name, cap in CONFIGS.items():

@@ -6,6 +6,7 @@ def test_retrieve_chunks(db):
         db=db,
         query="annual leave",
         top_k=3,
+        roles=["employee"],
     )
 
     assert len(results) <= 3

@@ -5,6 +5,7 @@ from eval.retrieval import (
     calculate_metrics,
     evaluate_retrieval_case,
 )
+from app.authz import ALL_ROLES
 from app.rag import answer_question
 from eval.answers import evaluate_refusal
 from eval.answer_quality import evaluate_answer_quality
@@ -71,6 +72,7 @@ def run_answer_evaluation():
                 top_k=5,
                 min_score=0.45,
                 max_context_tokens=3000,
+                roles=ALL_ROLES,
             )
 
             evaluation = evaluate_refusal(
@@ -124,6 +126,7 @@ def run_quality_evaluation():
                 top_k=5,
                 min_score=0.45,
                 max_context_tokens=3000,
+                roles=ALL_ROLES,
             )
 
             if not rag_result.context:

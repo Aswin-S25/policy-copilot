@@ -1,9 +1,11 @@
 from dataclasses import dataclass
 from uuid import UUID
+from collections.abc import Sequence
 
 from sqlalchemy import select, func
 from sqlalchemy.orm import Session
 
+from app.authz import readable_by
 from app.models import Chunk, Document, Section
 
 
@@ -21,8 +23,14 @@ class LexicalResult:
 def retrieve_lexical(
     db: Session,
     query: str,
-    top_k:int = 5,
+    top_k: int = 5,
+    *,
+    roles: Sequence[str],
 ) -> list[LexicalResult]:
+
+    # Deny by default: no roles, no documents.
+    if not roles:
+        return []
     
     search_query = func.websearch_to_tsquery(
         'english',
@@ -55,6 +63,8 @@ def retrieve_lexical(
                 search_query
             )
         )
+        # Authorization inside the query, before ORDER BY/LIMIT.
+        .where(readable_by(roles))
         .order_by(
             rank.desc()
         )

@@ -1,6 +1,9 @@
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
+from sqlalchemy import exists
+from app.models import Chunk, DocumentACL
 
 ROLES = frozenset({"employee", "manager", "hr", "security"})
+ALL_ROLES: tuple[str, ...] = tuple(sorted(ROLES))
 
 def normalize_roles(roles: Iterable[str]) -> list[str]:
     cleaned = sorted({
@@ -20,3 +23,11 @@ def normalize_roles(roles: Iterable[str]) -> list[str]:
         )
 
     return cleaned
+
+
+def readable_by(roles: Sequence[str]):
+    return exists().where(
+        DocumentACL.document_id == Chunk.document_id,
+        DocumentACL.role.in_(list(roles)),
+        DocumentACL.permission == "read",
+    )

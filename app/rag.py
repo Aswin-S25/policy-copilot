@@ -1,3 +1,4 @@
+from collections.abc import Sequence
 from dataclasses import dataclass
 
 from sqlalchemy.orm import Session
@@ -34,7 +35,9 @@ def answer_question(
     question: str,
     top_k: int = 5,
     min_score: float = 0.45,
-    max_context_tokens: int = 3000
+    max_context_tokens: int = 3000,
+    *,
+    roles: Sequence[str],
 ) -> RagResponse:
     
     retrieved = retrieve_chunks(
@@ -42,6 +45,7 @@ def answer_question(
         query=question,
         top_k=top_k,
         min_score=min_score,
+        roles=roles,
     )
     
     return answer_from_chunks(

@@ -32,6 +32,7 @@ UPLOAD_DIR.mkdir(
     parents=True,
     exist_ok=True
 )
+PROVISIONAL_ROLES = ["employee"]
 
 
 @app.get("/health")
@@ -121,7 +122,8 @@ def search_documents(request: SearchRequest):
         results = retrieve_chunks(
             db = db,
             query=request.query,
-            top_k=request.top_k
+            top_k=request.top_k,
+            roles=PROVISIONAL_ROLES,
         )
         
         context = build_context(
@@ -172,6 +174,7 @@ def ask(request: AskRequest):
             top_k=request.top_k,
             min_score=request.min_score,
             max_context_tokens=request.max_context_tokens,
+            roles=PROVISIONAL_ROLES,
         )
         
         return {
@@ -213,6 +216,7 @@ def ask_stream(request: AskRequest):
                 query=request.question,
                 top_k=request.top_k,
                 min_score=request.min_score,
+                roles=PROVISIONAL_ROLES,
             )
 
             if not retrieved:
