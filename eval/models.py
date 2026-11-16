@@ -10,7 +10,7 @@ class GoldenCase:
 
 @dataclass
 class RetrievalResult:
-    case_id: int
+    case_id: str
     retrieved_chunk_ids: list[str]
     relevant_chunk_ids: set[str]
 

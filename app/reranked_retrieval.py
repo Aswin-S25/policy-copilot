@@ -1,0 +1,26 @@
+from sqlalchemy.orm import Session
+
+from app.hybrid_retrieval import retrieve_hybrid
+from app.retrieval import RetrievedChunk
+from app.reranker import rerank_chunks
+
+
+def retrieve_reranked(
+    db: Session,
+    query: str,
+    top_k: int = 5,
+    candidate_k: int = 20,
+) -> list[RetrievedChunk]:
+
+    candidates = retrieve_hybrid(
+        db=db,
+        query=query,
+        top_k=candidate_k,
+        candidate_k=candidate_k,
+    )
+
+    return rerank_chunks(
+        query=query,
+        chunks=candidates,
+        top_k=top_k,
+    )

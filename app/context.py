@@ -67,9 +67,9 @@ def build_context(
         
         formatted_parts.append(formatted)
         total_tokens += chunk_tokens
-        
-        return BuildContext(
-            chunks=selected_chunks,
-            text="\n\n".join(formatted_parts),
-            estimated_tokens=total_tokens,
-        )
+
+    return BuildContext(
+        chunks=selected_chunks,
+        text="\n\n".join(formatted_parts),
+        estimated_tokens=total_tokens,
+    )

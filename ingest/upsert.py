@@ -171,8 +171,11 @@ def ingest_document(
         for old_chunk in old_chunks:
             if old_chunk.id not in reused_ids:
                 db.delete(old_chunk)
-        
-        
+
+        # 9. Rebuild full-text search vectors for this document.
+        # Flush first so new chunks and sections are visible to the UPDATE.
+        db.flush()
+
         db.execute(
             text("""
                 UPDATE chunks c
@@ -200,11 +203,15 @@ def ingest_document(
                         ),
                         'C'
                     )
-                FROM documents d
+                FROM chunks c2
+                JOIN documents d
+                    ON d.id = c2.document_id
                 LEFT JOIN sections s
-                    ON s.id = c.section_id
-                WHERE c.document_id = d.id
-            """)
+                    ON s.id = c2.section_id
+                WHERE c.id = c2.id
+                  AND c2.document_id = :document_id
+            """),
+            {"document_id": document.id},
         )
 
         db.commit()

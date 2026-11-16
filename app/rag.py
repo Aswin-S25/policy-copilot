@@ -44,6 +44,21 @@ def answer_question(
         min_score=min_score,
     )
     
+    return answer_from_chunks(
+        question=question,
+        retrieved=retrieved,
+        max_context_tokens=max_context_tokens,
+    )
+
+
+def answer_from_chunks(
+    question: str,
+    retrieved: list,
+    max_context_tokens: int = 3000,
+) -> RagResponse:
+    """Build context, call the LLM and validate citations for chunks
+    that were already retrieved (by any retrieval strategy)."""
+
     if not retrieved:
         return RagResponse(
             answer=(
