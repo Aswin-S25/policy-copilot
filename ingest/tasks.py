@@ -35,6 +35,7 @@ class DatabaseTask(Task):
 def ingest_file(
     self,
     file_path: str,
+    allowed_roles: list[str],
 ):
     path = Path(file_path)
 
@@ -58,6 +59,7 @@ def ingest_file(
         document = ingest_document(
             db,
             parsed,
+            allowed_roles=allowed_roles,
         )
         
         embedding_count = embed_document_chunks(
@@ -70,6 +72,7 @@ def ingest_file(
             "title": document.title,
             "source": document.source,
             "embedding_chunks": embedding_count,
+            "allowed_roles": allowed_roles
         }
 
     finally:

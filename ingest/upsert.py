@@ -1,10 +1,13 @@
-
+from collections.abc import Iterable
 from collections import defaultdict
 
 from sqlalchemy import select, delete, text
 from sqlalchemy.orm import Session
 
 from app.models import Document, Section, Chunk
+from app.authz import normalize_roles
+
+from ingest.acl import replace_document_acl
 from ingest.hashing import hash_content
 from ingest.models import ParsedDocument, ParsedSection
 from ingest.chunk import chunk_sections
@@ -30,8 +33,15 @@ def build_section_path(
 def ingest_document(
     db: Session,
     parsed: ParsedDocument,
+    allowed_roles: Iterable[str] | None = None,
 ) -> Document:
 
+    roles = (
+        normalize_roles(allowed_roles)
+        if allowed_roles is not None
+        else None
+    )
+    
     document_hash = hash_content(parsed.content)
 
     # Not `with db.begin()`: the session may already be in an
@@ -47,6 +57,9 @@ def ingest_document(
 
         # 2. Skip completely unchanged documents
         if document and document.content_hash == document_hash:
+            if roles is not None:
+                replace_document_acl(db, document.id, roles)
+                db.commit()
             return document
 
         # 3. Create or update document
@@ -213,6 +226,8 @@ def ingest_document(
             """),
             {"document_id": document.id},
         )
+        if roles is not None:
+            replace_document_acl(db, document.id, roles)
 
         db.commit()
 

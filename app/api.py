@@ -2,13 +2,14 @@ from pathlib import Path
 import shutil
 import uuid
 
-from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from celery.result import AsyncResult
 from sqlalchemy import select
 from pydantic import BaseModel
 from fastapi.responses import StreamingResponse
 
 from app.citations import remove_invalid_citations
+from app.authz import normalize_roles
 from app.llm import stream_answer
 from app.prompt import SYSTEM_PROMPT, build_user_prompt
 from app.rag_stream import stream_question
@@ -43,7 +44,13 @@ def health():
 @app.post("/documents/ingest")
 async def upload_document(
     file: UploadFile = File(...),
+    allowed_roles: list[str] = Form(...),
 ):
+    try:
+        roles = normalize_roles(allowed_roles)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
     suffix = Path(file.filename).suffix.lower()
     
     if suffix not in {".md"}:
@@ -67,7 +74,8 @@ async def upload_document(
         )
     
     task = ingest_file.delay(
-        str(destination)
+        str(destination),
+        roles,
     )
     
     
