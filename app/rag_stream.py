@@ -19,7 +19,7 @@ def stream_question(
     min_score: float = 0.45,
     max_context_tokens: int = 3000,
     *,
-    roles: Sequence[str],
+    roles: Sequence[str]
 ) -> Iterator[str]:
     
     retrieved = retrieve_chunks(
@@ -27,7 +27,7 @@ def stream_question(
         query=question,
         top_k=top_k,
         min_score=min_score,
-        roles=roles,
+        roles=roles
     )
     
     

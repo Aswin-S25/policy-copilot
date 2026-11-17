@@ -26,7 +26,7 @@ def retrieve_hybrid(
         query=query,
         top_k=candidate_k,
         min_score=0.0,
-        roles=roles,
+        roles=roles
     )
 
     # 2. Lexical retrieval
@@ -34,7 +34,7 @@ def retrieve_hybrid(
         db=db,
         query=query,
         top_k=candidate_k,
-        roles=roles,
+        roles=roles
     )
 
     # 3. Calculate RRF scores

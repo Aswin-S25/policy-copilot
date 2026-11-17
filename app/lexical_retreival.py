@@ -23,15 +23,14 @@ class LexicalResult:
 def retrieve_lexical(
     db: Session,
     query: str,
-    top_k: int = 5,
+    top_k:int = 5,
     *,
     roles: Sequence[str],
 ) -> list[LexicalResult]:
-
-    # Deny by default: no roles, no documents.
+    
     if not roles:
         return []
-    
+
     search_query = func.websearch_to_tsquery(
         'english',
         query
@@ -61,10 +60,9 @@ def retrieve_lexical(
         .where(
             Chunk.search_vector.op("@@")(
                 search_query
-            )
+            ),
+            readable_by(roles),
         )
-        # Authorization inside the query, before ORDER BY/LIMIT.
-        .where(readable_by(roles))
         .order_by(
             rank.desc()
         )

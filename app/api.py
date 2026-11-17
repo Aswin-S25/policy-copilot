@@ -2,17 +2,25 @@ from pathlib import Path
 import shutil
 import uuid
 
-from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from fastapi import (
+    FastAPI,
+    File, 
+    Form, 
+    HTTPException,
+    UploadFile,
+    Depends
+)
 from celery.result import AsyncResult
 from sqlalchemy import select
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from fastapi.responses import StreamingResponse
 
+from app.config import get_settings
+from app.security import Principal, get_current_principal, require_admin
 from app.citations import remove_invalid_citations
 from app.authz import normalize_roles
 from app.llm import stream_answer
 from app.prompt import SYSTEM_PROMPT, build_user_prompt
-from app.rag_stream import stream_question
 from app.celery_app import celery_app
 from app.db import SessionLocal
 from app.models import Document
@@ -32,7 +40,7 @@ UPLOAD_DIR.mkdir(
     parents=True,
     exist_ok=True
 )
-PROVISIONAL_ROLES = ["employee"]
+get_settings()
 
 
 @app.get("/health")
@@ -46,6 +54,7 @@ def health():
 async def upload_document(
     file: UploadFile = File(...),
     allowed_roles: list[str] = Form(...),
+    principal: Principal = Depends(require_admin),
 ):
     try:
         roles = normalize_roles(allowed_roles)
@@ -88,6 +97,7 @@ async def upload_document(
 @app.get("/task/{task_id}")
 def get_task_status(
     task_id: str,
+    principal: Principal = Depends(require_admin)
 ):
     result = AsyncResult(
         task_id,
@@ -110,12 +120,16 @@ def get_task_status(
 
 
 class SearchRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
     query: str
     top_k: int = 5
 
 
 @app.post("/search")
-def search_documents(request: SearchRequest):
+def search_documents(
+    request: SearchRequest,
+    principal: Principal = Depends(get_current_principal)
+):
     db = SessionLocal()
     
     try:
@@ -123,7 +137,7 @@ def search_documents(request: SearchRequest):
             db = db,
             query=request.query,
             top_k=request.top_k,
-            roles=PROVISIONAL_ROLES,
+            roles=principal.document_roles,
         )
         
         context = build_context(
@@ -156,6 +170,8 @@ def search_documents(request: SearchRequest):
 
 
 class AskRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    
     question: str
     top_k: int = 5
     min_score: float = 0.45
@@ -164,7 +180,10 @@ class AskRequest(BaseModel):
 
 
 @app.post("/talk")
-def ask(request: AskRequest):
+def ask(
+    request: AskRequest,
+    principal: Principal = Depends(get_current_principal)
+):
     db = SessionLocal()
     
     try:
@@ -174,7 +193,7 @@ def ask(request: AskRequest):
             top_k=request.top_k,
             min_score=request.min_score,
             max_context_tokens=request.max_context_tokens,
-            roles=PROVISIONAL_ROLES,
+            roles=principal.document_roles,
         )
         
         return {
@@ -197,7 +216,10 @@ def ask(request: AskRequest):
 
 
 @app.post("/ask/stream")
-def ask_stream(request: AskRequest):
+def ask_stream(
+    request: AskRequest,
+    principal: Principal = Depends(get_current_principal)
+):
 
     def event_generator():
 
@@ -216,7 +238,7 @@ def ask_stream(request: AskRequest):
                 query=request.question,
                 top_k=request.top_k,
                 min_score=request.min_score,
-                roles=PROVISIONAL_ROLES,
+                roles=principal.document_roles,
             )
 
             if not retrieved:

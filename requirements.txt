@@ -13,3 +13,4 @@ redis
 python-multipart
 sentence-transformers
 ollama
+PYJWT==2.10.1

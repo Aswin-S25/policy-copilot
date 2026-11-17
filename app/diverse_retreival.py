@@ -1,6 +1,5 @@
-from collections.abc import Sequence
-
 from sqlalchemy.orm import Session
+from collections.abc import Sequence
 
 from app.diversity import apply_document_cap
 from app.hybrid_retrieval import retrieve_hybrid
@@ -22,8 +21,7 @@ def retreive_diverse(
         db=db,
         query=query,
         top_k=candidate_k,
-        candidate_k=candidate_k,
-        roles=roles,
+        candidate_k=candidate_k
     )
     
     
