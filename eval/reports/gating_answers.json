@@ -1,0 +1,1281 @@
+{
+  "leave-001|dfd57419-6ec2-4159-8cda-789c138861e2|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|a56592d5-c8b3-48e8-aaa9-8d1748f54efd|d300fe97-2b2b-4f9d-b188-2ca297912629|64c98e14-440f-417a-9584-36b19cc36dde": {
+    "answer": "Full-time employees receive **24 working days of annual leave per calendar year** [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "security-001|ec7457e7-4cdc-4721-b33d-7ec7377a5b9e|7279773a-f11e-4874-b1ec-f0cd74be84aa|39400f93-9496-477d-bc85-4c96a1ff6da1|9fffbfba-383f-4be3-8546-9ee4e8cb380b|cf32cccb-529a-4428-a5b8-4c6c721d1892": {
+    "answer": "The password policy requires employees to use strong, unique passwords for company accounts. Passwords must be at least **12 characters** long and include a combination of letters, numbers, and symbols. Employees must not reuse company passwords on personal services or share them with anyone, including IT support, which will never request password disclosure [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "security-001|ec7457e7-4cdc-4721-b33d-7ec7377a5b9e|edd53068-7dd5-4d55-be6f-7d219d173b9b|7279773a-f11e-4874-b1ec-f0cd74be84aa|39400f93-9496-477d-bc85-4c96a1ff6da1|9fffbfba-383f-4be3-8546-9ee4e8cb380b": {
+    "answer": "The password policy requires employees to use strong, unique passwords for company accounts. Passwords must contain at least **12 characters** and include a combination of letters, numbers, and symbols [Source 1]. Employees must not reuse company passwords on personal services or share them with anyone, including IT support, which will never request password disclosure [Source 1]. Additionally, the policy specifies a minimum password length of **12 characters** [Source 2].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "leave-002|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|dfd57419-6ec2-4159-8cda-789c138861e2|a56592d5-c8b3-48e8-aaa9-8d1748f54efd|f3e7e94e-af0a-4820-a4f6-2dd369aa6715|1e17ec1d-a6ba-4996-9364-d83086aaf92a": {
+    "answer": "Employees receive **8 working days of casual leave per calendar year** [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "leave-003|a56592d5-c8b3-48e8-aaa9-8d1748f54efd|f3e7e94e-af0a-4820-a4f6-2dd369aa6715|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|dfd57419-6ec2-4159-8cda-789c138861e2|61a0b9af-eca7-46da-9b62-aef66948cbe7": {
+    "answer": "Employees receive **12 working days of sick leave per calendar year** [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "leave-004|dfd57419-6ec2-4159-8cda-789c138861e2|edd53068-7dd5-4d55-be6f-7d219d173b9b|d300fe97-2b2b-4f9d-b188-2ca297912629|1e17ec1d-a6ba-4996-9364-d83086aaf92a|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70": {
+    "answer": "Annual leave should normally be requested at least **5 working days in advance** through the company's leave-management system [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "leave-005|dfd57419-6ec2-4159-8cda-789c138861e2|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|edd53068-7dd5-4d55-be6f-7d219d173b9b|1e17ec1d-a6ba-4996-9364-d83086aaf92a|a56592d5-c8b3-48e8-aaa9-8d1748f54efd": {
+    "answer": "The annual leave carry-forward limit is **12 working days** into the following calendar year [Source 1]. This policy also appears in the quick reference table as \"Annual Leave Carry Forward | Up to 12 working days\" [Source 3].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "leave-006|a56592d5-c8b3-48e8-aaa9-8d1748f54efd|f3e7e94e-af0a-4820-a4f6-2dd369aa6715|edd53068-7dd5-4d55-be6f-7d219d173b9b|dfd57419-6ec2-4159-8cda-789c138861e2|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70": {
+    "answer": "The company may request medical documentation for sick leave lasting more than **3 consecutive working days** [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "leave-007|cd7a11d9-c6bc-4bd3-ab56-4b19c4378627|fdcbff79-0308-49fd-8702-45462cacfebe|dfd57419-6ec2-4159-8cda-789c138861e2|d300fe97-2b2b-4f9d-b188-2ca297912629|564a7e5e-5397-4940-abc8-77152ed9396a": {
+    "answer": "Leave requests are approved by the employee's designated manager, unless the employee's employment terms or local law require a different process [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "leave-007|cd7a11d9-c6bc-4bd3-ab56-4b19c4378627|dfd57419-6ec2-4159-8cda-789c138861e2|d300fe97-2b2b-4f9d-b188-2ca297912629|fdcbff79-0308-49fd-8702-45462cacfebe|564a7e5e-5397-4940-abc8-77152ed9396a": {
+    "answer": "Leave requests are approved by the employee's designated manager, unless the employee's employment terms or local law require a different process [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "hours-001|9b634a76-2adc-4d4e-900a-5355a15d5079|a74acebe-eb17-4adc-bffb-7cf10c9ef279|564a7e5e-5397-4940-abc8-77152ed9396a|dfd57419-6ec2-4159-8cda-789c138861e2|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70": {
+    "answer": "The standard working hours are **Monday through Friday, 9:30 AM to 6:30 PM**, including a **1-hour meal break** [Source 1]. Remote employees must be available during core collaboration hours of **11:00 to 16:00 local office time**, but this applies specifically to remote work requirements [Source 2].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "hours-001|9b634a76-2adc-4d4e-900a-5355a15d5079|edd53068-7dd5-4d55-be6f-7d219d173b9b|a74acebe-eb17-4adc-bffb-7cf10c9ef279|564a7e5e-5397-4940-abc8-77152ed9396a|dfd57419-6ec2-4159-8cda-789c138861e2": {
+    "answer": "The standard working hours are **Monday through Friday, 9:30 AM to 6:30 PM**, including a **1-hour meal break** [Source 1]. This policy also appears in the Quick Policy Reference section [Source 2]. Some teams may operate different schedules due to operational or time-zone requirements, but these must be communicated by managers [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "hours-002|9b634a76-2adc-4d4e-900a-5355a15d5079|a56592d5-c8b3-48e8-aaa9-8d1748f54efd|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|dfd57419-6ec2-4159-8cda-789c138861e2|d300fe97-2b2b-4f9d-b188-2ca297912629": {
+    "answer": "The meal break in the standard working day is **1 hour** [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "security-002|ec7457e7-4cdc-4721-b33d-7ec7377a5b9e|4190f1b8-6b99-4906-95e9-49991f03aa27|7279773a-f11e-4874-b1ec-f0cd74be84aa|3011699b-9d21-4bab-86be-71f02f4f40c4|edd53068-7dd5-4d55-be6f-7d219d173b9b": {
+    "answer": "The minimum password length is **12 characters** [Source 1], as specified in the Password Policy. This requirement is also explicitly listed in the Quick Policy Reference table under \"Password Minimum\" [Source 5].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "security-003|c25274e3-5c3b-476a-9459-c212037369a7|fc1615fc-1059-4c3b-823c-f4f4693f90f8|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1|b1e44b1c-96a9-404d-822c-042ec3629d13|fbebb4af-25f7-4b8a-a330-b1aa6111f5e1": {
+    "answer": "A suspected security incident must be reported to the security team **within 1 hour of discovery** [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "security-004|20e4ba56-5fc6-4bcb-bdb5-ac7ca2165abd|ec7457e7-4cdc-4721-b33d-7ec7377a5b9e|288c4b8f-b911-4280-a599-a2ed600088c3|76ace989-a676-4be1-8509-6d3c93b0c7d2|3538737f-f672-48c6-953f-9b24e79f4df1": {
+    "answer": "Yes, multi-factor authentication (MFA) is required for company systems that support it [Source 1]. Employees must register an approved authentication method and follow protocols for unexpected MFA requests, such as denying unauthorized requests and reporting them to the security team.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "security-005|ec7457e7-4cdc-4721-b33d-7ec7377a5b9e|7279773a-f11e-4874-b1ec-f0cd74be84aa|20e4ba56-5fc6-4bcb-bdb5-ac7ca2165abd|9f6e2d41-3012-44fd-b74d-15acad62a693|39400f93-9496-477d-bc85-4c96a1ff6da1": {
+    "answer": "According to the policy, IT support will never ask an employee to disclose their password. This is explicitly stated in [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "security-006|20e4ba56-5fc6-4bcb-bdb5-ac7ca2165abd|3c5db065-b4d7-4880-9470-4e4aa61f04c4|156144ef-2918-4d81-a35c-d6c6f0bc07e6|31ac7015-8aae-469a-ae9f-cb876081da2b|e156e92a-2a0f-480a-971c-c7a42998858f": {
+    "answer": "If you receive an MFA request you did not initiate, you must **deny the request** and **report it to the security team**. This is explicitly stated in the policy to ensure security and prevent unauthorized access [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "expense-001|25dbde6c-ea23-4c84-9836-cffe4b5c36a0|9e6d3eeb-6136-4046-b05d-8f30b0eb8271|c851b03e-6b51-4ad5-a8f5-cc51a3a0200a|41e9be47-66a7-4e8e-84f5-d02932a5bbd3|9b7cf196-a78d-4363-b2ae-a1573e69fca2": {
+    "answer": "Expense claims should be submitted within **30 days** of the expense date [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "expense-002|25dbde6c-ea23-4c84-9836-cffe4b5c36a0|9e6d3eeb-6136-4046-b05d-8f30b0eb8271|c851b03e-6b51-4ad5-a8f5-cc51a3a0200a|41e9be47-66a7-4e8e-84f5-d02932a5bbd3|2388ea1a-f6eb-4c67-9914-c4cd25508783": {
+    "answer": "The required documentation for an expense claim includes receipts, invoices, or other evidence as specified by Finance [Source 1]. Wellness allowance claims also require a receipt, submitted through the expense system [Source 2]. These documents must support the claim and ensure compliance with company policies.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "travel-001|2388ea1a-f6eb-4c67-9914-c4cd25508783|41e9be47-66a7-4e8e-84f5-d02932a5bbd3|c851b03e-6b51-4ad5-a8f5-cc51a3a0200a|cd7a11d9-c6bc-4bd3-ab56-4b19c4378627|156144ef-2918-4d81-a35c-d6c6f0bc07e6": {
+    "answer": "Yes, business travel must be approved by the appropriate manager before booking [Source 1]. Employees are required to obtain approval for significant or unusual expenditures, which includes business travel [Source 3].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "perf-001|a2f8442f-75eb-4a3a-96a1-6324b5cdfc09|8c350927-ffb4-4d1b-b84d-25c6e3957018|1100bf5f-99bd-4e39-8a7d-63ebeccd8419|fc1615fc-1059-4c3b-823c-f4f4693f90f8|81538549-97e2-42c1-aae3-0fad7a6433c9": {
+    "answer": "Formal performance reviews are conducted **twice per year** [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "conduct-001|156144ef-2918-4d81-a35c-d6c6f0bc07e6|65bc6a97-390f-495a-9f9c-200e50b19ba0|b94f236c-ccdb-447a-bc7a-b1d98a7a93e5|0b958d1f-ec73-4291-97fd-6797e820d6f3|4a81204a-180c-4656-81e2-6aa720c1977d": {
+    "answer": "Employees cannot accept cash gifts from vendors. The policy explicitly states that \"cash gifts must not be accepted from vendors, customers, or business partners\" [Source 1]. This prohibition applies regardless of the gift's value or intent. Other sections of the policy focus on procurement processes and conflicts of interest but do not override or modify this specific restriction.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "handbook-001|6db456b7-6651-431a-a1b7-0633a6511189|4b7f4b9d-57cd-4ebd-a485-e3e2af518a0b|9fffbfba-383f-4be3-8546-9ee4e8cb380b|f0dea9a1-1c3d-4775-a61d-abff24992f13|6270a819-2fde-46c1-b565-61e9fad36e2a": {
+    "answer": "The employee policy handbook is owned by **People Operations** [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "handbook-002|6db456b7-6651-431a-a1b7-0633a6511189|4b7f4b9d-57cd-4ebd-a485-e3e2af518a0b|f0dea9a1-1c3d-4775-a61d-abff24992f13|2e4082c9-a3fb-488d-82dc-aa8d9bd852d2|6270a819-2fde-46c1-b565-61e9fad36e2a": {
+    "answer": "The employee policy handbook took effect on 1 January 2026 [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "handbook-003|6db456b7-6651-431a-a1b7-0633a6511189|a2f8442f-75eb-4a3a-96a1-6324b5cdfc09|1100bf5f-99bd-4e39-8a7d-63ebeccd8419|4b7f4b9d-57cd-4ebd-a485-e3e2af518a0b|e4cf1b2e-5d51-493c-be37-70b5618cee88": {
+    "answer": "The employee handbook is reviewed annually, as stated in the \"Review Cycle\" field with the value \"Annual\" [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "contacts-001|c851b03e-6b51-4ad5-a8f5-cc51a3a0200a|484edd5c-18f4-4b52-bb78-14fab5aaffcb|41e9be47-66a7-4e8e-84f5-d02932a5bbd3|2388ea1a-f6eb-4c67-9914-c4cd25508783|25dbde6c-ea23-4c84-9836-cffe4b5c36a0": {
+    "answer": "The provided policy sources do not explicitly state whom to contact regarding expenses and reimbursements. While they mention requiring approval from managers or the L&D team for specific cases (e.g., spending over 300 USD [Source 2]), there is no direct contact information provided for general inquiries about expenses and reimbursements. \n\nAnswer: The information was not found in the provider policies [Source 1, Source 2, Source 5].",
+    "refused": true,
+    "judge": null
+  },
+  "contacts-001|9fffbfba-383f-4be3-8546-9ee4e8cb380b|c851b03e-6b51-4ad5-a8f5-cc51a3a0200a|484edd5c-18f4-4b52-bb78-14fab5aaffcb|41e9be47-66a7-4e8e-84f5-d02932a5bbd3|2388ea1a-f6eb-4c67-9914-c4cd25508783": {
+    "answer": "You should contact the **Finance** department for questions about expenses and reimbursements [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "safety-001|a43646a4-e81f-42ae-acf3-b67b3c2e5495|b931acda-aa59-402d-92e8-b4983828042d|c25274e3-5c3b-476a-9459-c212037369a7|81538549-97e2-42c1-aae3-0fad7a6433c9|271d0022-4658-4138-bab2-e428f8529776": {
+    "answer": "Unsafe workplace conditions should be reported promptly to the relevant manager or facilities team [Source 1]. If the concern involves the employee's manager, it should be raised with People Operations or the Ethics Hotline [Source 4].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "leave-008|cd7a11d9-c6bc-4bd3-ab56-4b19c4378627|564a7e5e-5397-4940-abc8-77152ed9396a|edd53068-7dd5-4d55-be6f-7d219d173b9b|d300fe97-2b2b-4f9d-b188-2ca297912629|dfd57419-6ec2-4159-8cda-789c138861e2": {
+    "answer": "No, submitting a leave request does not automatically approve it. The policy states that leave must be approved by the employee's designated manager, and employees should confirm approval before making commitments dependent on the leave being granted [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "leave-009|dfd57419-6ec2-4159-8cda-789c138861e2|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|a56592d5-c8b3-48e8-aaa9-8d1748f54efd|d300fe97-2b2b-4f9d-b188-2ca297912629|edd53068-7dd5-4d55-be6f-7d219d173b9b": {
+    "answer": "Your 15 unused annual leave days will have **12 days carried forward** into the next calendar year, and the remaining **3 days will expire** unless a written exception is approved by People Operations [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "leave-010|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|dfd57419-6ec2-4159-8cda-789c138861e2|edd53068-7dd5-4d55-be6f-7d219d173b9b|4a81204a-180c-4656-81e2-6aa720c1977d|d300fe97-2b2b-4f9d-b188-2ca297912629": {
+    "answer": "No, unused casual leave cannot be carried forward. According to the policy, unused casual leave expires at the end of the calendar year and is not carried forward [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "leave-011|a56592d5-c8b3-48e8-aaa9-8d1748f54efd|dfd57419-6ec2-4159-8cda-789c138861e2|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|f3e7e94e-af0a-4820-a4f6-2dd369aa6715|edd53068-7dd5-4d55-be6f-7d219d173b9b": {
+    "answer": "No, unused sick leave cannot be converted into annual leave. According to the policy, unused sick leave is not convertible to annual leave and does not normally carry forward [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "ai-001|3538737f-f672-48c6-953f-9b24e79f4df1|e4cf1b2e-5d51-493c-be37-70b5618cee88|31348222-e994-4c6a-8543-143396dd31aa|3e83f174-dfc8-45f9-9122-f1468bc25940|891dd654-2d6a-4792-9054-a90a5da0a4f2": {
+    "answer": "No, you cannot paste customer data into a public AI chatbot to summarize it. The policy explicitly prohibits submitting confidential company information or customer data to public AI services unless the service and use case have been explicitly approved [Source 1]. Additionally, employees must verify that an external AI service is approved for the type of information being processed before use [Source 3]. Since public AI chatbots are not inherently approved for handling customer data, this action would violate the policy.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "ai-002|3e83f174-dfc8-45f9-9122-f1468bc25940|e4cf1b2e-5d51-493c-be37-70b5618cee88|31348222-e994-4c6a-8543-143396dd31aa|3538737f-f672-48c6-953f-9b24e79f4df1|b1e44b1c-96a9-404d-822c-042ec3629d13": {
+    "answer": "No, AI-generated code cannot be deployed to production solely based on compiling and passing a quick test. Policies mandate that such code must be reviewed, tested, and checked for security and licensing concerns before production incorporation [Source 1]. Additionally, human review is required before using AI-generated content in production systems [Source 2]. Developers must not assume correctness from superficial tests [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "procure-001|484edd5c-18f4-4b52-bb78-14fab5aaffcb|65bc6a97-390f-495a-9f9c-200e50b19ba0|31ac7015-8aae-469a-ae9f-cb876081da2b|77c03f2f-e1c5-4a67-8ed9-51048562d8be|9f6e2d41-3012-44fd-b74d-15acad62a693": {
+    "answer": "No, splitting purchases into smaller transactions to avoid approval thresholds is prohibited. Employees must not split purchases to bypass approval requirements [Source 2].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "security-007|ec7457e7-4cdc-4721-b33d-7ec7377a5b9e|7279773a-f11e-4874-b1ec-f0cd74be84aa|9fffbfba-383f-4be3-8546-9ee4e8cb380b|703916db-722d-4468-ba92-3ac094c0b533|cd21d535-51a0-4975-9c49-5875eb9283f1": {
+    "answer": "No, you should not share your password with your manager. The policy explicitly states that passwords must not be shared with colleagues, managers, contractors, or support personnel [Source 1]. If your manager requires assistance, they should contact the IT/Security Team through approved channels instead of requesting passwords directly.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "devices-001|39400f93-9496-477d-bc85-4c96a1ff6da1|54f2ca27-f2a3-4c1e-b39c-b1d402fab82f|881830ab-bc65-40d7-9a7c-187c3e3ffc0b|76ace989-a676-4be1-8509-6d3c93b0c7d2|cf32cccb-529a-4428-a5b8-4c6c721d1892": {
+    "answer": "No, you cannot turn off disk encryption on your company laptop. Full-disk encryption (BitLocker/ FileVault) is mandatory for all company laptops, and disabling it will block the device from the corporate network until IT restores encryption [Source 1]. Additionally, employees are explicitly prohibited from disabling security controls like disk encryption [Source 4]. Performance optimizations must comply with security policies.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "devices-002|2f3d2944-ace1-46af-8d3c-ab6a0500cd8d|0e2542ea-25a2-48ba-b7f6-2553caccbe4a|76ace989-a676-4be1-8509-6d3c93b0c7d2|3aa86694-9a1f-4b53-83f9-256d8ca74ecb|7279773a-f11e-4874-b1ec-f0cd74be84aa": {
+    "answer": "Yes, you are allowed to use your company laptop for personal browsing, but with certain conditions. Reasonable personal use is permitted **if it does not interfere with work, consume excessive resources, violate company policy, or create security or legal risks** [Source 1]. Additionally, you must ensure personal browsing does not involve unauthorized access to company systems or bypass security controls [Source 2][Source 4]. Company devices are primarily for business purposes, and employees must protect them from risks like malware or unauthorized use [Source 3]. Always adhere to responsible internet use policies to avoid violating security or legal standards [Source 4].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "data-001|6861ef2c-9526-43f8-89ba-8ccb4357cac9|cd21d535-51a0-4975-9c49-5875eb9283f1|3a6c3909-10b9-46b7-a012-adbd5ffea441|cc895ba2-a49d-479d-98bd-e68785fbfb0c|0e2542ea-25a2-48ba-b7f6-2553caccbe4a": {
+    "answer": "No, you cannot keep a copy of customer personal data in your personal cloud storage. The policy explicitly states that personal data must not be copied to personal devices, personal cloud storage, or unauthorized applications [Source 1]. This restriction applies to ensure compliance with data protection requirements and prevent unauthorized access or misuse of sensitive information.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "data-002|cc895ba2-a49d-479d-98bd-e68785fbfb0c|2cea5417-aa08-4acb-9aa8-5fded5179008|3a6c3909-10b9-46b7-a012-adbd5ffea441|4a21f58d-9c3f-4aa6-b71b-8fa79efe02a7|54f2ca27-f2a3-4c1e-b39c-b1d402fab82f": {
+    "answer": "No, you cannot delete old records under a legal hold, even if they are no longer needed. Employees must not intentionally delete, alter, or conceal records subject to a legal hold, investigation, audit, or approved retention requirement [Source 1]. Secure deletion procedures apply only when information is no longer required and not under a legal hold [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "exceptions-001|0277bd0c-aafd-4233-8208-22cd6d0d3965|271d0022-4658-4138-bab2-e428f8529776|4b7f4b9d-57cd-4ebd-a485-e3e2af518a0b|9fffbfba-383f-4be3-8546-9ee4e8cb380b|46f472cb-683e-49b9-9292-e698656ef7f1": {
+    "answer": "A verbal agreement from a manager does not override a written policy unless the person providing the exception has the authority to approve it. The policy explicitly states employees should not assume a verbal agreement overrides a written policy without confirming the approver's authority [Source 1]. Approved exceptions must be documented where practical, but the written policy remains binding unless formally authorized and recorded.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "travel-002|41e9be47-66a7-4e8e-84f5-d02932a5bbd3|2388ea1a-f6eb-4c67-9914-c4cd25508783|c851b03e-6b51-4ad5-a8f5-cc51a3a0200a|d962700f-02a3-4f17-886f-2e8a5b5b6b04|156144ef-2918-4d81-a35c-d6c6f0bc07e6": {
+    "answer": "According to the policy, employees may claim reasonable accommodation costs within defined limits, but personal upgrades and additional costs are typically the employee's responsibility unless specifically approved [Source 1]. Therefore, upgrading your hotel room at the company's expense is generally not allowed unless prior approval is obtained.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "security-008|c25274e3-5c3b-476a-9459-c212037369a7|3011699b-9d21-4bab-86be-71f02f4f40c4|81538549-97e2-42c1-aae3-0fad7a6433c9|a44275ec-500d-41bd-9dc8-703f9a0d1c49|9fffbfba-383f-4be3-8546-9ee4e8cb380b": {
+    "answer": "No, you should not investigate the sender yourself. According to the policy, suspected security incidents like phishing must be reported to the security team **within 1 hour of discovery** [Source 1]. Employees are instructed not to investigate beyond preserving information and protecting the company unless explicitly directed by the security team [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-001|a56592d5-c8b3-48e8-aaa9-8d1748f54efd|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|dfd57419-6ec2-4159-8cda-789c138861e2|f3e7e94e-af0a-4820-a4f6-2dd369aa6715|edd53068-7dd5-4d55-be6f-7d219d173b9b": {
+    "answer": "Employees receive **24 working days of annual leave** [Source 3], **8 working days of casual leave** [Source 2], and **12 working days of sick leave** [Source 1] per calendar year. Adding these together, the total is **44 working days** of annual, casual, and sick leave combined.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-002|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|dfd57419-6ec2-4159-8cda-789c138861e2|edd53068-7dd5-4d55-be6f-7d219d173b9b|a56592d5-c8b3-48e8-aaa9-8d1748f54efd|d300fe97-2b2b-4f9d-b188-2ca297912629": {
+    "answer": "You may combine casual leave with up to **5 consecutive working days** of annual leave, but this requires **manager approval** [Source 1].  \n\nFor annual leave, you must request at least **5 working days in advance** through the leave-management system [Source 2]. Casual leave typically requires informing your manager **before the start of the working day** [Source 1]. When combining both, the annual leave notice period (5 working days) is the primary requirement. Always confirm with your manager for specific approval.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-003|b94f236c-ccdb-447a-bc7a-b1d98a7a93e5|0b958d1f-ec73-4291-97fd-6797e820d6f3|65bc6a97-390f-495a-9f9c-200e50b19ba0|54a195d0-b312-4e4a-953d-83b7148f93c5|e156e92a-2a0f-480a-971c-c7a42998858f": {
+    "answer": "The conflict-of-interest rules for vendor selection and employees are as follows:  \n\n**Vendor Selection**:  \nEmployees must not select a vendor solely because of a personal benefit [Source 1].  \n\n**Employees in General**:  \nEmployees must disclose situations where a personal relationship or financial interest could influence business decisions, and they must not use their position to obtain improper personal benefits [Source 1]. Additionally, employees must disclose actual or potential conflicts of interest to their manager or People Operations [Source 4].  \n\nThese rules ensure transparency and prevent undue influence in procurement and personal conduct.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-004|3a6c3909-10b9-46b7-a012-adbd5ffea441|76ace989-a676-4be1-8509-6d3c93b0c7d2|4a81204a-180c-4656-81e2-6aa720c1977d|c25274e3-5c3b-476a-9459-c212037369a7|25bb8260-cc69-4121-8114-5e190769dec9": {
+    "answer": "If you lose your company laptop, you must report it to the security team **within 1 hour of discovery** as a suspected security incident [Source 4]. Your obligations include promptly notifying the security team and avoiding actions like wiping the device yourself (secure wiping is handled by IT Operations) [Source 1]. There is no specified timeframe for returning the device in this scenario, but policies emphasize protecting devices from theft and unauthorized use [Source 2].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-005|e4cf1b2e-5d51-493c-be37-70b5618cee88|31348222-e994-4c6a-8543-143396dd31aa|3538737f-f672-48c6-953f-9b24e79f4df1|3e83f174-dfc8-45f9-9122-f1468bc25940|45026857-ff8c-4b72-91c7-c559bb0a9b6a": {
+    "answer": "When using AI tools with company information, the following rules apply:  \n1. AI-generated content must be reviewed by an employee before use for high-impact purposes (e.g., business decisions, customer communications, legal documents) [Source 1].  \n2. Employees are responsible for ensuring the accuracy, security, and appropriateness of AI-assisted work [Source 1].  \n3. AI-generated code must be reviewed, tested, and checked for security and licensing concerns before incorporation into production systems [Source 4].  \n4. Employees must use only approved AI tools and verify that external services are approved for the type of information being processed [Source 2].  \n\nThe output must be reviewed by employees, with additional checks for code and sensitive data as specified.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-006|1ffc5375-a552-47a0-a431-a374d8ea85e9|a74acebe-eb17-4adc-bffb-7cf10c9ef279|e17e1731-b768-47fc-8e08-587f0fa77fd3|181fcdae-d12b-42d2-ab7f-64a1d8787963|5ee67483-e742-4b54-9997-e4db2e323689": {
+    "answer": "Yes, you can work remotely on a flexible schedule if you meet eligibility criteria and obtain necessary approvals. Remote work is permitted for eligible roles with team and manager approval [Source 1]. However, remote employees must be available online during core collaboration hours of **11:00 to 16:00 local office time**, regardless of their flexible schedule [Source 2]. \n\nFor a fully remote arrangement, approval from both the department head and People Operations is required [Source 3]. Eligibility for hybrid or remote work requires completing the probation period and not being in roles that require physical presence (e.g., facilities or hardware lab staff) [Source 4]. \n\nIf your flexible schedule involves working fully remotely, additional approvals are needed beyond team and manager consent.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-007|ec7457e7-4cdc-4721-b33d-7ec7377a5b9e|7279773a-f11e-4874-b1ec-f0cd74be84aa|76ace989-a676-4be1-8509-6d3c93b0c7d2|2f3d2944-ace1-46af-8d3c-ab6a0500cd8d|0bceb248-cd35-4ba8-931b-015b2ff82624": {
+    "answer": "To secure your company accounts, follow these guidelines:  \n1. Use strong, unique passwords with at least 12 characters, combining letters, numbers, and symbols. Do not reuse passwords for personal services or share them with anyone [Source 1].  \n2. Access only systems and data necessary for your role, and ensure all access requests are approved through the company\u2019s process. Do not bypass security controls [Source 2].  \n3. Protect company devices (laptops, phones, etc.) from unauthorized use, theft, or damage, and ensure security software, encryption, and device-management controls remain enabled [Source 3].  \n\nThese measures align with the company\u2019s policies to safeguard accounts and data.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-007|ec7457e7-4cdc-4721-b33d-7ec7377a5b9e|7279773a-f11e-4874-b1ec-f0cd74be84aa|c25274e3-5c3b-476a-9459-c212037369a7|cf32cccb-529a-4428-a5b8-4c6c721d1892|76ace989-a676-4be1-8509-6d3c93b0c7d2": {
+    "answer": "To secure your company accounts, follow these guidelines:  \n1. Use strong, unique passwords with at least 12 characters, combining letters, numbers, and symbols. Do not reuse passwords on personal services or share them with anyone [Source 1].  \n2. Access only systems and data necessary for your role, and ensure access requests are approved through the company\u2019s process. Do not bypass security controls [Source 2].  \n3. Report suspected security incidents (e.g., phishing, unauthorized access) to the security team within 1 hour of discovery [Source 3].  \n\nAvoid disabling security software or endpoint protections on company devices [Source 5].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-008|cd21d535-51a0-4975-9c49-5875eb9283f1|0b958d1f-ec73-4291-97fd-6797e820d6f3|6861ef2c-9526-43f8-89ba-8ccb4357cac9|dd4a7e96-9dc1-4b5a-bf75-48d2efc148ee|b94f236c-ccdb-447a-bc7a-b1d98a7a93e5": {
+    "answer": "Before sharing customer data with an external vendor, the following must occur:  \n1. A security and privacy review must be completed for services involving customer data, ensuring compliance with legal and business requirements [Source 2].  \n2. The recipient must be verified to ensure they are authorized and appropriate channels approved for data sharing [Source 1].  \n3. Sensitive data transfers should use approved encryption or secure file-transfer mechanisms [Source 1].  \n\nIf the data is classified as confidential, a signed non-disclosure agreement (NDA) and approval from the information owner may also be required [Source 4].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-009|2388ea1a-f6eb-4c67-9914-c4cd25508783|c851b03e-6b51-4ad5-a8f5-cc51a3a0200a|41e9be47-66a7-4e8e-84f5-d02932a5bbd3|25dbde6c-ea23-4c84-9836-cffe4b5c36a0|484edd5c-18f4-4b52-bb78-14fab5aaffcb": {
+    "answer": "Before a business trip, you need approval from your appropriate manager [Source 1] and must ensure the travel is reasonable and within company limits [Source 1]. For expense claims, submit them within **30 days** of the expense date with sufficient documentation (e.g., receipts, invoices) [Source 4]. Claims must comply with the company's expense policy and cannot include false or misleading information [Source 4].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-010|1100bf5f-99bd-4e39-8a7d-63ebeccd8419|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1|fbebb4af-25f7-4b8a-a330-b1aa6111f5e1|2a116bd8-b44a-4fa2-867a-4ed9d3aa99a1|fc1615fc-1059-4c3b-823c-f4f4693f90f8": {
+    "answer": "If you are repeatedly late or absent without explanation, the company may address this through its performance-management process [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-011|31348222-e994-4c6a-8543-143396dd31aa|3538737f-f672-48c6-953f-9b24e79f4df1|9f6e2d41-3012-44fd-b74d-15acad62a693|e4cf1b2e-5d51-493c-be37-70b5618cee88|3e83f174-dfc8-45f9-9122-f1468bc25940": {
+    "answer": "The provided policies do not explicitly address whether employees can install new AI tools on company laptops. While they outline requirements for using approved AI tools [Source 1], handling confidential data [Source 2], and reviewing AI-generated content [Source 4], there is no specific guidance on installing AI tools on company devices. Therefore, the information was not found in the provider policies.",
+    "refused": true,
+    "judge": null
+  },
+  "multi-012|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|a56592d5-c8b3-48e8-aaa9-8d1748f54efd|f3e7e94e-af0a-4820-a4f6-2dd369aa6715|edd53068-7dd5-4d55-be6f-7d219d173b9b|dfd57419-6ec2-4159-8cda-789c138861e2": {
+    "answer": "Casual leave and sick leave differ in purpose, allocation, and usage rules. Casual leave is **8 working days per calendar year** for personal matters or unforeseen circumstances, while sick leave is **12 working days per calendar year** for illness [Source 1][Source 2]. Casual leave cannot be combined with more than **5 consecutive working days** of annual leave without manager approval, whereas sick leave requires notification to the manager and may require medical documentation for absences exceeding **3 consecutive working days** [Source 1][Source 2]. Unused casual leave expires annually, while unused sick leave does not carry forward to the next year [Source 1][Source 2].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-013|20e4ba56-5fc6-4bcb-bdb5-ac7ca2165abd|c25274e3-5c3b-476a-9459-c212037369a7|0277bd0c-aafd-4233-8208-22cd6d0d3965|9fffbfba-383f-4be3-8546-9ee4e8cb380b|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1": {
+    "answer": "If you receive an unexpected MFA prompt, you must **deny the request** and **report it to the security team within 1 hour of discovery** [Source 1], as it constitutes a suspected security incident [Source 2]. Do not investigate further unless instructed by the security team.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-014|156144ef-2918-4d81-a35c-d6c6f0bc07e6|b94f236c-ccdb-447a-bc7a-b1d98a7a93e5|c851b03e-6b51-4ad5-a8f5-cc51a3a0200a|65bc6a97-390f-495a-9f9c-200e50b19ba0|41e9be47-66a7-4e8e-84f5-d02932a5bbd3": {
+    "answer": "The policy prohibits accepting gifts that could reasonably influence a business decision, stating employees must not accept such gifts or hospitality [Source 1]. However, the provided policies do not specify disciplinary consequences for violating this rule. The focus is on preventing conflicts of interest rather than detailing penalties. \n\nThus, the information about consequences was not found in the provider policies.",
+    "refused": true,
+    "judge": null
+  },
+  "multi-015|558a2500-a970-461b-819c-f1ed4eb18507|fe883143-a002-47a4-92e8-92a22be1957e|a2f8442f-75eb-4a3a-96a1-6324b5cdfc09|2e6661cc-2bf6-4a32-9261-82d54c1d4ace|46f472cb-683e-49b9-9292-e698656ef7f1": {
+    "answer": "Your performance is evaluated through formal reviews conducted **twice per year**, which assess delivery against objectives, quality of work, collaboration, communication, ownership, and role-specific competencies [Source 3]. Managers are also expected to provide regular feedback and address significant performance concerns promptly [Source 2].  \n\nTo develop your skills, you are encouraged to pursue training relevant to your role and career goals. Training requests may require manager approval and are subject to budget availability [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-016|cd21d535-51a0-4975-9c49-5875eb9283f1|0bceb248-cd35-4ba8-931b-015b2ff82624|dd4a7e96-9dc1-4b5a-bf75-48d2efc148ee|3011699b-9d21-4bab-86be-71f02f4f40c4|6861ef2c-9526-43f8-89ba-8ccb4357cac9": {
+    "answer": "Confidential information should be protected by using encryption or secure file-transfer mechanisms for sensitive files [Source 1], and restricted information must not be sent via email or chat, requiring approved secure systems for transmission [Source 4]. Employees must verify recipients before sharing and ensure data is processed only for legitimate business purposes [Source 2].  \n\nConfidential information can be shared externally only through approved channels with authorization, and for specific sensitive data (e.g., customer contracts, source code), external sharing requires a signed non-disclosure agreement (NDA) and approval from the information owner [Source 3]. Sharing is limited to authorized individuals needing it for legitimate business purposes [Source 2].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 0.5
+    }
+  },
+  "multi-017|6861ef2c-9526-43f8-89ba-8ccb4357cac9|cc895ba2-a49d-479d-98bd-e68785fbfb0c|edd53068-7dd5-4d55-be6f-7d219d173b9b|cd21d535-51a0-4975-9c49-5875eb9283f1|d4f7cf63-8f5d-48b1-8124-0459cfad9d11": {
+    "answer": "To handle personal data, process it only for legitimate business purposes and retain only the information required for the approved purpose. Do not copy personal data to personal devices, personal cloud storage, or unauthorized applications [Source 1].  \n\nFor retention, business records must be kept according to applicable retention schedules. Do not intentionally delete, alter, or conceal records subject to legal holds, investigations, audits, or retention requirements. When data is no longer needed, securely delete it using approved procedures [Source 2].  \n\nThe specific retention duration depends on the applicable schedule, which is not detailed in the provided sources.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-018|25dbde6c-ea23-4c84-9836-cffe4b5c36a0|c851b03e-6b51-4ad5-a8f5-cc51a3a0200a|41e9be47-66a7-4e8e-84f5-d02932a5bbd3|31ac7015-8aae-469a-ae9f-cb876081da2b|d962700f-02a3-4f17-886f-2e8a5b5b6b04": {
+    "answer": "Business expenses that are **reasonable, necessary for work, and compliant with the company's expense policy** are reimbursable [Source 2]. The deadline for submitting expense claims is **30 days** from the expense date [Source 1]. Specific exceptions, such as the **home office equipment allowance** (which requires submission within **90 days** of approval), are noted in additional policy sections [Source 5].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-019|b1e3aa73-bae5-44d9-bba2-bacb10228e58|e156e92a-2a0f-480a-971c-c7a42998858f|09e45a0b-cf3f-4f49-80ca-ce56b82ca086|46f472cb-683e-49b9-9292-e698656ef7f1|eb1606ec-db29-4855-9446-0eb3c4545100": {
+    "answer": "Disagreements with colleagues should be handled by focusing on facts, requirements, risks, and evidence rather than personal criticism [Source 1]. Behavior such as harassment, discrimination, threats, intimidation, and abusive actions is explicitly prohibited [Source 3].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "multi-020|c25274e3-5c3b-476a-9459-c212037369a7|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1|9fffbfba-383f-4be3-8546-9ee4e8cb380b|fc1615fc-1059-4c3b-823c-f4f4693f90f8|b1e44b1c-96a9-404d-822c-042ec3629d13": {
+    "answer": "You must report a security incident to the **IT / Security Team** within **1 hour of discovery** [Source 1]. This applies to suspected incidents like phishing, data breaches, or unauthorized access. For critical incidents (SEV1), the on-call engineer must acknowledge within **15 minutes**, but the general reporting requirement remains 1 hour for most security incidents [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 0.5,
+      "relevance": 1.0,
+      "citation_correctness": 0.5
+    }
+  },
+  "amb-001|dfd57419-6ec2-4159-8cda-789c138861e2|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|d300fe97-2b2b-4f9d-b188-2ca297912629|a56592d5-c8b3-48e8-aaa9-8d1748f54efd|1e17ec1d-a6ba-4996-9364-d83086aaf92a": {
+    "answer": "The number of leave days depends on the type of leave:  \n- **Annual leave**: 24 working days per calendar year [Source 1].  \n- **Casual leave**: 8 working days per calendar year [Source 2].  \n- **Study leave**: Up to 5 days per calendar year [Source 3].  \n- **Sick leave**: 12 working days per calendar year [Source 4].  \n\nThese entitlements are separate and specific to each leave type.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "amb-002|54a195d0-b312-4e4a-953d-83b7148f93c5|b94f236c-ccdb-447a-bc7a-b1d98a7a93e5|271d0022-4658-4138-bab2-e428f8529776|9fffbfba-383f-4be3-8546-9ee4e8cb380b|0277bd0c-aafd-4233-8208-22cd6d0d3965": {
+    "answer": "The policy on conflicts of interest requires employees to disclose actual or potential conflicts of interest to their manager or People Operations [Source 1], and to avoid using their position to obtain improper personal benefits [Source 1]. Additionally, employees must disclose situations where personal relationships or financial interests could influence business decisions [Source 2], and they may not select vendors solely based on personal benefits [Source 2].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "amb-003|9fffbfba-383f-4be3-8546-9ee4e8cb380b|e156e92a-2a0f-480a-971c-c7a42998858f|4b7f4b9d-57cd-4ebd-a485-e3e2af518a0b|ae3c06ae-d68a-401d-8b3b-01d3a1a7cbfc|0e2542ea-25a2-48ba-b7f6-2553caccbe4a": {
+    "answer": "For general questions, contact the relevant department:  \n- **People Operations** for leave, attendance, employee records, performance, and workplace policies [Source 1].  \n- **IT/Security Team** for accounts, devices, security incidents, access, and information security [Source 1].  \n- **Finance** for expenses, reimbursements, procurement, and travel costs [Source 1].  \n- **Employee Manager** for team-specific working arrangements, schedules, responsibilities, and approvals [Source 1].  \n\nFor questions about this handbook, contact **People Operations** or your **Employee Manager** [Source 3].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "amb-004|edd53068-7dd5-4d55-be6f-7d219d173b9b|dfd57419-6ec2-4159-8cda-789c138861e2|8c350927-ffb4-4d1b-b84d-25c6e3957018|4a21f58d-9c3f-4aa6-b71b-8fa79efe02a7|52094ef0-b923-4eeb-ad1f-eaa51c51966b": {
+    "answer": "The term \"12-day rule\" is not explicitly mentioned in the provided policies. However, the policy references 12 working days in the context of **Annual Leave Carry Forward**, which allows unused annual leave to be carried forward into the following calendar year, up to 12 working days [Source 2]. If the question refers to this specific rule, it is part of the annual leave policy. Otherwise, no policy named \"12-day rule\" is found in the sources.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "amb-005|cd7a11d9-c6bc-4bd3-ab56-4b19c4378627|484edd5c-18f4-4b52-bb78-14fab5aaffcb|558a2500-a970-461b-819c-f1ed4eb18507|288c4b8f-b911-4280-a599-a2ed600088c3|2388ea1a-f6eb-4c67-9914-c4cd25508783": {
+    "answer": "Manager approval is required for the following:  \n- **Leave requests** (unless local law or employment terms specify otherwise) [Source 1].  \n- **Learning budget spending** (all amounts require manager approval; amounts over 300 USD also need L&D team approval) [Source 2].  \n- **Business travel** (must be approved by the appropriate manager before booking) [Source 5].  \n\nTraining requests **may** require manager approval but are not strictly mandated [Source 3].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "amb-006|5ee67483-e742-4b54-9997-e4db2e323689|d962700f-02a3-4f17-886f-2e8a5b5b6b04|a74acebe-eb17-4adc-bffb-7cf10c9ef279|1ffc5375-a552-47a0-a431-a374d8ea85e9|2f3d2944-ace1-46af-8d3c-ab6a0500cd8d": {
+    "answer": "Yes, remote work is permitted for eligible roles subject to team and manager approval [Source 4]. Employees must maintain a suitable work environment, protect company information, and remain reachable during agreed working hours. Additional requirements include having a private workspace [Source 1], adhering to core collaboration hours (11:00\u201316:00 local time) [Source 3], and complying with security and communication expectations [Source 4].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "amb-007|c25274e3-5c3b-476a-9459-c212037369a7|46f472cb-683e-49b9-9292-e698656ef7f1|fc1615fc-1059-4c3b-823c-f4f4693f90f8|81538549-97e2-42c1-aae3-0fad7a6433c9|edd53068-7dd5-4d55-be6f-7d219d173b9b": {
+    "answer": "The reporting deadline for suspected security incidents is **within 1 hour of discovery** [Source 1]. This policy is also referenced in the Quick Policy Reference section [Source 5]. No other reporting deadlines are specified in the provided sources.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "amb-008|31348222-e994-4c6a-8543-143396dd31aa|e4cf1b2e-5d51-493c-be37-70b5618cee88|3538737f-f672-48c6-953f-9b24e79f4df1|3e83f174-dfc8-45f9-9122-f1468bc25940|2f3d2944-ace1-46af-8d3c-ab6a0500cd8d": {
+    "answer": "Yes, you can use AI at work, but with specific conditions. Employees may use AI tools approved by the company for legitimate business purposes [Source 1]. AI-generated content must be reviewed by an employee before use in high-impact scenarios like customer communications or legal documents [Source 2]. Confidential data or restricted information must not be submitted to public AI services unless explicitly approved [Source 3]. Additionally, AI-generated code must be reviewed, tested, and checked for security and licensing issues before use in production systems [Source 4]. Always ensure compliance with these guidelines.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "amb-008|e4cf1b2e-5d51-493c-be37-70b5618cee88|31348222-e994-4c6a-8543-143396dd31aa|3538737f-f672-48c6-953f-9b24e79f4df1|3e83f174-dfc8-45f9-9122-f1468bc25940|2f3d2944-ace1-46af-8d3c-ab6a0500cd8d": {
+    "answer": "Yes, you can use AI at work, but with specific conditions. Employees may use AI tools approved by the company for legitimate business purposes [Source 2]. However, AI-generated content must be reviewed by an employee before use in high-impact scenarios like business decisions or customer communications [Source 1]. Additionally, confidential data cannot be submitted to public AI services without explicit approval [Source 3], and AI-generated code must be tested for security and licensing before use [Source 4]. Always ensure compliance with these guidelines.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "amb-009|76ace989-a676-4be1-8509-6d3c93b0c7d2|881830ab-bc65-40d7-9a7c-187c3e3ffc0b|39400f93-9496-477d-bc85-4c96a1ff6da1|3a6c3909-10b9-46b7-a012-adbd5ffea441|9f6e2d41-3012-44fd-b74d-15acad62a693": {
+    "answer": "The rules for your laptop include the following:  \n1. Company-issued laptops are for business purposes only, and employees must protect them from unauthorized use, theft, and physical damage [Source 1].  \n2. Employees must not disable security software, endpoint protection, disk encryption, or device-management controls [Source 1].  \n3. Laptops must lock automatically after **5 minutes** of inactivity, and employees must manually lock the screen when leaving the device unattended [Source 2].  \n4. Full-disk encryption (BitLocker on Windows, FileVault on macOS) is mandatory; devices without encryption are blocked from the corporate network until resolved by IT [Source 3].  \n5. Returned devices are securely wiped by IT Operations; employees must not attempt to wipe or reinstall the operating system themselves [Source 4].  \n\nThese policies ensure compliance with security and data protection standards.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "amb-010|271d0022-4658-4138-bab2-e428f8529776|46f472cb-683e-49b9-9292-e698656ef7f1|1a16442e-72fc-433d-86fe-80e629fa073b|77c03f2f-e1c5-4a67-8ed9-51048562d8be|eb1606ec-db29-4855-9446-0eb3c4545100": {
+    "answer": "If you break a rule, policy violations may result in corrective action, up to and including termination of employment, depending on the nature and severity of the violation [Source 1]. The company may also investigate suspected violations, restrict access to systems or information during investigations, and require cooperation with internal inquiries [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "unknown-001|93f9a751-5e8f-4ac8-be50-0b4b289298d6|8825341f-a975-4571-82ba-5ab7f7908fa6|b1e44b1c-96a9-404d-822c-042ec3629d13|54f2ca27-f2a3-4c1e-b39c-b1d402fab82f|dc2dbd7a-aae3-492c-849e-7f77a83369b0": {
+    "answer": "The information was not found in the provider policies. None of the provided policy sources address operating a submarine on Mars [Source 1][Source 2][Source 3][Source 4][Source 5].",
+    "refused": true,
+    "judge": null
+  },
+  "unknown-002|edd53068-7dd5-4d55-be6f-7d219d173b9b|cd21d535-51a0-4975-9c49-5875eb9283f1|ec7457e7-4cdc-4721-b33d-7ec7377a5b9e|31ac7015-8aae-469a-ae9f-cb876081da2b|3aa86694-9a1f-4b53-83f9-256d8ca74ecb": {
+    "answer": "The information was not found in the provider policies [Source 1][Source 2][Source 3][Source 4][Source 5]. None of the provided policy sources address the conversion of unused leave into cryptocurrency.",
+    "refused": true,
+    "judge": null
+  },
+  "unknown-003|484edd5c-18f4-4b52-bb78-14fab5aaffcb|6270a819-2fde-46c1-b565-61e9fad36e2a|f68051a4-e397-413c-af99-0db32d103979|41e9be47-66a7-4e8e-84f5-d02932a5bbd3|dc2dbd7a-aae3-492c-849e-7f77a83369b0": {
+    "answer": "I could not produce a sufficiently supported answer from the available policies.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 0.0,
+      "citation_correctness": 0.0
+    }
+  },
+  "unknown-004|d962700f-02a3-4f17-886f-2e8a5b5b6b04|a74acebe-eb17-4adc-bffb-7cf10c9ef279|7fbe32ab-18d6-4da2-80b8-cb29cc3230de|8825341f-a975-4571-82ba-5ab7f7908fa6|5ee67483-e742-4b54-9997-e4db2e323689": {
+    "answer": "The provided policy sources do not mention a monthly internet stipend for remote workers. The closest related information is a one-time home office equipment allowance of 400 USD for items like a desk, chair, or monitor [Source 1], but this is not a monthly stipend and does not cover internet expenses. No other sources address internet stipends. \n\nAnswer: The information was not found in the provider policies.",
+    "refused": true,
+    "judge": null
+  },
+  "unknown-005|fdcbff79-0308-49fd-8702-45462cacfebe|d300fe97-2b2b-4f9d-b188-2ca297912629|99a50110-3aaa-4a91-be0d-673ca4e73515|dfd57419-6ec2-4159-8cda-789c138861e2|a56592d5-c8b3-48e8-aaa9-8d1748f54efd": {
+    "answer": "The provided policies do not specify the number of weeks of paid parental leave. [Source 1] mentions parental leave is available \"in accordance with applicable law and company policy,\" but no quantitative details are provided.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "unknown-006|2388ea1a-f6eb-4c67-9914-c4cd25508783|41e9be47-66a7-4e8e-84f5-d02932a5bbd3|c851b03e-6b51-4ad5-a8f5-cc51a3a0200a|4ca5f526-a05b-4afe-b8f3-a61371778527|9b634a76-2adc-4d4e-900a-5355a15d5079": {
+    "answer": "The provided policies do not specify a daily meal allowance for business travel. The sources mention reimbursement for reasonable business expenses [Source 3], accommodation costs [Source 2], and a quarterly wellness allowance [Source 4], but none detail a daily meal allowance during travel. \n\nAnswer: The information about the daily meal allowance during business travel was not found in the provider policies [Source 1, Source 2, Source 3, Source 4, Source 5].",
+    "refused": true,
+    "judge": null
+  },
+  "unknown-007|09e45a0b-cf3f-4f49-80ca-ce56b82ca086|4a21f58d-9c3f-4aa6-b71b-8fa79efe02a7|b1e3aa73-bae5-44d9-bba2-bacb10228e58|cf32cccb-529a-4428-a5b8-4c6c721d1892|b6c114c3-fdad-46e4-84b2-5559dc460784": {
+    "answer": "The provided policy sources do not contain specific information about the office dress code. The policies address professional conduct [Source 1], clean desk practices [Source 2], workplace communication [Source 3], information security standards [Source 4], and issuing equipment [Source 5], but none mention dress code requirements.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 0.0
+    }
+  },
+  "unknown-008|d300fe97-2b2b-4f9d-b188-2ca297912629|dfd57419-6ec2-4159-8cda-789c138861e2|f3e7e94e-af0a-4820-a4f6-2dd369aa6715|a56592d5-c8b3-48e8-aaa9-8d1748f54efd|4a81204a-180c-4656-81e2-6aa720c1977d": {
+    "answer": "I could not produce a sufficiently supported answer from the available policies.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 0.0
+    }
+  },
+  "unknown-009|77c03f2f-e1c5-4a67-8ed9-51048562d8be|64c98e14-440f-417a-9584-36b19cc36dde|52094ef0-b923-4eeb-ad1f-eaa51c51966b|dfd57419-6ec2-4159-8cda-789c138861e2|fc1615fc-1059-4c3b-823c-f4f4693f90f8": {
+    "answer": "The provided policies do not specify a notice period for resignation. The notice period mentioned in Source 1 applies to ending a hybrid or remote work arrangement, not resignation from employment [Source 1]. No other policy source addresses resignation notice periods.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "unknown-010|4a21f58d-9c3f-4aa6-b71b-8fa79efe02a7|7279773a-f11e-4874-b1ec-f0cd74be84aa|5ee67483-e742-4b54-9997-e4db2e323689|76ace989-a676-4be1-8509-6d3c93b0c7d2|9fffbfba-383f-4be3-8546-9ee4e8cb380b": {
+    "answer": "I could not produce a sufficiently supported answer from the available policies.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 0.0,
+      "citation_correctness": 0.0
+    }
+  },
+  "iss-001|881830ab-bc65-40d7-9a7c-187c3e3ffc0b|39400f93-9496-477d-bc85-4c96a1ff6da1|2a116bd8-b44a-4fa2-867a-4ed9d3aa99a1|54f2ca27-f2a3-4c1e-b39c-b1d402fab82f|25bb8260-cc69-4121-8114-5e190769dec9": {
+    "answer": "The company laptop must lock automatically after **5 minutes** of inactivity [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "iss-002|2a116bd8-b44a-4fa2-867a-4ed9d3aa99a1|f4c67fdf-5602-4119-96bc-64c407f735a4|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1|881830ab-bc65-40d7-9a7c-187c3e3ffc0b|288c4b8f-b911-4280-a599-a2ed600088c3": {
+    "answer": "Critical security patches must be installed within **48 hours** after release for critical vulnerabilities [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "iss-003|54f2ca27-f2a3-4c1e-b39c-b1d402fab82f|0277bd0c-aafd-4233-8208-22cd6d0d3965|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1|9b7cf196-a78d-4363-b2ae-a1573e69fca2|fbebb4af-25f7-4b8a-a330-b1aa6111f5e1": {
+    "answer": "An approved removable media exception is valid for a maximum of **30 days** [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "rhw-001|e17e1731-b768-47fc-8e08-587f0fa77fd3|8825341f-a975-4571-82ba-5ab7f7908fa6|77c03f2f-e1c5-4a67-8ed9-51048562d8be|9b634a76-2adc-4d4e-900a-5355a15d5079|181fcdae-d12b-42d2-ab7f-64a1d8787963": {
+    "answer": "The standard hybrid schedule is **3 days in the office and 2 days remote** each week. Teams agree on shared in-office days with their manager. Fully remote arrangements require approval from both the department head and People Operations [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "rhw-002|a74acebe-eb17-4adc-bffb-7cf10c9ef279|1ffc5375-a552-47a0-a431-a374d8ea85e9|e17e1731-b768-47fc-8e08-587f0fa77fd3|8825341f-a975-4571-82ba-5ab7f7908fa6|5ee67483-e742-4b54-9997-e4db2e323689": {
+    "answer": "The core collaboration hours for remote employees are **11:00 to 16:00 local office time**, during which they must be available online [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "rhw-003|d962700f-02a3-4f17-886f-2e8a5b5b6b04|b6c114c3-fdad-46e4-84b2-5559dc460784|4ca5f526-a05b-4afe-b8f3-a61371778527|2e6661cc-2bf6-4a32-9261-82d54c1d4ace|5ee67483-e742-4b54-9997-e4db2e323689": {
+    "answer": "The home office equipment allowance is **400 USD** for a desk, chair, or monitor [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "rhw-004|1e17ec1d-a6ba-4996-9364-d83086aaf92a|dfd57419-6ec2-4159-8cda-789c138861e2|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|defbfaf9-2567-4f95-ba0c-4d752797a97e|edd53068-7dd5-4d55-be6f-7d219d173b9b": {
+    "answer": "The policy states that employees may work from another country for a maximum of **20 working days per calendar year**, subject to manager approval and compliance with tax and immigration requirements [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "onb-001|52094ef0-b923-4eeb-ad1f-eaa51c51966b|64c98e14-440f-417a-9584-36b19cc36dde|118fb9ba-56c3-4fe0-9ec8-77f8e4b90d0e|8c350927-ffb4-4d1b-b84d-25c6e3957018|93f9a751-5e8f-4ac8-be50-0b4b289298d6": {
+    "answer": "The probation period is **6 months** for all new employees [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "onb-002|cd73145a-d87c-4c5c-88df-dcc196a74173|703916db-722d-4468-ba92-3ac094c0b533|3c5db065-b4d7-4880-9470-4e4aa61f04c4|93f9a751-5e8f-4ac8-be50-0b4b289298d6|6cc6eaae-2db1-481e-a651-9be951c4e6b2": {
+    "answer": "A new employee is assigned an onboarding buddy for the first **60 days** [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "onb-003|68c2f9f1-42cf-43d4-ab7a-915271558d70|6cc6eaae-2db1-481e-a651-9be951c4e6b2|3c5db065-b4d7-4880-9470-4e4aa61f04c4|9b7cf196-a78d-4363-b2ae-a1573e69fca2|4a81204a-180c-4656-81e2-6aa720c1977d": {
+    "answer": "Mandatory training must be completed within **30 days** of joining [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "lnd-001|11643972-9e64-4abe-aef2-9c19312c79e3|6270a819-2fde-46c1-b565-61e9fad36e2a|558a2500-a970-461b-819c-f1ed4eb18507|484edd5c-18f4-4b52-bb78-14fab5aaffcb|d8b750b7-cd63-43fc-ad44-ee3aa2336661": {
+    "answer": "The annual learning budget per employee is **1,500 USD** per calendar year [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "lnd-002|d300fe97-2b2b-4f9d-b188-2ca297912629|dfd57419-6ec2-4159-8cda-789c138861e2|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|a56592d5-c8b3-48e8-aaa9-8d1748f54efd|f3e7e94e-af0a-4820-a4f6-2dd369aa6715": {
+    "answer": "Employees may take up to **5 days of paid study leave** per calendar year to prepare for or sit approved exams [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "ahg-001|fc1615fc-1059-4c3b-823c-f4f4693f90f8|46f472cb-683e-49b9-9292-e698656ef7f1|f0dea9a1-1c3d-4775-a61d-abff24992f13|68c2f9f1-42cf-43d4-ab7a-915271558d70|81538549-97e2-42c1-aae3-0fad7a6433c9": {
+    "answer": "An anti-harassment investigation is typically completed within **15 working days** after acknowledgment, though complex cases may take longer. The employee is kept informed throughout the process [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "ahg-002|89bbbae8-efa7-472e-b797-a5f545b42505|81538549-97e2-42c1-aae3-0fad7a6433c9|f0dea9a1-1c3d-4775-a61d-abff24992f13|09e45a0b-cf3f-4f49-80ca-ce56b82ca086|b1e3aa73-bae5-44d9-bba2-bacb10228e58": {
+    "answer": "Yes, harassment can be reported anonymously through the confidential Ethics Hotline, which accepts anonymous reports 24 hours a day [Source 2].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "ir-001|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1|f4c67fdf-5602-4119-96bc-64c407f735a4|fbebb4af-25f7-4b8a-a330-b1aa6111f5e1|63d68040-6da6-4202-beef-6ae2b1f4c020|c969f677-dbf2-46cd-9549-ff674379f962": {
+    "answer": "A SEV1 page must be acknowledged within **15 minutes** by the on-call engineer [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "ir-002|63d68040-6da6-4202-beef-6ae2b1f4c020|9b7cf196-a78d-4363-b2ae-a1573e69fca2|46f472cb-683e-49b9-9292-e698656ef7f1|b1e44b1c-96a9-404d-822c-042ec3629d13|b931acda-aa59-402d-92e8-b4983828042d": {
+    "answer": "A postmortem must be published within **5 business days** of resolution for every SEV1 and SEV2 incident [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "ita-001|25bb8260-cc69-4121-8114-5e190769dec9|9f6e2d41-3012-44fd-b74d-15acad62a693|76ace989-a676-4be1-8509-6d3c93b0c7d2|4a81204a-180c-4656-81e2-6aa720c1977d|b6c114c3-fdad-46e4-84b2-5559dc460784": {
+    "answer": "Company laptops are replaced every **3 years** [Source 1]. Employees receive an email notification from IT Operations when their laptop becomes eligible for refresh.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "ita-002|4a81204a-180c-4656-81e2-6aa720c1977d|3a6c3909-10b9-46b7-a012-adbd5ffea441|3bda4cdb-5030-41cd-a6b8-e508641c4936|77c03f2f-e1c5-4a67-8ed9-51048562d8be|31ac7015-8aae-469a-ae9f-cb876081da2b": {
+    "answer": "Employees must return all company equipment within **5 working days** of their last day at the company [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "wb-001|dcce0e8d-6c6e-41e7-946a-79abd03f28ca|6cc6eaae-2db1-481e-a651-9be951c4e6b2|61a0b9af-eca7-46da-9b62-aef66948cbe7|68c2f9f1-42cf-43d4-ab7a-915271558d70|f3e7e94e-af0a-4820-a4f6-2dd369aa6715": {
+    "answer": "The EAP provides up to **6 free confidential counselling sessions** per employee per year [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "wb-002|4ca5f526-a05b-4afe-b8f3-a61371778527|9e6d3eeb-6136-4046-b05d-8f30b0eb8271|61a0b9af-eca7-46da-9b62-aef66948cbe7|d962700f-02a3-4f17-886f-2e8a5b5b6b04|dcce0e8d-6c6e-41e7-946a-79abd03f28ca": {
+    "answer": "The quarterly wellness allowance is **75 USD** per quarter [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "dcs-001|5cf6dce8-a019-4bf0-90bc-8d378b76de55|4190f1b8-6b99-4906-95e9-49991f03aa27|c476ad1d-7b2b-4dad-a1a7-177e74dffdee|dd4a7e96-9dc1-4b5a-bf75-48d2efc148ee|45026857-ff8c-4b72-91c7-c559bb0a9b6a": {
+    "answer": "The provided policy sources mention three data classification levels: DCS-1 Public, DCS-3 Confidential, and DCS-4 Restricted [Source 2], [Source 3], [Source 4]. However, **Source 1** states there are \"four classification levels\" but does not explicitly list all four. Since the sources do not fully specify the fourth level, the information was not found in the provider policies [Source 1].",
+    "refused": true,
+    "judge": null
+  },
+  "rhw-005|181fcdae-d12b-42d2-ab7f-64a1d8787963|77c03f2f-e1c5-4a67-8ed9-51048562d8be|e17e1731-b768-47fc-8e08-587f0fa77fd3|8825341f-a975-4571-82ba-5ab7f7908fa6|25bb8260-cc69-4121-8114-5e190769dec9": {
+    "answer": "The policy states that employees become eligible for hybrid working after completing their probation period [Source 1]. However, the policy does not specify the duration of the probation period or whether your two-month tenure satisfies it. Without explicit information on probation completion, we cannot confirm eligibility. Thus, the answer is not supported by the provided sources.",
+    "refused": true,
+    "judge": null
+  },
+  "rhw-006|76ace989-a676-4be1-8509-6d3c93b0c7d2|2f3d2944-ace1-46af-8d3c-ab6a0500cd8d|5ee67483-e742-4b54-9997-e4db2e323689|0e2542ea-25a2-48ba-b7f6-2553caccbe4a|d962700f-02a3-4f17-886f-2e8a5b5b6b04": {
+    "answer": "Your partner cannot use your company laptop while you work from home. Company devices must not be shared with family members or other household members [Source 3]. Additionally, company devices are provided primarily for business purposes and must be protected from unauthorized use [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "lnd-003|d8b750b7-cd63-43fc-ad44-ee3aa2336661|31ac7015-8aae-469a-ae9f-cb876081da2b|6270a819-2fde-46c1-b565-61e9fad36e2a|484edd5c-18f4-4b52-bb78-14fab5aaffcb|46f472cb-683e-49b9-9292-e698656ef7f1": {
+    "answer": "The company policy states that exam fees for professional certifications are reimbursed for the **first two attempts** at the same exam [Source 1]. There is no mention of reimbursement for a third attempt in the provided policies. Therefore, the company will not pay for a third attempt.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "lnd-004|31ac7015-8aae-469a-ae9f-cb876081da2b|d8b750b7-cd63-43fc-ad44-ee3aa2336661|6270a819-2fde-46c1-b565-61e9fad36e2a|4a81204a-180c-4656-81e2-6aa720c1977d|484edd5c-18f4-4b52-bb78-14fab5aaffcb": {
+    "answer": "If you resign within 12 months of receiving a reimbursement above 1,000 USD, you must repay the amount on a pro-rata basis [Source 1]. Since you resigned six months after the reimbursement, you would owe half of the 1,200 USD, or 600 USD, based on the 12-month period. The exact calculation method is not specified in the policy.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "dcs-002|0e2542ea-25a2-48ba-b7f6-2553caccbe4a|6861ef2c-9526-43f8-89ba-8ccb4357cac9|cd21d535-51a0-4975-9c49-5875eb9283f1|3538737f-f672-48c6-953f-9b24e79f4df1|3011699b-9d21-4bab-86be-71f02f4f40c4": {
+    "answer": "No, you cannot email a customer's personal data to a colleague. Personal data must be processed only for legitimate business purposes and cannot be copied to personal devices or unauthorized applications [Source 2]. Additionally, restricted information, including personal data, must never be sent by email or chat and must be shared through the approved secure file transfer system [Source 5]. Emailing such data violates these policies.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "dcs-003|ffd316cd-47ca-4d16-817c-14d9981df15e|5cf6dce8-a019-4bf0-90bc-8d378b76de55|09e79be7-7ace-4dd7-8c18-0758db1f9b9a|c476ad1d-7b2b-4dad-a1a7-177e74dffdee|4a21f58d-9c3f-4aa6-b71b-8fa79efe02a7": {
+    "answer": "If a document has no classification label, it should be treated as **Internal** by default [Source 1]. This applies because documents classified as Confidential or Restricted must carry a label, and the absence of one defaults to Internal. Internal information is intended for employees only and may be shared with contractors under confidentiality agreements [Source 3].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "ita-003|3a6c3909-10b9-46b7-a012-adbd5ffea441|25bb8260-cc69-4121-8114-5e190769dec9|9f6e2d41-3012-44fd-b74d-15acad62a693|2a116bd8-b44a-4fa2-867a-4ed9d3aa99a1|39400f93-9496-477d-bc85-4c96a1ff6da1": {
+    "answer": "No, you cannot reinstall Windows on your old laptop before returning it. The policy states that returned devices are securely wiped by IT Operations, and employees must not attempt to wipe or reinstall the operating system themselves [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "ita-004|0e2542ea-25a2-48ba-b7f6-2553caccbe4a|2f3d2944-ace1-46af-8d3c-ab6a0500cd8d|d4f7cf63-8f5d-48b1-8124-0459cfad9d11|3c5db065-b4d7-4880-9470-4e4aa61f04c4|6861ef2c-9526-43f8-89ba-8ccb4357cac9": {
+    "answer": "Yes, you may check work email on your personal phone **only after enrolling it in the company's mobile device management (MDM) app** [Source 1]. Personal devices must comply with security requirements, and using them to access company systems without MDM enrollment is prohibited [Source 1]. Additionally, personal devices should not be used to store or transfer personal data, as this violates data protection policies [Source 5].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "ahg-003|81538549-97e2-42c1-aae3-0fad7a6433c9|f0dea9a1-1c3d-4775-a61d-abff24992f13|9fffbfba-383f-4be3-8546-9ee4e8cb380b|89bbbae8-efa7-472e-b797-a5f545b42505|d4f7cf63-8f5d-48b1-8124-0459cfad9d11": {
+    "answer": "If your manager is harassing you, you should report the concern to **People Operations** or the **confidential Ethics Hotline**, as these are the designated channels for addressing issues involving a manager [Source 1]. The Ethics Hotline also accepts anonymous reports 24/7 [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "ir-003|ae3c06ae-d68a-401d-8b3b-01d3a1a7cbfc|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1|b1e44b1c-96a9-404d-822c-042ec3629d13|f4c67fdf-5602-4119-96bc-64c407f735a4|c25274e3-5c3b-476a-9459-c212037369a7": {
+    "answer": "No, the incident commander should not also be debugging the problem. According to the policy, the incident commander coordinates the response, makes decisions about escalation and rollback, and is the single point of contact. However, the incident commander should not also be debugging the problem [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "iss-004|50e0ac01-11eb-425f-a276-f380314ef6c4|b3ee3bbe-756c-4c29-9fe6-f57be7f4a414|5ee67483-e742-4b54-9997-e4db2e323689|3aa86694-9a1f-4b53-83f9-256d8ca74ecb|1ffc5375-a552-47a0-a431-a374d8ea85e9": {
+    "answer": "No, you cannot work from a hotel Wi-Fi network without the company VPN. Public Wi-Fi networks in hotels must be used only while connected to the company VPN, as specified in the policy [Source 1]. This requirement ensures secure access to internal systems and mitigates risks associated with open networks.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "wb-003|4ca5f526-a05b-4afe-b8f3-a61371778527|9e6d3eeb-6136-4046-b05d-8f30b0eb8271|484edd5c-18f4-4b52-bb78-14fab5aaffcb|61a0b9af-eca7-46da-9b62-aef66948cbe7|25dbde6c-ea23-4c84-9836-cffe4b5c36a0": {
+    "answer": "No, you cannot use double your wellness allowance this quarter. The policy states that the wellness allowance is **75 USD per quarter** and **unused allowance does not roll over to the next quarter** [Source 1]. There is no provision for doubling the allowance or carrying over unused amounts.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "onb-004|118fb9ba-56c3-4fe0-9ec8-77f8e4b90d0e|8c350927-ffb4-4d1b-b84d-25c6e3957018|52094ef0-b923-4eeb-ad1f-eaa51c51966b|64c98e14-440f-417a-9584-36b19cc36dde|93f9a751-5e8f-4ac8-be50-0b4b289298d6": {
+    "answer": "Probation works as follows:  \n- The probation period is **6 months** for all new employees [Source 3].  \n- **Reviews** occur at the end of month **1**, month **3**, and month **5**, with a formal confirmation decision made before the end of month 6 [Source 2].  \n- **Extensions** are allowed once, by up to **3 months**, if the manager and People Operations agree that more time is needed. The employee must receive written reasons for the extension [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "ir-004|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1|f4c67fdf-5602-4119-96bc-64c407f735a4|fbebb4af-25f7-4b8a-a330-b1aa6111f5e1|63d68040-6da6-4202-beef-6ae2b1f4c020|c969f677-dbf2-46cd-9549-ff674379f962": {
+    "answer": "The differences between SEV1, SEV2, and SEV3 incidents are defined by their impact, response requirements, and handling procedures:  \n\n- **SEV1** involves a complete outage of a customer-facing service or a confirmed data breach. The on-call engineer must acknowledge the incident within **15 minutes**, an incident commander is appointed immediately, and customer status updates are posted every **30 minutes** [Source 1].  \n- **SEV2** refers to a significant degradation affecting many customers or a full outage of an internal critical system. Acknowledgment is required within **30 minutes**, with status updates every hour [Source 2].  \n- **SEV3** involves limited customer impact with a workaround available. It must be acknowledged within **4 business hours** and can be handled during normal working hours [Source 3].  \n\nThese levels differ in urgency, customer impact, and required response times.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "ahg-004|46f472cb-683e-49b9-9292-e698656ef7f1|fc1615fc-1059-4c3b-823c-f4f4693f90f8|271d0022-4658-4138-bab2-e428f8529776|f0dea9a1-1c3d-4775-a61d-abff24992f13|e156e92a-2a0f-480a-971c-c7a42998858f": {
+    "answer": "After filing a formal grievance, the employee is informed of the outcome in writing [Source 1]. Either party may appeal the result within **10 working days** of receiving the outcome [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "lnd-005|484edd5c-18f4-4b52-bb78-14fab5aaffcb|11643972-9e64-4abe-aef2-9c19312c79e3|d8b750b7-cd63-43fc-ad44-ee3aa2336661|558a2500-a970-461b-819c-f1ed4eb18507|c851b03e-6b51-4ad5-a8f5-cc51a3a0200a": {
+    "answer": "To get approval for spending your learning budget:  \n- **Under $300 USD**: Approval from your manager is required.  \n- **Over $300 USD**: Approval from both your manager and the L&D team is required. Approval must be obtained before payment [Source 1].  \n\nThe learning budget **does not carry over** to the next calendar year. Unused portions of the annual $1,500 USD budget are forfeited [Source 2].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "dcs-004|2cea5417-aa08-4acb-9aa8-5fded5179008|3011699b-9d21-4bab-86be-71f02f4f40c4|54f2ca27-f2a3-4c1e-b39c-b1d402fab82f|cd21d535-51a0-4975-9c49-5875eb9283f1|4190f1b8-6b99-4906-95e9-49991f03aa27": {
+    "answer": "Restricted data should be stored by encrypting it at rest and in transit, with access limited to named individuals on an approved access list [Source 5]. Sharing must occur through approved secure file transfer systems, not via email or chat, and external sharing requires authorization via approved channels with verification of recipients [Source 2][Source 4]. Disposal requires shredding paper documents with cross-cut shredders or secure bins and deleting digital data using IT-approved secure deletion tools [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "rhw-007|1e17ec1d-a6ba-4996-9364-d83086aaf92a|defbfaf9-2567-4f95-ba0c-4d752797a97e|5ee67483-e742-4b54-9997-e4db2e323689|dfd57419-6ec2-4159-8cda-789c138861e2|1ffc5375-a552-47a0-a431-a374d8ea85e9": {
+    "answer": "The rules for working from abroad are as follows:  \n- Employees may work from another country for a maximum of **20 working days per calendar year**, requiring manager approval and a tax/immigration check by People Operations. Requests must be submitted at least **4 weeks** before travel [Source 1].  \n- Working from countries on the company's sanctions list is explicitly prohibited [Source 2].  \n\nOther policies related to remote work (e.g., workspace requirements or leave) do not specifically address working from abroad.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "cross-001|64c98e14-440f-417a-9584-36b19cc36dde|118fb9ba-56c3-4fe0-9ec8-77f8e4b90d0e|52094ef0-b923-4eeb-ad1f-eaa51c51966b|8c350927-ffb4-4d1b-b84d-25c6e3957018|edd53068-7dd5-4d55-be6f-7d219d173b9b": {
+    "answer": "During probation, you can take annual leave, but you may take at most **5 days** of annual leave before your probation is confirmed, unless your manager approves more [Source 1]. Other leave types (e.g., casual or sick leave) are not specifically addressed in the probation policy but are governed by general leave rules [Source 5].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "cross-002|9e6d3eeb-6136-4046-b05d-8f30b0eb8271|4ca5f526-a05b-4afe-b8f3-a61371778527|25dbde6c-ea23-4c84-9836-cffe4b5c36a0|41e9be47-66a7-4e8e-84f5-d02932a5bbd3|61a0b9af-eca7-46da-9b62-aef66948cbe7": {
+    "answer": "To claim your wellness allowance, submit a claim through the expense system with a receipt, similar to other expense claims [Source 1]. Claims must include sufficient documentation, such as receipts, and should generally be submitted within 30 days of the expense date [Source 3]. The allowance amount is **75 USD per quarter** [Source 2].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "cross-003|39400f93-9496-477d-bc85-4c96a1ff6da1|76ace989-a676-4be1-8509-6d3c93b0c7d2|881830ab-bc65-40d7-9a7c-187c3e3ffc0b|54f2ca27-f2a3-4c1e-b39c-b1d402fab82f|2a116bd8-b44a-4fa2-867a-4ed9d3aa99a1": {
+    "answer": "The rules for keeping your laptop secure, based on the provided policies, are as follows:  \n\n1. **Full-disk encryption** (BitLocker/ FileVault) is mandatory. Disabled encryption blocks the device from the corporate network until restored by IT [Source 1].  \n2. **Do not disable security software, endpoint protection, disk encryption, or device-management controls** [Source 2].  \n3. **Automatic screen lock** after **5 minutes** of inactivity; manually lock the screen when unattended [Source 3].  \n4. **USB storage devices are blocked by default**. Exceptions require approval from the Information Security Team and are valid for **30 days** [Source 4].  \n5. **Install security updates promptly**: Critical vulnerabilities within **48 hours**, high within **7 days**, and medium/low within **30 days**. Missing critical patches results in quarantine [Source 5].  \n\nThese rules ensure compliance with endpoint security requirements.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "cross-004|a56592d5-c8b3-48e8-aaa9-8d1748f54efd|f3e7e94e-af0a-4820-a4f6-2dd369aa6715|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|fdcbff79-0308-49fd-8702-45462cacfebe|dfd57419-6ec2-4159-8cda-789c138861e2": {
+    "answer": "Besides sick leave, you may take **2 mental health days** per calendar year without providing a reason or documentation [Source 2].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "cross-005|d300fe97-2b2b-4f9d-b188-2ca297912629|dfd57419-6ec2-4159-8cda-789c138861e2|fdcbff79-0308-49fd-8702-45462cacfebe|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|a56592d5-c8b3-48e8-aaa9-8d1748f54efd": {
+    "answer": "No, study leave is separate from annual leave and is not counted against it. According to the policy, study leave is a distinct entitlement and must be requested at least 2 weeks in advance [Source 1]. Annual leave is separately governed and provided as 24 working days per calendar year [Source 2].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "cross-006|cd21d535-51a0-4975-9c49-5875eb9283f1|0bceb248-cd35-4ba8-931b-015b2ff82624|dd4a7e96-9dc1-4b5a-bf75-48d2efc148ee|3011699b-9d21-4bab-86be-71f02f4f40c4|5ee67483-e742-4b54-9997-e4db2e323689": {
+    "answer": "To share confidential information with an external partner, follow these steps:  \n1. **Verify the recipient** to ensure they are authorized and require the information for legitimate business purposes [Source 1].  \n2. **Use approved encryption or secure file-transfer mechanisms** for sensitive data, avoiding email or chat for restricted information [Source 1][Source 4].  \n3. **Obtain approval from the information owner** and ensure sharing occurs through approved channels [Source 1][Source 3].  \n4. **Require a signed non-disclosure agreement (NDA)** for external sharing of confidential data, such as customer contracts or source code [Source 3].  \n\nConfidential information must never be shared without these safeguards [Source 2].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "cross-007|c25274e3-5c3b-476a-9459-c212037369a7|a44275ec-500d-41bd-9dc8-703f9a0d1c49|2a116bd8-b44a-4fa2-867a-4ed9d3aa99a1|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1|9fffbfba-383f-4be3-8546-9ee4e8cb380b": {
+    "answer": "If you discover a security vulnerability, report it to the security team via **security@company.example** and do not test or exploit it further. Public disclosure requires written approval from the Chief Information Security Officer (CISO) [Source 2].  \n\nIf you suspect a security incident (e.g., phishing, data breaches, unauthorized access), report it to the security team **within 1 hour of discovery** and avoid further investigation unless instructed by the security team [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "cross-007|c25274e3-5c3b-476a-9459-c212037369a7|b1e44b1c-96a9-404d-822c-042ec3629d13|9fffbfba-383f-4be3-8546-9ee4e8cb380b|a44275ec-500d-41bd-9dc8-703f9a0d1c49|2a116bd8-b44a-4fa2-867a-4ed9d3aa99a1": {
+    "answer": "If you discover a security vulnerability, report it immediately to the security team via **security@company.example** and do not test or exploit it further [Source 4]. For a security incident, report it to the IT/Security Team **within 1 hour of discovery** [Source 1]. Do not investigate beyond preserving information unless instructed by the security team [Source 1]. Security incidents follow the organization\u2019s incident response process, with the Information Security Team as the incident commander [Source 2].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "code-001|2a116bd8-b44a-4fa2-867a-4ed9d3aa99a1|cf32cccb-529a-4428-a5b8-4c6c721d1892|288c4b8f-b911-4280-a599-a2ed600088c3|b1e44b1c-96a9-404d-822c-042ec3629d13|b6c114c3-fdad-46e4-84b2-5559dc460784": {
+    "answer": "ISS-04 requires security updates to be installed within specific deadlines after release: **critical vulnerabilities within 48 hours**, **high vulnerabilities within 7 days**, and **medium/low vulnerabilities within 30 days**. Laptops missing critical patch deadlines are quarantined until the update is installed [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "code-002|dd4a7e96-9dc1-4b5a-bf75-48d2efc148ee|c476ad1d-7b2b-4dad-a1a7-177e74dffdee|5cf6dce8-a019-4bf0-90bc-8d378b76de55|4190f1b8-6b99-4906-95e9-49991f03aa27|09e79be7-7ace-4dd7-8c18-0758db1f9b9a": {
+    "answer": "DCS-3 refers to **Confidential** information, which includes sensitive business data such as customer contracts, financial forecasts, source code, and unreleased product plans. Sharing this information externally requires a signed non-disclosure agreement (NDA) and approval from the information owner [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "code-003|f4c67fdf-5602-4119-96bc-64c407f735a4|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1|fbebb4af-25f7-4b8a-a330-b1aa6111f5e1|c969f677-dbf2-46cd-9549-ff674379f962|63d68040-6da6-4202-beef-6ae2b1f4c020": {
+    "answer": "IR-SEV2 refers to a significant degradation affecting many customers or a full outage of an internal critical system. It requires acknowledgment within **30 minutes** and status updates every hour [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "code-004|cf32cccb-529a-4428-a5b8-4c6c721d1892|b1e44b1c-96a9-404d-822c-042ec3629d13|9fffbfba-383f-4be3-8546-9ee4e8cb380b|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1|2a116bd8-b44a-4fa2-867a-4ed9d3aa99a1": {
+    "answer": "The provided policy sources do not mention ISS-08. The references to ISS policies only include ISS-04 [Source 5] and the general Information Security Standard (ISS) policy [Source 1], but none describe ISS-08. \n\nAnswer: The information about ISS-08 was not found in the provider policies [Source 1, Source 5].",
+    "refused": true,
+    "judge": null
+  },
+  "code-004|4a21f58d-9c3f-4aa6-b71b-8fa79efe02a7|cf32cccb-529a-4428-a5b8-4c6c721d1892|b1e44b1c-96a9-404d-822c-042ec3629d13|9fffbfba-383f-4be3-8546-9ee4e8cb380b|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1": {
+    "answer": "ISS-08 pertains to the **Clean Desk Rule**, which requires that printed documents classified as Confidential or Restricted be locked away or shredded at the end of each working day. Additionally, whiteboards must be wiped after meetings that discussed Confidential information [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "code-005|f68051a4-e397-413c-af99-0db32d103979|dc2dbd7a-aae3-492c-849e-7f77a83369b0|ffd316cd-47ca-4d16-817c-14d9981df15e|54f2ca27-f2a3-4c1e-b39c-b1d402fab82f|9fffbfba-383f-4be3-8546-9ee4e8cb380b": {
+    "answer": "The ITA asset tags use the format **ITA-** followed by six digits, such as ITA-104233 [Source 1].",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "amb-011|4ca5f526-a05b-4afe-b8f3-a61371778527|9e6d3eeb-6136-4046-b05d-8f30b0eb8271|41e9be47-66a7-4e8e-84f5-d02932a5bbd3|d962700f-02a3-4f17-886f-2e8a5b5b6b04|484edd5c-18f4-4b52-bb78-14fab5aaffcb": {
+    "answer": "The allowance refers to specific financial benefits provided under company policies. These include:  \n1. A **wellness allowance** of **75 USD per quarter** for gym memberships, fitness classes, sports equipment, or meditation apps. Unused portions do not roll over to the next quarter [Source 1].  \n2. A **one-time home office equipment allowance of 400 USD** for purchasing a desk, chair, or monitor, with claims required within 90 days of hybrid arrangement approval [Source 4].  \n3. A **learning budget** allowing spending under 300 USD with manager approval and above 300 USD requiring L&D team approval [Source 5].  \n\nThese allowances are distinct and governed by their respective policies.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "amb-011|4ca5f526-a05b-4afe-b8f3-a61371778527|9e6d3eeb-6136-4046-b05d-8f30b0eb8271|d962700f-02a3-4f17-886f-2e8a5b5b6b04|41e9be47-66a7-4e8e-84f5-d02932a5bbd3|484edd5c-18f4-4b52-bb78-14fab5aaffcb": {
+    "answer": "The allowance refers to specific financial benefits provided under company policies. According to the sources, there are two types of allowances:  \n\n1. **Wellness Allowance**: Employees receive **75 USD per quarter** for gym memberships, fitness classes, sports equipment, or meditation apps. Unused amounts do not roll over [Source 1].  \n2. **Home Office Equipment Allowance**: Eligible employees may claim a **one-time allowance of 400 USD** for a desk, chair, or monitor, provided the claim is submitted within **90 days** of hybrid arrangement approval [Source 3].  \n\nOther mentions of \"allowance\" relate to expense claims [Source 2] and learning budgets [Source 5], but these are not explicitly termed \"allowances\" in the provided policies.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "amb-012|edd53068-7dd5-4d55-be6f-7d219d173b9b|dfd57419-6ec2-4159-8cda-789c138861e2|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|52094ef0-b923-4eeb-ad1f-eaa51c51966b|118fb9ba-56c3-4fe0-9ec8-77f8e4b90d0e": {
+    "answer": "The 30-day rule refers to the **Expense Submission** policy, which states that expenses should typically be submitted **within 30 days** [Source 1]. No other policies explicitly mention a \"30-day rule.\"",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "amb-013|c25274e3-5c3b-476a-9459-c212037369a7|81538549-97e2-42c1-aae3-0fad7a6433c9|46f472cb-683e-49b9-9292-e698656ef7f1|9fffbfba-383f-4be3-8546-9ee4e8cb380b|a43646a4-e81f-42ae-acf3-b67b3c2e5495": {
+    "answer": "To report a problem, follow these steps based on the type of issue:  \n\n- **For security incidents** (e.g., phishing, data breaches, unauthorized access): Report to the **IT/Security Team within 1 hour** of discovery [Source 1].  \n- **For general concerns** (e.g., workplace issues, manager-related concerns): Raise the issue with your **manager**, **People Operations**, or the **confidential Ethics Hotline** (anonymous, 24/7) [Source 2].  \n\nFor non-security problems, the Ethics Hotline or People Operations are primary channels. If the issue involves safety, report it promptly to your manager or the facilities team [Source 5].  \n\nAlways follow the specific guidelines for the type of problem you are reporting.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "unknown-011|6270a819-2fde-46c1-b565-61e9fad36e2a|edd53068-7dd5-4d55-be6f-7d219d173b9b|dc2dbd7a-aae3-492c-849e-7f77a83369b0|9fffbfba-383f-4be3-8546-9ee4e8cb380b|31ac7015-8aae-469a-ae9f-cb876081da2b": {
+    "answer": "I could not produce a sufficiently supported answer from the available policies.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 0.0,
+      "citation_correctness": 0.0
+    }
+  },
+  "unknown-012|7fbe32ab-18d6-4da2-80b8-cb29cc3230de|d962700f-02a3-4f17-886f-2e8a5b5b6b04|484edd5c-18f4-4b52-bb78-14fab5aaffcb|d300fe97-2b2b-4f9d-b188-2ca297912629|4ca5f526-a05b-4afe-b8f3-a61371778527": {
+    "answer": "The policy sources do not specify the amount of the on-call stipend per week. While Source 1 mentions that on-call engineers receive a stipend for each week on call, it does not state the monetary value [Source 1]. No other source provides this detail.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 1.0
+    }
+  },
+  "unknown-013|1e17ec1d-a6ba-4996-9364-d83086aaf92a|defbfaf9-2567-4f95-ba0c-4d752797a97e|41e9be47-66a7-4e8e-84f5-d02932a5bbd3|181fcdae-d12b-42d2-ab7f-64a1d8787963|4a81204a-180c-4656-81e2-6aa720c1977d": {
+    "answer": "The information was not found in the provider policies. None of the provided sources mention whether the company sponsors work visas for relocation [Source 1][Source 2][Source 3][Source 4][Source 5].",
+    "refused": true,
+    "judge": null
+  },
+  "unknown-014|d300fe97-2b2b-4f9d-b188-2ca297912629|a56592d5-c8b3-48e8-aaa9-8d1748f54efd|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|dfd57419-6ec2-4159-8cda-789c138861e2|f3e7e94e-af0a-4820-a4f6-2dd369aa6715": {
+    "answer": "I could not produce a sufficiently supported answer from the available policies.",
+    "refused": false,
+    "judge": {
+      "faithfulness": 1.0,
+      "relevance": 1.0,
+      "citation_correctness": 0.0
+    }
+  }
+}

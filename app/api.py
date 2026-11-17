@@ -11,24 +11,19 @@ from fastapi import (
     Depends
 )
 from celery.result import AsyncResult
-from sqlalchemy import select
 from pydantic import BaseModel, ConfigDict
 from fastapi.responses import StreamingResponse
 
 from app.config import get_settings
 from app.security import Principal, get_current_principal, require_admin
-from app.citations import remove_invalid_citations
 from app.authz import normalize_roles
-from app.llm import stream_answer
-from app.prompt import SYSTEM_PROMPT, build_user_prompt
 from app.celery_app import celery_app
 from app.db import SessionLocal
-from app.models import Document
 from app.sse import sse_event
 from ingest.tasks import ingest_file
-from app.retrieval import retrieve_chunks
 from app.context import build_context
-from app.rag import answer_question
+from app.rag import answer_question, stream_answer_events
+from app.search import search_policies
 
 
 app = FastAPI(
@@ -133,8 +128,8 @@ def search_documents(
     db = SessionLocal()
     
     try:
-        results = retrieve_chunks(
-            db = db,
+        results = search_policies(
+            db=db,
             query=request.query,
             top_k=request.top_k,
             roles=principal.document_roles,
@@ -174,7 +169,6 @@ class AskRequest(BaseModel):
     
     question: str
     top_k: int = 5
-    min_score: float = 0.45
     max_context_tokens: int = 3000
 
 
@@ -191,21 +185,14 @@ def ask(
             db=db,
             question=request.question,
             top_k=request.top_k,
-            min_score=request.min_score,
             max_context_tokens=request.max_context_tokens,
             roles=principal.document_roles,
         )
-        
+
         return {
             "answer": result.answer,
             "citations": [
-                {
-                    "source": citation.source_number,
-                    "document": citation.document_title,
-                    "section": citation.section_path,
-                    "chunk_id": citation.chunk_id,
-                    "score": citation.score,
-                }
+                citation.to_dict()
                 for citation in result.citations
             ],
             "retrieved_count": result.retrieved_count,
@@ -223,111 +210,31 @@ def ask_stream(
 
     def event_generator():
 
+        yield sse_event("status", {"stage": "retrieval"})
+
+        # Release the DB connection before the (long) LLM call so a slow
+        # generation does not hold a pooled connection.
         db = SessionLocal()
-
         try:
-            yield sse_event(
-                "status",
-                {
-                    "stage": "retrieval",
-                },
-            )
-
-            retrieved = retrieve_chunks(
+            retrieved = search_policies(
                 db=db,
                 query=request.question,
                 top_k=request.top_k,
-                min_score=request.min_score,
                 roles=principal.document_roles,
             )
-
-            if not retrieved:
-                yield sse_event(
-                    "answer",
-                    {
-                        "text": (
-                            "I could not find relevant information "
-                            "in the available policies."
-                        )
-                    },
-                )
-
-                yield sse_event(
-                    "done",
-                    {},
-                )
-
-                return
-
-            yield sse_event(
-                "status",
-                {
-                    "stage": "generation",
-                },
-            )
-
-            context = build_context(
-                retrieved_chunks=retrieved,
-                max_tokens=request.max_context_tokens,
-            )
-
-            prompt = build_user_prompt(
-                question=request.question,
-                context=context.text,
-            )
-
-            answer_parts = []
-
-            for token in stream_answer(
-                system_prompt=SYSTEM_PROMPT,
-                user_prompt=prompt,
-            ):
-                answer_parts.append(token)
-
-                yield sse_event(
-                    "token",
-                    {
-                        "text": token,
-                    },
-                )
-
-            answer = "".join(answer_parts)
-
-            available_sources = {
-                item.source_number
-                for item in context.chunks
-            }
-
-            answer = remove_invalid_citations(
-                answer,
-                available_sources,
-            )
-
-            citations = [
-                {
-                    "source": item.source_number,
-                    "document": item.chunk.document_title,
-                    "section": item.chunk.section_path,
-                    "chunk_id": str(item.chunk.chunk_id),
-                    "score": item.chunk.score,
-                }
-                for item in context.chunks
-            ]
-
-            yield sse_event(
-                "citations",
-                {
-                    "sources": citations,
-                },
-            )
-
-            yield sse_event(
-                "done",
-                {},
-            )
-
         finally:
             db.close()
+
+        # Same context building, citation validation and refusal rules as
+        # /talk (app/rag.py); this endpoint only handles SSE transport.
+        for event, data in stream_answer_events(
+            question=request.question,
+            retrieved=retrieved,
+            max_context_tokens=request.max_context_tokens,
+        ):
+            yield sse_event(event, data)
+
+        yield sse_event("done", {})
 
     return StreamingResponse(
         event_generator(),

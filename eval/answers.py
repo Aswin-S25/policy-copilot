@@ -3,11 +3,23 @@ from dataclasses import dataclass
 
 NOT_FOUND_PHRASES = (
     "could not find",
+    # The app's own fallback when an answer has no valid citation (app/rag.py).
+    "could not produce",
     "not found",
     "not available",
     "not enough information",
     "not supported",
+    # Natural-language refusals the model actually produces.
+    "do not specify", "does not specify",
+    "do not contain", "does not contain",
+    "do not mention", "does not mention",
+    "do not address", "does not address",
+    "do not provide", "does not provide",
+    "do not state", "does not state",
+    "do not include", "does not include",
+    "no information", "no specific information",
 )
+
 
 
 @dataclass

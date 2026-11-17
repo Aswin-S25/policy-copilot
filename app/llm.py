@@ -54,6 +54,10 @@ def stream_answer(
         options={
             "temperature": 0.0
         },
+        # Same generation settings as generate_answer(), which is what the
+        # evaluation measures. Thinking arrives in message["thinking"] and
+        # is not streamed to the client; only answer content is.
+        think=True,
         stream=True,
     )
     

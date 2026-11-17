@@ -153,3 +153,44 @@ def test_admin_role_never_reaches_retrieval():
 def test_cannot_mint_token_with_unknown_role():
     with pytest.raises(ValueError):
         create_access_token("alice", ["superuser"])
+
+
+# ---- roles flow from the token into retrieval ----------------------------
+
+def test_stream_retrieves_with_token_document_roles_only(monkeypatch):
+    import app.api as api
+    import app.rag as rag
+
+    seen = {}
+
+    def fake_search(**kwargs):
+        seen.update(kwargs)
+        return []  # no context: refused without calling the LLM
+
+    monkeypatch.setattr(api, "search_policies", fake_search)
+    monkeypatch.setattr(
+        rag, "stream_answer",
+        lambda **_: (_ for _ in ()).throw(AssertionError("LLM called")),
+    )
+
+    token = create_access_token("ops", ["admin", "employee"])
+    response = client.post(
+        "/ask/stream", json={"question": "annual leave"}, headers=bearer(token)
+    )
+
+    assert response.status_code == 200
+    # "admin" never reaches retrieval; only document roles do.
+    assert seen["roles"] == ["employee"]
+    assert "event: answer" in response.text
+    assert response.text.rstrip().endswith("data: {}")  # final "done" event
+
+
+def test_min_score_is_no_longer_accepted():
+    token = create_access_token("alice", ["employee"])
+
+    response = client.post(
+        "/talk",
+        json={"question": "q", "min_score": 0.0},
+        headers=bearer(token),
+    )
+    assert response.status_code == 422

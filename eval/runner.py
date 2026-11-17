@@ -26,6 +26,7 @@ def run_retrieval_evaluation():
                 db=db,
                 case=case,
                 top_k=5,
+                strategy="hybrid",
             )
 
             results.append(result)
@@ -70,7 +71,6 @@ def run_answer_evaluation():
                 db=db,
                 question=case.question,
                 top_k=5,
-                min_score=0.45,
                 max_context_tokens=3000,
                 roles=ALL_ROLES,
             )
@@ -124,7 +124,6 @@ def run_quality_evaluation():
                 db=db,
                 question=case.question,
                 top_k=5,
-                min_score=0.45,
                 max_context_tokens=3000,
                 roles=ALL_ROLES,
             )

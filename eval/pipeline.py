@@ -56,6 +56,7 @@ def run_evaluation(update_baseline: bool = False):
                 db=db,
                 case=case,
                 top_k=5,
+                strategy="hybrid",
             )
 
             retrieval_results.append(
@@ -75,7 +76,6 @@ def run_evaluation(update_baseline: bool = False):
                 db=db,
                 question=case.question,
                 top_k=5,
-                min_score=0.45,
                 max_context_tokens=3000,
                 roles=ALL_ROLES,
             )

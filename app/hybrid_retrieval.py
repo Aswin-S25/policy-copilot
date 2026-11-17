@@ -1,5 +1,6 @@
 from collections import defaultdict
 from collections.abc import Sequence
+from dataclasses import dataclass
 
 from sqlalchemy.orm import Session
 
@@ -10,7 +11,14 @@ from app.retrieval import (
 from app.lexical_retreival import retrieve_lexical
 
 
-def retrieve_hybrid(
+@dataclass
+class HybridRetrieval:
+    chunks: list[RetrievedChunk]
+    best_dense_score: int
+    lexical_hits: int
+
+
+def retrieve_hybrid_with_signals(
     db: Session,
     query: str,
     top_k: int = 5,
@@ -18,7 +26,7 @@ def retrieve_hybrid(
     rrf_k: int = 60,
     *,
     roles: Sequence[str],
-) -> list[RetrievedChunk]:
+) -> HybridRetrieval:
 
     # 1. Dense retrieval
     dense_results = retrieve_chunks(
@@ -92,4 +100,27 @@ def retrieve_hybrid(
             )
         )
 
-    return results
+    return HybridRetrieval(
+        chunks=results,
+        best_dense_score=dense_results[0].score if dense_results else 0.0,
+        lexical_hits=len(lexical_results),
+    )
+
+
+def retrieve_hybrid(
+    db: Session,
+    query: str,
+    top_k: int = 5,
+    candidate_k: int = 20,
+    rrf_k: int = 60,
+    *,
+    roles: Sequence[str],
+) -> list[RetrievedChunk]:
+    return retrieve_hybrid_with_signals(
+        db=db,
+        query=query,
+        top_k=top_k,
+        candidate_k=candidate_k,
+        rrf_k=rrf_k,
+        roles=roles,
+    ).chunks

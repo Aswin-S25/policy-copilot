@@ -21,7 +21,8 @@ def retreive_diverse(
         db=db,
         query=query,
         top_k=candidate_k,
-        candidate_k=candidate_k
+        candidate_k=candidate_k,
+        roles=roles,
     )
     
     

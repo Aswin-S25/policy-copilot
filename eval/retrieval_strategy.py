@@ -28,6 +28,7 @@ def retrieve_by_strategy(
             query=query,
             top_k=top_k,
             min_score=0.0,
+            roles=roles,
         )
 
     if strategy == "lexical":
@@ -35,6 +36,7 @@ def retrieve_by_strategy(
             db=db,
             query=query,
             top_k=top_k,
+            roles=roles,
         )
 
     if strategy == "hybrid":
@@ -43,6 +45,7 @@ def retrieve_by_strategy(
             query=query,
             top_k=top_k,
             candidate_k=20,
+            roles=roles,
         )
 
     if strategy == "reranked":
@@ -51,6 +54,7 @@ def retrieve_by_strategy(
             query=query,
             top_k=top_k,
             candidate_k=20,
+            roles=roles,
         )
 
     if strategy == "diverse_2":
@@ -60,6 +64,7 @@ def retrieve_by_strategy(
             top_k=top_k,
             candidate_k=20,
             max_per_document=2,
+            roles=roles,
         )
 
     if strategy == "diverse_3":
@@ -69,6 +74,7 @@ def retrieve_by_strategy(
             top_k=top_k,
             candidate_k=20,
             max_per_document=3,
+            roles=roles,
         )
 
     raise ValueError(f"Unknown retrieval strategy: {strategy}")

@@ -21,6 +21,7 @@ def retrieve_reranked(
         query=query,
         top_k=candidate_k,
         candidate_k=candidate_k,
+        roles=roles,
     )
 
     return rerank_chunks(
