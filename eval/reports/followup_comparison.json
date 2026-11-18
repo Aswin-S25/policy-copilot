@@ -1,0 +1,486 @@
+{
+  "followup": {
+    "Recall@5": {
+      "raw": 0.8611111111111112,
+      "concat": 0.9166666666666666,
+      "rewrite": 0.9444444444444444,
+      "oracle": 0.9166666666666666
+    },
+    "MRR": {
+      "raw": 0.8194444444444444,
+      "concat": 0.8055555555555556,
+      "rewrite": 0.9074074074074073,
+      "oracle": 1.0
+    }
+  },
+  "switch": {
+    "Recall@5": {
+      "raw": 1.0,
+      "concat": 0.75,
+      "rewrite": 1.0,
+      "oracle": 1.0
+    },
+    "MRR": {
+      "raw": 1.0,
+      "concat": 0.5,
+      "rewrite": 1.0,
+      "oracle": 1.0
+    }
+  },
+  "all": {
+    "Recall@5": {
+      "raw": 0.875,
+      "concat": 0.9,
+      "rewrite": 0.95,
+      "oracle": 0.925
+    },
+    "MRR": {
+      "raw": 0.8375,
+      "concat": 0.775,
+      "rewrite": 0.9166666666666666,
+      "oracle": 1.0
+    }
+  },
+  "cases": [
+    {
+      "id": "fu-001",
+      "rewritten": "What about sick days?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "concat": {
+          "recall_at_5": 0.5,
+          "mrr": 1.0
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 0.5,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-002",
+      "rewritten": "Can I combine casual leave with a week of annual leave?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-003",
+      "rewritten": "After how many days do employees need a medical certificate?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 0.0,
+          "mrr": 0.0
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 0.3333333333333333
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-004",
+      "rewritten": "Does the same apply to casual leave?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-005",
+      "rewritten": "Is MFA also required?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 0.5,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-006",
+      "rewritten": "What documentation is required for expense claims?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 0.0,
+          "mrr": 0.0
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-007",
+      "rewritten": "What are the core collaboration hours?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-008",
+      "rewritten": "What is the wellness allowance?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-009",
+      "rewritten": "How many days of paid study leave are provided?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-010",
+      "rewritten": "How do I get the learning budget approved, and does it carry over?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 0.5,
+          "mrr": 1.0
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-011",
+      "rewritten": "What is the required response time for a SEV2 page?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-012",
+      "rewritten": "When is the postmortem due after a SEV1 page?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-013",
+      "rewritten": "What is the policy regarding onboarding buddies?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-014",
+      "rewritten": "Can I take leave during the probation period?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 0.25
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 0.5,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-015",
+      "rewritten": "When must an employee return their company laptop when they leave?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-016",
+      "rewritten": "How do I claim the quarterly wellness allowance?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-017",
+      "rewritten": "How long does the investigation take?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-018",
+      "rewritten": "What does ISS-08 require?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "concat": {
+          "recall_at_5": 0.0,
+          "mrr": 0.0
+        },
+        "rewrite": {
+          "recall_at_5": 0.0,
+          "mrr": 0.0
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-019",
+      "rewritten": "What is the minimum password length?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "concat": {
+          "recall_at_5": 0.5,
+          "mrr": 0.5
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    },
+    {
+      "id": "fu-020",
+      "rewritten": "How often are company laptops replaced?",
+      "scores": {
+        "raw": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "concat": {
+          "recall_at_5": 1.0,
+          "mrr": 0.5
+        },
+        "rewrite": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "oracle": {
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      }
+    }
+  ]
+}
