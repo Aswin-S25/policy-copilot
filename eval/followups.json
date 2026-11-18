@@ -1,0 +1,22 @@
+[
+  {"id": "fu-001", "type": "followup", "history": "leave-001", "question": "What about sick days?", "target": "leave-003"},
+  {"id": "fu-002", "type": "followup", "history": "leave-002", "question": "Can I combine it with a week of annual leave?", "target": "multi-002"},
+  {"id": "fu-003", "type": "followup", "history": "leave-003", "question": "After how many days do they need a medical certificate?", "target": "leave-006"},
+  {"id": "fu-004", "type": "followup", "history": "leave-005", "question": "Does the same apply to casual leave?", "target": "leave-010"},
+  {"id": "fu-005", "type": "followup", "history": "security-002", "question": "Is MFA also required?", "target": "security-004"},
+  {"id": "fu-006", "type": "followup", "history": "expense-001", "question": "What documentation do I need for it?", "target": "expense-002"},
+  {"id": "fu-007", "type": "followup", "history": "rhw-001", "question": "And what are the core collaboration hours?", "target": "rhw-002"},
+  {"id": "fu-008", "type": "followup", "history": "rhw-003", "question": "And the wellness one?", "target": "wb-002"},
+  {"id": "fu-009", "type": "followup", "history": "lnd-001", "question": "And how many days of paid study leave?", "target": "lnd-002"},
+  {"id": "fu-010", "type": "followup", "history": "lnd-001", "question": "How do I get it approved, and does it carry over?", "target": "lnd-005"},
+  {"id": "fu-011", "type": "followup", "history": "ir-001", "question": "What about SEV2?", "target": "code-003"},
+  {"id": "fu-012", "type": "followup", "history": "ir-001", "question": "When is the postmortem due after it?", "target": "ir-002"},
+  {"id": "fu-013", "type": "followup", "history": "onb-001", "question": "And the onboarding buddy?", "target": "onb-002"},
+  {"id": "fu-014", "type": "followup", "history": "onb-001", "question": "Can I take leave during it?", "target": "cross-001"},
+  {"id": "fu-015", "type": "followup", "history": "ita-001", "question": "And how soon must I return it when I leave?", "target": "ita-002"},
+  {"id": "fu-016", "type": "followup", "history": "wb-002", "question": "How do I claim it?", "target": "cross-002"},
+  {"id": "fu-017", "type": "followup", "history": "ahg-002", "question": "How long does the investigation take?", "target": "ahg-001"},
+  {"id": "fu-018", "type": "followup", "history": "code-001", "question": "What about ISS-08?", "target": "code-004"},
+  {"id": "fu-019", "type": "switch", "history": "leave-001", "question": "What is the minimum password length?", "target": "security-002"},
+  {"id": "fu-020", "type": "switch", "history": "leave-004", "question": "How often are company laptops replaced?", "target": "ita-001"}
+]

@@ -1,0 +1,10 @@
+{
+  "turn1": {
+    "leave-001": "Full-time employees receive **24 working days of annual leave per calendar year** [Source 1].",
+    "leave-002": "Employees receive **8 working days of casual leave per calendar year** [Source 1]."
+  },
+  "rewrite": {
+    "fu-001|What about sick days?": "What about sick days?",
+    "fu-002|Can I combine it with a week of annual leave?": "Can I combine casual leave with a week of annual leave?"
+  }
+}

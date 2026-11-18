@@ -67,3 +67,21 @@ def stream_answer(
         if content:
             yield content
 
+
+def complete(
+    system_prompt: str,
+    user_prompt: str,
+    *,
+    think: bool = False,
+) -> str:
+    
+    response = client.chat(
+        model=LLM_MODEL,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        options={"temperature": 0.0},
+        think=think,
+    )
+    return response["message"]["content"]
