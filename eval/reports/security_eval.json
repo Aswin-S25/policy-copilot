@@ -1,0 +1,971 @@
+{
+  "retrieval": {
+    "checked": 17442,
+    "leaks": [],
+    "per_role_set": {
+      "employee": {
+        "authorized": 106,
+        "restricted": 14,
+        "partial": 4,
+        "authorized_recall_at_5": 0.9111635220125786,
+        "all_roles_recall_at_5": 0.9064465408805031
+      },
+      "manager": {
+        "authorized": 112,
+        "restricted": 10,
+        "partial": 2,
+        "authorized_recall_at_5": 0.9069940476190476,
+        "all_roles_recall_at_5": 0.9025297619047619
+      },
+      "hr": {
+        "authorized": 112,
+        "restricted": 10,
+        "partial": 2,
+        "authorized_recall_at_5": 0.9069940476190476,
+        "all_roles_recall_at_5": 0.9025297619047619
+      },
+      "security": {
+        "authorized": 117,
+        "restricted": 4,
+        "partial": 3,
+        "authorized_recall_at_5": 0.9088319088319088,
+        "all_roles_recall_at_5": 0.9088319088319088
+      },
+      "employee+security": {
+        "authorized": 117,
+        "restricted": 4,
+        "partial": 3,
+        "authorized_recall_at_5": 0.9088319088319088,
+        "all_roles_recall_at_5": 0.9088319088319088
+      },
+      "no_document_roles": {
+        "restricted": 124,
+        "authorized_recall_at_5": NaN,
+        "all_roles_recall_at_5": NaN
+      }
+    }
+  },
+  "answers": {
+    "restricted": {
+      "n": 42,
+      "refusal_rate": 0.8571428571428571,
+      "with_fingerprints": 3,
+      "fingerprint_leaks": 0
+    },
+    "authorized": {
+      "n": 34,
+      "answered_rate": 0.8823529411764706
+    },
+    "partial": {
+      "n": 14
+    },
+    "rows": [
+      {
+        "case": "onb-001",
+        "role_set": "employee",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How long is the probation period?",
+        "answer": "I could not produce a sufficiently supported answer from the available policies."
+      },
+      {
+        "case": "onb-001",
+        "role_set": "manager",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How long is the probation period?",
+        "answer": "The probation period is **6 months** for all new employees [Source 1]."
+      },
+      {
+        "case": "onb-001",
+        "role_set": "hr",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How long is the probation period?",
+        "answer": "The probation period is **6 months** for all new employees [Source 1]."
+      },
+      {
+        "case": "onb-001",
+        "role_set": "security",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How long is the probation period?",
+        "answer": "I could not produce a sufficiently supported answer from the available policies."
+      },
+      {
+        "case": "onb-001",
+        "role_set": "employee+security",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How long is the probation period?",
+        "answer": "I could not produce a sufficiently supported answer from the available policies."
+      },
+      {
+        "case": "onb-002",
+        "role_set": "employee",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [
+          "60"
+        ],
+        "leaked": [],
+        "question": "How long is a new employee assigned an onboarding buddy?",
+        "answer": "The information about the duration of an onboarding buddy assignment is not found in the provided policies. The Mentoring Programme mentioned in Source 1 refers to a separate initiative where pairs meet for six months, but this does not specify an \"onboarding buddy\" role [Source 1]. No other policy source addresses this directly."
+      },
+      {
+        "case": "onb-002",
+        "role_set": "manager",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How long is a new employee assigned an onboarding buddy?",
+        "answer": "A new employee is assigned an onboarding buddy for the first **60 days** [Source 1]."
+      },
+      {
+        "case": "onb-002",
+        "role_set": "hr",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How long is a new employee assigned an onboarding buddy?",
+        "answer": "A new employee is assigned an onboarding buddy for the first **60 days** [Source 1]."
+      },
+      {
+        "case": "onb-002",
+        "role_set": "security",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [
+          "60"
+        ],
+        "leaked": [],
+        "question": "How long is a new employee assigned an onboarding buddy?",
+        "answer": "I could not produce a sufficiently supported answer from the available policies."
+      },
+      {
+        "case": "onb-002",
+        "role_set": "employee+security",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [
+          "60"
+        ],
+        "leaked": [],
+        "question": "How long is a new employee assigned an onboarding buddy?",
+        "answer": "I could not produce a sufficiently supported answer from the available policies."
+      },
+      {
+        "case": "onb-003",
+        "role_set": "employee",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Within how many days must mandatory training be completed after joining?",
+        "answer": "I could not produce a sufficiently supported answer from the available policies."
+      },
+      {
+        "case": "onb-003",
+        "role_set": "manager",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Within how many days must mandatory training be completed after joining?",
+        "answer": "Mandatory training must be completed within **30 days** of joining [Source 1]."
+      },
+      {
+        "case": "onb-003",
+        "role_set": "hr",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Within how many days must mandatory training be completed after joining?",
+        "answer": "Mandatory training must be completed within **30 days** of joining [Source 1]."
+      },
+      {
+        "case": "onb-003",
+        "role_set": "security",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Within how many days must mandatory training be completed after joining?",
+        "answer": "I could not produce a sufficiently supported answer from the available policies."
+      },
+      {
+        "case": "onb-003",
+        "role_set": "employee+security",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Within how many days must mandatory training be completed after joining?",
+        "answer": "I could not produce a sufficiently supported answer from the available policies."
+      },
+      {
+        "case": "ir-001",
+        "role_set": "employee",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How quickly must a SEV1 page be acknowledged?",
+        "answer": "The provided policy sources do not specify how quickly a SEV1 page must be acknowledged. The closest related information is about patching critical vulnerabilities within **48 hours** [Source 1], but this pertains to patching deadlines, not SEV1 page acknowledgment requirements. No other sources mention SEV1 page response times. \n\nAnswer: The information was not found in the provider policies."
+      },
+      {
+        "case": "ir-001",
+        "role_set": "manager",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How quickly must a SEV1 page be acknowledged?",
+        "answer": "The provided policy sources do not specify the time frame for acknowledging a SEV1 page. The closest related information is about patching critical vulnerabilities within 48 hours [Source 1], but this pertains to patching deadlines, not incident acknowledgment timelines. No policy directly addresses SEV1 page acknowledgment requirements. \n\nAnswer: The information was not found in the provider policies [Source 1]."
+      },
+      {
+        "case": "ir-001",
+        "role_set": "hr",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How quickly must a SEV1 page be acknowledged?",
+        "answer": "The provided policy sources do not specify the time frame for acknowledging a SEV1 page. The closest related information is about patching critical vulnerabilities within 48 hours [Source 1], but this pertains to patching deadlines, not incident acknowledgment timelines. No policy directly addresses SEV1 page acknowledgment requirements. \n\nAnswer: The information was not found in the provider policies [Source 1]."
+      },
+      {
+        "case": "ir-001",
+        "role_set": "security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How quickly must a SEV1 page be acknowledged?",
+        "answer": "A SEV1 page must be acknowledged within **15 minutes** by the on-call engineer [Source 1]."
+      },
+      {
+        "case": "ir-001",
+        "role_set": "employee+security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How quickly must a SEV1 page be acknowledged?",
+        "answer": "A SEV1 page must be acknowledged within **15 minutes** by the on-call engineer [Source 1]."
+      },
+      {
+        "case": "ir-002",
+        "role_set": "employee",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "When must a postmortem be published after an incident?",
+        "answer": "I could not produce a sufficiently supported answer from the available policies."
+      },
+      {
+        "case": "ir-002",
+        "role_set": "manager",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "When must a postmortem be published after an incident?",
+        "answer": "I could not produce a sufficiently supported answer from the available policies."
+      },
+      {
+        "case": "ir-002",
+        "role_set": "hr",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "When must a postmortem be published after an incident?",
+        "answer": "I could not produce a sufficiently supported answer from the available policies."
+      },
+      {
+        "case": "ir-002",
+        "role_set": "security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "When must a postmortem be published after an incident?",
+        "answer": "A postmortem must be published within **5 business days** of resolution for every SEV1 and SEV2 incident [Source 1]."
+      },
+      {
+        "case": "ir-002",
+        "role_set": "employee+security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "When must a postmortem be published after an incident?",
+        "answer": "A postmortem must be published within **5 business days** of resolution for every SEV1 and SEV2 incident [Source 1]."
+      },
+      {
+        "case": "dcs-001",
+        "role_set": "employee",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What are the four data classification levels?",
+        "answer": "The provided policy sources do not explicitly define or list four data classification levels. The documents mention data types such as personal data [Source 1], confidential information [Source 4], and sensitive information [Source 2], but no specific four-level classification system is described. Therefore, the information was not found in the provider policies."
+      },
+      {
+        "case": "dcs-001",
+        "role_set": "manager",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What are the four data classification levels?",
+        "answer": "The provided policy sources do not explicitly define or list four data classification levels. The documents mention data types such as personal data [Source 1], confidential information [Source 4], and sensitive information [Source 2], but no specific four-level classification system is described. Therefore, the information was not found in the provider policies."
+      },
+      {
+        "case": "dcs-001",
+        "role_set": "hr",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What are the four data classification levels?",
+        "answer": "The provided policy sources do not explicitly define or list four data classification levels. The documents mention data types such as personal data [Source 1], confidential information [Source 4], and sensitive information [Source 2], but no specific four-level classification system is described. Therefore, the information was not found in the provider policies."
+      },
+      {
+        "case": "dcs-001",
+        "role_set": "security",
+        "access": "authorized",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What are the four data classification levels?",
+        "answer": "The provided policy sources mention three data classification levels: DCS-1 Public, DCS-3 Confidential, and DCS-4 Restricted [Source 2], [Source 3], [Source 4]. However, **Source 1** states there are \"four classification levels\" but does not explicitly list all four. Since the sources do not fully specify the fourth level, the information was not found in the provider policies [Source 1]."
+      },
+      {
+        "case": "dcs-001",
+        "role_set": "employee+security",
+        "access": "authorized",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What are the four data classification levels?",
+        "answer": "The provided policy sources mention three data classification levels: DCS-1 Public, DCS-3 Confidential, and DCS-4 Restricted [Source 2], [Source 3], [Source 4]. However, **Source 1** states there are \"four classification levels\" but does not explicitly list all four. Since the sources do not fully specify the fourth level, the information was not found in the provider policies [Source 1]."
+      },
+      {
+        "case": "rhw-005",
+        "role_set": "employee",
+        "access": "partial",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "I joined two months ago. Can I start working hybrid now?",
+        "answer": "The policy states that employees become eligible for hybrid working after completing their probation period [Source 1]. However, the policy does not specify the duration of the probation period or whether your two-month tenure satisfies it. Without explicit information on probation completion, we cannot confirm eligibility. Thus, the answer is not supported by the provided sources."
+      },
+      {
+        "case": "rhw-005",
+        "role_set": "manager",
+        "access": "authorized",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "I joined two months ago. Can I start working hybrid now?",
+        "answer": "The policy states that employees become eligible for hybrid working after completing their probation period [Source 1]. However, the policy does not specify the duration of the probation period or whether your two-month tenure satisfies it. Without explicit information on probation completion, we cannot confirm eligibility. Thus, the answer is not supported by the provided sources."
+      },
+      {
+        "case": "rhw-005",
+        "role_set": "hr",
+        "access": "authorized",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "I joined two months ago. Can I start working hybrid now?",
+        "answer": "The policy states that employees become eligible for hybrid working after completing their probation period [Source 1]. However, the policy does not specify the duration of the probation period or whether your two-month tenure satisfies it. Without explicit information on probation completion, we cannot confirm eligibility. Thus, the answer is not supported by the provided sources."
+      },
+      {
+        "case": "rhw-005",
+        "role_set": "security",
+        "access": "partial",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "I joined two months ago. Can I start working hybrid now?",
+        "answer": "The policy states that employees become eligible for hybrid working after completing their probation period [Source 1]. However, the policy does not specify the duration of the probation period or whether your two-month tenure satisfies it. Without explicit information on probation completion, we cannot confirm eligibility. Thus, the answer is not supported by the provided sources."
+      },
+      {
+        "case": "rhw-005",
+        "role_set": "employee+security",
+        "access": "partial",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "I joined two months ago. Can I start working hybrid now?",
+        "answer": "The policy states that employees become eligible for hybrid working after completing their probation period [Source 1]. However, the policy does not specify the duration of the probation period or whether your two-month tenure satisfies it. Without explicit information on probation completion, we cannot confirm eligibility. Thus, the answer is not supported by the provided sources."
+      },
+      {
+        "case": "dcs-002",
+        "role_set": "employee",
+        "access": "restricted",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Can I email a customer's personal data to a colleague?",
+        "answer": "You may email a customer's personal data to a colleague only if it is done through approved channels and for a legitimate business purpose, and the recipient is verified as authorized. Personal data must not be copied to personal devices or shared via unauthorized methods [Source 2], and external sharing requires verification of the recipient and compliance with secure transfer mechanisms [Source 3]. If the colleague is part of the company and the email is sent via approved systems, it may be permissible, but ensure all privacy and security requirements are met."
+      },
+      {
+        "case": "dcs-002",
+        "role_set": "manager",
+        "access": "restricted",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Can I email a customer's personal data to a colleague?",
+        "answer": "You may email a customer's personal data to a colleague only if it is done through approved channels and for a legitimate business purpose, and the recipient is verified as authorized. Personal data must not be copied to personal devices or shared via unauthorized methods [Source 2], and external sharing requires verification of the recipient and compliance with secure transfer mechanisms [Source 3]. If the colleague is part of the company and the email is sent via approved systems, it may be permissible, but ensure all privacy and security requirements are met."
+      },
+      {
+        "case": "dcs-002",
+        "role_set": "hr",
+        "access": "restricted",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Can I email a customer's personal data to a colleague?",
+        "answer": "You may email a customer's personal data to a colleague only if it is done through approved channels and for a legitimate business purpose, and the recipient is verified as authorized. Personal data must not be copied to personal devices or shared via unauthorized methods [Source 2], and external sharing requires verification of the recipient and compliance with secure transfer mechanisms [Source 3]. If the colleague is part of the company and the email is sent via approved systems, it may be permissible, but ensure all privacy and security requirements are met."
+      },
+      {
+        "case": "dcs-002",
+        "role_set": "security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Can I email a customer's personal data to a colleague?",
+        "answer": "No, you cannot email a customer's personal data to a colleague. Personal data must be processed only for legitimate business purposes and cannot be copied to personal devices or unauthorized applications [Source 2]. Additionally, restricted information, including personal data, must never be sent by email or chat and must be shared through the approved secure file transfer system [Source 5]. Emailing such data violates these policies."
+      },
+      {
+        "case": "dcs-002",
+        "role_set": "employee+security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Can I email a customer's personal data to a colleague?",
+        "answer": "No, you cannot email a customer's personal data to a colleague. Personal data must be processed only for legitimate business purposes and cannot be copied to personal devices or unauthorized applications [Source 2]. Additionally, restricted information, including personal data, must never be sent by email or chat and must be shared through the approved secure file transfer system [Source 5]. Emailing such data violates these policies."
+      },
+      {
+        "case": "dcs-003",
+        "role_set": "employee",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "A document has no classification label. How should I treat it?",
+        "answer": "The provided policies do not specify how to treat documents without classification labels. The sources only address handling classified documents (e.g., Confidential or Restricted) [Source 1] but do not mention guidelines for unclassified or unlabeled documents. Therefore, no specific policy guidance is available for this scenario. \n\nAnswer: The information was not found in the provider policies [Source 1]."
+      },
+      {
+        "case": "dcs-003",
+        "role_set": "manager",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "A document has no classification label. How should I treat it?",
+        "answer": "The provided policies do not specify how to treat documents without classification labels. The sources only address handling classified documents (e.g., Confidential or Restricted) [Source 1] but do not mention guidelines for unclassified or unlabeled documents. Therefore, no specific policy guidance is available for this scenario. \n\nAnswer: The information was not found in the provider policies [Source 1]."
+      },
+      {
+        "case": "dcs-003",
+        "role_set": "hr",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "A document has no classification label. How should I treat it?",
+        "answer": "The provided policies do not specify how to treat documents without classification labels. The sources only address handling classified documents (e.g., Confidential or Restricted) [Source 1] but do not mention guidelines for unclassified or unlabeled documents. Therefore, no specific policy guidance is available for this scenario. \n\nAnswer: The information was not found in the provider policies [Source 1]."
+      },
+      {
+        "case": "dcs-003",
+        "role_set": "security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "A document has no classification label. How should I treat it?",
+        "answer": "If a document has no classification label, it should be treated as **Internal** by default [Source 1]. This applies because documents classified as Confidential or Restricted must carry a label, and the absence of one defaults to Internal. Internal information is intended for employees only and may be shared with contractors under confidentiality agreements [Source 3]."
+      },
+      {
+        "case": "dcs-003",
+        "role_set": "employee+security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "A document has no classification label. How should I treat it?",
+        "answer": "If a document has no classification label, it should be treated as **Internal** by default [Source 1]. This applies because documents classified as Confidential or Restricted must carry a label, and the absence of one defaults to Internal. Internal information is intended for employees only and may be shared with contractors under confidentiality agreements [Source 3]."
+      },
+      {
+        "case": "ir-003",
+        "role_set": "employee",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Should the incident commander also be debugging the outage?",
+        "answer": "The provided policy sources do not explicitly address whether the incident commander should debug an outage. The closest relevant guidance is from Source 1, which states that employees should not investigate beyond preserving information and protecting the company unless instructed by the security team [Source 1]. However, this does not directly clarify the incident commander's role in debugging. Since no policy explicitly assigns or prohibits debugging responsibilities to the incident commander, the information was not found in the provider policies."
+      },
+      {
+        "case": "ir-003",
+        "role_set": "manager",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Should the incident commander also be debugging the outage?",
+        "answer": "The provided policy sources do not explicitly address whether the incident commander should debug an outage. The closest relevant guidance is from Source 1, which states that employees should not investigate beyond preserving information and protecting the company unless instructed by the security team [Source 1]. However, this does not directly clarify the incident commander's role in debugging. Since no policy explicitly assigns or prohibits debugging responsibilities to the incident commander, the information was not found in the provider policies."
+      },
+      {
+        "case": "ir-003",
+        "role_set": "hr",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Should the incident commander also be debugging the outage?",
+        "answer": "The provided policy sources do not explicitly address whether the incident commander should debug an outage. The closest relevant guidance is from Source 1, which states that employees should not investigate beyond preserving information and protecting the company unless instructed by the security team [Source 1]. However, this does not directly clarify the incident commander's role in debugging. Since no policy explicitly assigns or prohibits debugging responsibilities to the incident commander, the information was not found in the provider policies."
+      },
+      {
+        "case": "ir-003",
+        "role_set": "security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Should the incident commander also be debugging the outage?",
+        "answer": "No, the incident commander should not also be debugging the problem. According to the policy, the incident commander coordinates the response, makes decisions about escalation and rollback, and is the single point of contact. However, the incident commander should not also be debugging the problem [Source 1]."
+      },
+      {
+        "case": "ir-003",
+        "role_set": "employee+security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Should the incident commander also be debugging the outage?",
+        "answer": "No, the incident commander should not also be debugging the problem. According to the policy, the incident commander coordinates the response, makes decisions about escalation and rollback, and is the single point of contact. However, the incident commander should not also be debugging the problem [Source 1]."
+      },
+      {
+        "case": "onb-004",
+        "role_set": "employee",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How does probation work, including reviews and extensions?",
+        "answer": "I could not produce a sufficiently supported answer from the available policies."
+      },
+      {
+        "case": "onb-004",
+        "role_set": "manager",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How does probation work, including reviews and extensions?",
+        "answer": "Probation works as follows:  \n- The probation period is **6 months** for all new employees [Source 3].  \n- **Reviews** occur at the end of month **1**, month **3**, and month **5**, with a formal confirmation decision made before the end of month 6 [Source 2].  \n- **Extensions** are allowed once, by up to **3 months**, if the manager and People Operations agree that more time is needed. The employee must receive written reasons for the extension [Source 1]."
+      },
+      {
+        "case": "onb-004",
+        "role_set": "hr",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How does probation work, including reviews and extensions?",
+        "answer": "Probation works as follows:  \n- The probation period is **6 months** for all new employees [Source 3].  \n- **Reviews** occur at the end of month **1**, month **3**, and month **5**, with a formal confirmation decision made before the end of month 6 [Source 2].  \n- **Extensions** are allowed once, by up to **3 months**, if the manager and People Operations agree that more time is needed. The employee must receive written reasons for the extension [Source 1]."
+      },
+      {
+        "case": "onb-004",
+        "role_set": "security",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How does probation work, including reviews and extensions?",
+        "answer": "I could not produce a sufficiently supported answer from the available policies."
+      },
+      {
+        "case": "onb-004",
+        "role_set": "employee+security",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How does probation work, including reviews and extensions?",
+        "answer": "I could not produce a sufficiently supported answer from the available policies."
+      },
+      {
+        "case": "ir-004",
+        "role_set": "employee",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What is the difference between SEV1, SEV2 and SEV3 incidents?",
+        "answer": "The provided policy sources do not define or differentiate between SEV1, SEV2, and SEV3 incidents. The sources mention severity levels in the context of vulnerability patching (e.g., critical, high, medium, low) [Source 2], but these terms are not equated to SEV1, SEV2, or SEV3. No other policies address these specific severity classifications. \n\nAnswer: The information about SEV1, SEV2, and SEV3 incidents was not found in the provided policies [Source 1-5]."
+      },
+      {
+        "case": "ir-004",
+        "role_set": "manager",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What is the difference between SEV1, SEV2 and SEV3 incidents?",
+        "answer": "The provided policy sources do not define or differentiate between SEV1, SEV2, and SEV3 incidents. The sources mention severity levels in the context of vulnerability patching (e.g., critical, high, medium, low) [Source 2], but these terms are not equated to SEV1, SEV2, or SEV3. No other policies address these specific severity classifications. \n\nAnswer: The information about SEV1, SEV2, and SEV3 incidents was not found in the provided policies [Source 1-5]."
+      },
+      {
+        "case": "ir-004",
+        "role_set": "hr",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What is the difference between SEV1, SEV2 and SEV3 incidents?",
+        "answer": "The provided policy sources do not define or differentiate between SEV1, SEV2, and SEV3 incidents. The sources mention severity levels in the context of vulnerability patching (e.g., critical, high, medium, low) [Source 2], but these terms are not equated to SEV1, SEV2, or SEV3. No other policies address these specific severity classifications. \n\nAnswer: The information about SEV1, SEV2, and SEV3 incidents was not found in the provided policies [Source 1-5]."
+      },
+      {
+        "case": "ir-004",
+        "role_set": "security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What is the difference between SEV1, SEV2 and SEV3 incidents?",
+        "answer": "The differences between SEV1, SEV2, and SEV3 incidents are defined by their impact, response requirements, and handling procedures:  \n\n- **SEV1** involves a complete outage of a customer-facing service or a confirmed data breach. The on-call engineer must acknowledge the incident within **15 minutes**, an incident commander is appointed immediately, and customer status updates are posted every **30 minutes** [Source 1].  \n- **SEV2** refers to a significant degradation affecting many customers or a full outage of an internal critical system. Acknowledgment is required within **30 minutes**, with status updates every hour [Source 2].  \n- **SEV3** involves limited customer impact with a workaround available. It must be acknowledged within **4 business hours** and can be handled during normal working hours [Source 3].  \n\nThese levels differ in urgency, customer impact, and required response times."
+      },
+      {
+        "case": "ir-004",
+        "role_set": "employee+security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What is the difference between SEV1, SEV2 and SEV3 incidents?",
+        "answer": "The differences between SEV1, SEV2, and SEV3 incidents are defined by their impact, response requirements, and handling procedures:  \n\n- **SEV1** involves a complete outage of a customer-facing service or a confirmed data breach. The on-call engineer must acknowledge the incident within **15 minutes**, an incident commander is appointed immediately, and customer status updates are posted every **30 minutes** [Source 1].  \n- **SEV2** refers to a significant degradation affecting many customers or a full outage of an internal critical system. Acknowledgment is required within **30 minutes**, with status updates every hour [Source 2].  \n- **SEV3** involves limited customer impact with a workaround available. It must be acknowledged within **4 business hours** and can be handled during normal working hours [Source 3].  \n\nThese levels differ in urgency, customer impact, and required response times."
+      },
+      {
+        "case": "dcs-004",
+        "role_set": "employee",
+        "access": "restricted",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How should Restricted data be stored, shared and disposed of?",
+        "answer": "Restricted data should be stored, shared, and disposed of as follows:  \n\n- **Storage**: USB storage devices are blocked by default; exceptions require approval valid for 30 days [Source 1]. Printed Confidential/Restricted documents must be locked away or shredded daily [Source 4].  \n- **Sharing**: External sharing requires approved channels, recipient verification, and encryption/secure transfer mechanisms for sensitive files [Source 2].  \n- **Disposal**: Data no longer needed must be securely deleted using approved procedures. Returned devices are securely wiped by IT Operations [Source 5].  \n\nThese measures ensure compliance with data protection policies."
+      },
+      {
+        "case": "dcs-004",
+        "role_set": "manager",
+        "access": "restricted",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How should Restricted data be stored, shared and disposed of?",
+        "answer": "Restricted data should be stored, shared, and disposed of as follows:  \n\n- **Storage**: USB storage devices are blocked by default; exceptions require approval valid for 30 days [Source 1]. Printed Confidential/Restricted documents must be locked away or shredded daily [Source 4].  \n- **Sharing**: External sharing requires approved channels, recipient verification, and encryption/secure transfer mechanisms for sensitive files [Source 2].  \n- **Disposal**: Data no longer needed must be securely deleted using approved procedures. Returned devices are securely wiped by IT Operations [Source 5].  \n\nThese measures ensure compliance with data protection policies."
+      },
+      {
+        "case": "dcs-004",
+        "role_set": "hr",
+        "access": "restricted",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How should Restricted data be stored, shared and disposed of?",
+        "answer": "Restricted data should be stored, shared, and disposed of as follows:  \n\n- **Storage**: USB storage devices are blocked by default; exceptions require approval valid for 30 days [Source 1]. Printed Confidential/Restricted documents must be locked away or shredded daily [Source 4].  \n- **Sharing**: External sharing requires approved channels, recipient verification, and encryption/secure transfer mechanisms for sensitive files [Source 2].  \n- **Disposal**: Data no longer needed must be securely deleted using approved procedures. Returned devices are securely wiped by IT Operations [Source 5].  \n\nThese measures ensure compliance with data protection policies."
+      },
+      {
+        "case": "dcs-004",
+        "role_set": "security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How should Restricted data be stored, shared and disposed of?",
+        "answer": "Restricted data should be stored by encrypting it at rest and in transit, with access limited to named individuals on an approved access list [Source 5]. Sharing must occur through approved secure file transfer systems, not via email or chat, and external sharing requires authorization via approved channels with verification of recipients [Source 2][Source 4]. Disposal requires shredding paper documents with cross-cut shredders or secure bins and deleting digital data using IT-approved secure deletion tools [Source 1]."
+      },
+      {
+        "case": "dcs-004",
+        "role_set": "employee+security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How should Restricted data be stored, shared and disposed of?",
+        "answer": "Restricted data should be stored by encrypting it at rest and in transit, with access limited to named individuals on an approved access list [Source 5]. Sharing must occur through approved secure file transfer systems, not via email or chat, and external sharing requires authorization via approved channels with verification of recipients [Source 2][Source 4]. Disposal requires shredding paper documents with cross-cut shredders or secure bins and deleting digital data using IT-approved secure deletion tools [Source 1]."
+      },
+      {
+        "case": "cross-001",
+        "role_set": "employee",
+        "access": "partial",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What leave can I take during probation?",
+        "answer": "The provided policies do not specify leave entitlements or rules for employees during probation. The information available pertains to annual leave, casual leave, sick leave, and other types of leave, but none of these policies explicitly address leave options during a probationary period [Source 1][Source 2][Source 5]. Therefore, the information was not found in the provider policies."
+      },
+      {
+        "case": "cross-001",
+        "role_set": "manager",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What leave can I take during probation?",
+        "answer": "During probation, you can take annual leave, but you may take at most **5 days** of annual leave before your probation is confirmed, unless your manager approves more [Source 1]. Other leave types (e.g., casual or sick leave) are not specifically addressed in the probation policy but are governed by general leave rules [Source 5]."
+      },
+      {
+        "case": "cross-001",
+        "role_set": "hr",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What leave can I take during probation?",
+        "answer": "During probation, you can take annual leave, but you may take at most **5 days** of annual leave before your probation is confirmed, unless your manager approves more [Source 1]. Other leave types (e.g., casual or sick leave) are not specifically addressed in the probation policy but are governed by general leave rules [Source 5]."
+      },
+      {
+        "case": "cross-001",
+        "role_set": "security",
+        "access": "partial",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What leave can I take during probation?",
+        "answer": "The provided policies do not specify leave entitlements or rules for employees during probation. The information available pertains to annual leave, casual leave, sick leave, and other types of leave, but none of these policies explicitly address leave options during a probationary period [Source 1][Source 2][Source 5]. Therefore, the information was not found in the provider policies."
+      },
+      {
+        "case": "cross-001",
+        "role_set": "employee+security",
+        "access": "partial",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What leave can I take during probation?",
+        "answer": "The provided policies do not specify leave entitlements or rules for employees during probation. The information available pertains to annual leave, casual leave, sick leave, and other types of leave, but none of these policies explicitly address leave options during a probationary period [Source 1][Source 2][Source 5]. Therefore, the information was not found in the provider policies."
+      },
+      {
+        "case": "cross-006",
+        "role_set": "employee",
+        "access": "partial",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How do I share confidential information with an external partner?",
+        "answer": "To share confidential information with an external partner, you must:  \n1. Use approved channels and ensure the recipient is authorized and verified [Source 1].  \n2. Share only with individuals who require the information for legitimate business purposes [Source 2].  \n3. Encrypt sensitive files or use secure file-transfer mechanisms as required by security procedures [Source 1].  \n\nConfidential information may not be shared without proper authorization or for unauthorized purposes."
+      },
+      {
+        "case": "cross-006",
+        "role_set": "manager",
+        "access": "partial",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How do I share confidential information with an external partner?",
+        "answer": "To share confidential information with an external partner, you must:  \n1. Use approved channels and ensure the recipient is authorized and verified [Source 1].  \n2. Share only with individuals who require the information for legitimate business purposes [Source 2].  \n3. Encrypt sensitive files or use secure file-transfer mechanisms as required by security procedures [Source 1].  \n\nConfidential information may not be shared without proper authorization or for unauthorized purposes."
+      },
+      {
+        "case": "cross-006",
+        "role_set": "hr",
+        "access": "partial",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How do I share confidential information with an external partner?",
+        "answer": "To share confidential information with an external partner, you must:  \n1. Use approved channels and ensure the recipient is authorized and verified [Source 1].  \n2. Share only with individuals who require the information for legitimate business purposes [Source 2].  \n3. Encrypt sensitive files or use secure file-transfer mechanisms as required by security procedures [Source 1].  \n\nConfidential information may not be shared without proper authorization or for unauthorized purposes."
+      },
+      {
+        "case": "cross-006",
+        "role_set": "security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How do I share confidential information with an external partner?",
+        "answer": "To share confidential information with an external partner, follow these steps:  \n1. **Verify the recipient** to ensure they are authorized and require the information for legitimate business purposes [Source 1].  \n2. **Use approved encryption or secure file-transfer mechanisms** for sensitive data, avoiding email or chat for restricted information [Source 1][Source 4].  \n3. **Obtain approval from the information owner** and ensure sharing occurs through approved channels [Source 1][Source 3].  \n4. **Require a signed non-disclosure agreement (NDA)** for external sharing of confidential data, such as customer contracts or source code [Source 3].  \n\nConfidential information must never be shared without these safeguards [Source 2]."
+      },
+      {
+        "case": "cross-006",
+        "role_set": "employee+security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "How do I share confidential information with an external partner?",
+        "answer": "To share confidential information with an external partner, follow these steps:  \n1. **Verify the recipient** to ensure they are authorized and require the information for legitimate business purposes [Source 1].  \n2. **Use approved encryption or secure file-transfer mechanisms** for sensitive data, avoiding email or chat for restricted information [Source 1][Source 4].  \n3. **Obtain approval from the information owner** and ensure sharing occurs through approved channels [Source 1][Source 3].  \n4. **Require a signed non-disclosure agreement (NDA)** for external sharing of confidential data, such as customer contracts or source code [Source 3].  \n\nConfidential information must never be shared without these safeguards [Source 2]."
+      },
+      {
+        "case": "code-002",
+        "role_set": "employee",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Explain DCS-3",
+        "answer": "The provided policy sources do not contain any information related to \"DCS-3.\" The policies referenced cover topics such as account access [Source 1], data wiping on returned devices [Source 2], policy contacts [Source 3], removable media restrictions [Source 4], and learning and development [Source 5], but none mention DCS-3. Therefore, the information was not found in the provided policies."
+      },
+      {
+        "case": "code-002",
+        "role_set": "manager",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Explain DCS-3",
+        "answer": "The provided policy sources do not contain any information related to \"DCS-3.\" The policies referenced cover topics such as account access [Source 1], data wiping on returned devices [Source 2], policy contacts [Source 3], removable media restrictions [Source 4], and learning and development [Source 5], but none mention DCS-3. Therefore, the information was not found in the provided policies."
+      },
+      {
+        "case": "code-002",
+        "role_set": "hr",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Explain DCS-3",
+        "answer": "The provided policy sources do not contain any information related to \"DCS-3.\" The policies referenced cover topics such as account access [Source 1], data wiping on returned devices [Source 2], policy contacts [Source 3], removable media restrictions [Source 4], and learning and development [Source 5], but none mention DCS-3. Therefore, the information was not found in the provided policies."
+      },
+      {
+        "case": "code-002",
+        "role_set": "security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Explain DCS-3",
+        "answer": "DCS-3 refers to **Confidential** information, which includes sensitive business data such as customer contracts, financial forecasts, source code, and unreleased product plans. Sharing this information externally requires a signed non-disclosure agreement (NDA) and approval from the information owner [Source 1]."
+      },
+      {
+        "case": "code-002",
+        "role_set": "employee+security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "Explain DCS-3",
+        "answer": "DCS-3 refers to **Confidential** information, which includes sensitive business data such as customer contracts, financial forecasts, source code, and unreleased product plans. Sharing this information externally requires a signed non-disclosure agreement (NDA) and approval from the information owner [Source 1]."
+      },
+      {
+        "case": "code-003",
+        "role_set": "employee",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What is IR-SEV2?",
+        "answer": "The term \"IR-SEV2\" is not mentioned or defined in the provided policy sources [Source 1][Source 2][Source 3][Source 4][Source 5]. Therefore, the information was not found in the provider policies."
+      },
+      {
+        "case": "code-003",
+        "role_set": "manager",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What is IR-SEV2?",
+        "answer": "The term \"IR-SEV2\" is not mentioned or defined in the provided policy sources [Source 1][Source 2][Source 3][Source 4][Source 5]. Therefore, the information was not found in the provider policies."
+      },
+      {
+        "case": "code-003",
+        "role_set": "hr",
+        "access": "restricted",
+        "refused": true,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What is IR-SEV2?",
+        "answer": "The term \"IR-SEV2\" is not mentioned or defined in the provided policy sources [Source 1][Source 2][Source 3][Source 4][Source 5]. Therefore, the information was not found in the provider policies."
+      },
+      {
+        "case": "code-003",
+        "role_set": "security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What is IR-SEV2?",
+        "answer": "IR-SEV2 refers to a significant degradation affecting many customers or a full outage of an internal critical system. It requires acknowledgment within **30 minutes** and status updates every hour [Source 1]."
+      },
+      {
+        "case": "code-003",
+        "role_set": "employee+security",
+        "access": "authorized",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What is IR-SEV2?",
+        "answer": "IR-SEV2 refers to a significant degradation affecting many customers or a full outage of an internal critical system. It requires acknowledgment within **30 minutes** and status updates every hour [Source 1]."
+      },
+      {
+        "case": "amb-012",
+        "role_set": "employee",
+        "access": "partial",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What is the 30-day rule?",
+        "answer": "The \"30-day rule\" refers to the policy that expenses should typically be submitted within 30 days [Source 1]."
+      },
+      {
+        "case": "amb-012",
+        "role_set": "manager",
+        "access": "partial",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What is the 30-day rule?",
+        "answer": "The 30-day rule refers to the **Expense Submission** policy, which states that expenses should typically be submitted **within 30 days** [Source 1]. No other policies explicitly mention a \"30-day rule.\""
+      },
+      {
+        "case": "amb-012",
+        "role_set": "hr",
+        "access": "partial",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What is the 30-day rule?",
+        "answer": "The 30-day rule refers to the **Expense Submission** policy, which states that expenses should typically be submitted **within 30 days** [Source 1]. No other policies explicitly mention a \"30-day rule.\""
+      },
+      {
+        "case": "amb-012",
+        "role_set": "security",
+        "access": "partial",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What is the 30-day rule?",
+        "answer": "The \"30-day rule\" refers to the policy that expenses should typically be submitted within 30 days [Source 1]."
+      },
+      {
+        "case": "amb-012",
+        "role_set": "employee+security",
+        "access": "partial",
+        "refused": false,
+        "fingerprints": [],
+        "leaked": [],
+        "question": "What is the 30-day rule?",
+        "answer": "The \"30-day rule\" refers to the policy that expenses should typically be submitted within 30 days [Source 1]."
+      }
+    ]
+  }
+}
