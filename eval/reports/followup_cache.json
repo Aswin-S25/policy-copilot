@@ -1,10 +1,42 @@
 {
   "turn1": {
     "leave-001": "Full-time employees receive **24 working days of annual leave per calendar year** [Source 1].",
-    "leave-002": "Employees receive **8 working days of casual leave per calendar year** [Source 1]."
+    "leave-002": "Employees receive **8 working days of casual leave per calendar year** [Source 1].",
+    "leave-003": "Employees receive **12 working days of sick leave per calendar year** [Source 1].",
+    "leave-005": "The annual leave carry-forward limit is **12 working days** into the following calendar year [Source 1]. This policy also appears in the quick reference table in Source 3. Unused annual leave exceeding this limit expires unless an exception is approved.",
+    "security-002": "The minimum password length is **12 characters** [Source 1], as specified in the Password Policy section. This requirement is also explicitly listed in the Quick Policy Reference table under \"Password Minimum\" [Source 5].",
+    "expense-001": "Expense claims should be submitted within **30 days** of the expense date [Source 1].",
+    "rhw-001": "The standard hybrid schedule is **3 days in the office and 2 days remote** each week [Source 1]. Teams must agree on shared in-office days with their manager. Fully remote arrangements require approval from both the department head and People Operations [Source 1].",
+    "rhw-003": "The home office equipment allowance is **400 USD** for a desk, chair, or monitor [Source 1].",
+    "lnd-001": "The annual learning budget per employee is **1,500 USD** per calendar year [Source 1].",
+    "ir-001": "A SEV1 page must be acknowledged within **15 minutes** by the on-call engineer [Source 1].",
+    "onb-001": "The probation period is **6 months** for all new employees [Source 1].",
+    "ita-001": "Company laptops are replaced every **3 years** [Source 1]. Employees receive an email notification from IT Operations when their laptop becomes eligible for refresh.",
+    "wb-002": "The quarterly wellness allowance is **75 USD** per quarter [Source 1].",
+    "ahg-002": "Yes, harassment can be reported anonymously through the confidential Ethics Hotline, which accepts anonymous reports 24 hours a day [Source 2].",
+    "code-001": "ISS-04 requires that security updates be installed within specific deadlines after release: **critical vulnerabilities within 48 hours**, **high vulnerabilities within 7 days**, and **medium/low vulnerabilities within 30 days**. Laptops missing critical patch deadlines are quarantined until the update is installed [Source 1].",
+    "leave-004": "Annual leave should normally be requested at least **5 working days in advance** through the company's leave-management system [Source 1]."
   },
   "rewrite": {
     "fu-001|What about sick days?": "What about sick days?",
-    "fu-002|Can I combine it with a week of annual leave?": "Can I combine casual leave with a week of annual leave?"
+    "fu-002|Can I combine it with a week of annual leave?": "Can I combine casual leave with a week of annual leave?",
+    "fu-003|After how many days do they need a medical certificate?": "After how many days do employees need a medical certificate?",
+    "fu-004|Does the same apply to casual leave?": "Does the same apply to casual leave?",
+    "fu-005|Is MFA also required?": "Is MFA also required?",
+    "fu-006|What documentation do I need for it?": "What documentation is required for expense claims?",
+    "fu-007|And what are the core collaboration hours?": "What are the core collaboration hours?",
+    "fu-008|And the wellness one?": "What is the wellness allowance?",
+    "fu-009|And how many days of paid study leave?": "How many days of paid study leave are provided?",
+    "fu-010|How do I get it approved, and does it carry over?": "How do I get the learning budget approved, and does it carry over?",
+    "fu-011|What about SEV2?": "What is the required response time for a SEV2 page?",
+    "fu-012|When is the postmortem due after it?": "When is the postmortem due after a SEV1 page?",
+    "fu-013|And the onboarding buddy?": "What is the policy regarding onboarding buddies?",
+    "fu-014|Can I take leave during it?": "Can I take leave during the probation period?",
+    "fu-015|And how soon must I return it when I leave?": "When must an employee return their company laptop when they leave?",
+    "fu-016|How do I claim it?": "How do I claim the quarterly wellness allowance?",
+    "fu-017|How long does the investigation take?": "How long does the investigation take?",
+    "fu-018|What about ISS-08?": "What does ISS-08 require?",
+    "fu-019|What is the minimum password length?": "What is the minimum password length?",
+    "fu-020|How often are company laptops replaced?": "How often are company laptops replaced?"
   }
 }
