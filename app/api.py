@@ -30,16 +30,19 @@ from app.context import build_context
 from app.rag import answer_question, stream_answer_events
 from app.search import search_policies
 from app.conversation_api import router as conversation_router
+from app.health import lifespan, router as health_router
 
 
 configure_logging(get_infra_settings().log_level)
 logger = logging.getLogger("policy_copilot.api")
 
 app = FastAPI(
-    title="Policy Copilot"
+    title="Policy Copilot",
+    lifespan=lifespan,
 )
 app.add_middleware(RequestContextMiddleware)
 
+app.include_router(health_router)
 app.include_router(conversation_router)
 
 
@@ -72,13 +75,6 @@ UPLOAD_DIR.mkdir(
     exist_ok=True
 )
 get_settings()
-
-
-@app.get("/health")
-def health():
-    return {
-        "status": "ok"
-    }
 
 
 @app.post("/documents/ingest")

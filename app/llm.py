@@ -27,6 +27,7 @@ _settings = get_infra_settings()
 OLLAMA_HOST = _settings.ollama_host
 LLM_MODEL = _settings.llm_model
 GENERATION_TIMEOUT_S = _settings.llm_timeout_s
+KEEP_ALIVE = _settings.llm_keep_alive
 
 MAX_ATTEMPTS = 2
 RETRY_BACKOFF_S = 1.0
@@ -95,6 +96,7 @@ def generate_answer(system_prompt: str, user_prompt: str) -> str:
         messages=_messages(system_prompt, user_prompt),
         options={"temperature": 0.0},
         think=True,
+        keep_alive=KEEP_ALIVE,
     )
 
 
@@ -111,6 +113,7 @@ def complete(
         messages=_messages(system_prompt, user_prompt),
         options={"temperature": 0.0},
         think=think,
+        keep_alive=KEEP_ALIVE,
     )
 
 
@@ -133,6 +136,7 @@ def stream_answer(system_prompt: str, user_prompt: str) -> Iterator[str]:
                 options={"temperature": 0.0},
                 think=True,
                 stream=True,
+                keep_alive=KEEP_ALIVE,
             )
             for chunk in stream:
                 if time.monotonic() > deadline:
@@ -158,3 +162,12 @@ def stream_answer(system_prompt: str, user_prompt: str) -> Iterator[str]:
         finally:
             if stream is not None and hasattr(stream, "close"):
                 stream.close()  # release the HTTP connection on any exit
+
+
+def load_model() -> None:
+    """Ask Ollama to load the model into memory now (empty prompt), so the
+    first user request does not pay the load time."""
+    try:
+        client.generate(model=LLM_MODEL, prompt="", keep_alive=KEEP_ALIVE)
+    except LLM_ERRORS as exc:
+        raise LLMUnavailable(_describe(exc)) from exc

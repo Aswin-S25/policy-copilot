@@ -18,11 +18,15 @@ class InfraSettings(BaseSettings):
     database_url: SecretStr
     db_pool_size: int = 5
     db_max_overflow: int = 10
+    db_connect_timeout_s: int = 5
     
-    ollama_host: str = "http://localhost:11434"
+    # 127.0.0.1, not "localhost": on Windows, localhost tries IPv6 (::1)
+    # first and Ollama listens on IPv4 only, costing ~2 s per new connection.
+    ollama_host: str = "http://127.0.0.1:11434"
     llm_model: str = "qwen3:8b"
     llm_timeout_s: float = 120.0
     llm_helper_timeout_s: float = 30.0
+    llm_keep_alive: str = "30m"
     
     embedding_model: str = "BAAI/bge-small-en-v1.5"
     
@@ -30,6 +34,9 @@ class InfraSettings(BaseSettings):
     celery_result_backend: str = "redis://localhost:6379/1"
     
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
+    
+    warmup_on_startup: bool = True
+    readiness_cache_s: float = 5.0
 
     
     @field_validator("database_url")

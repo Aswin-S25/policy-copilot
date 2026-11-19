@@ -12,6 +12,10 @@ engine = create_engine(
     pool_size=_settings.db_pool_size,
     max_overflow=_settings.db_max_overflow,
     hide_parameters=True,
+    # Without this, an unreachable database blocks requests (and readiness
+    # probes) for the OS default TCP timeout.
+    
+    connect_args={"connect_timeout": _settings.db_connect_timeout_s},
 )
 
 SessionLocal = sessionmaker(
