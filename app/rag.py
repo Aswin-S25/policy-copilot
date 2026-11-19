@@ -1,3 +1,4 @@
+import time
 from collections.abc import Iterator, Sequence
 from dataclasses import dataclass
 
@@ -11,6 +12,7 @@ from app.llm import (
     generate_answer,
     stream_answer,
 )
+from app.observability import ms_since, record, stage
 from app.prompt import SYSTEM_PROMPT, build_user_prompt
 from app.search import search_policies
 
@@ -101,6 +103,16 @@ def citations_for(context: BuildContext) -> list[Citation]:
     ]
 
 
+def _refusal_outcome(refusal: str) -> str:
+    return "no_context" if refusal == NO_CONTEXT_REFUSAL else "context_too_small"
+
+
+def _answer_outcome(answer: str) -> str:
+    # "answered" includes refusals written by the model itself; only
+    # refusals the pipeline produces are distinguishable here.
+    return "unsupported" if answer == UNSUPPORTED_REFUSAL else "answered"
+
+
 # ---- entry points ------------------------------------------------------------
 
 def answer_question(
@@ -137,6 +149,7 @@ def answer_from_chunks(
     context, refusal = context_or_refusal(retrieved, max_context_tokens)
 
     if refusal is not None:
+        record(answer_outcome=_refusal_outcome(refusal))
         return RagResponse(
             answer=refusal,
             citations=[],
@@ -145,13 +158,21 @@ def answer_from_chunks(
             context="",
         )
 
-    raw_answer = generate_answer(
-        system_prompt=SYSTEM_PROMPT,
-        user_prompt=build_user_prompt(question=question, context=context.text),
+    with stage("generation"):
+        raw_answer = generate_answer(
+            system_prompt=SYSTEM_PROMPT,
+            user_prompt=build_user_prompt(question=question, context=context.text),
+        )
+
+    answer = finalize_answer(raw_answer, context)
+    record(
+        answer_outcome=_answer_outcome(answer),
+        context_chunks=len(context.chunks),
+        context_tokens=context.estimated_tokens,
     )
 
     return RagResponse(
-        answer=finalize_answer(raw_answer, context),
+        answer=answer,
         citations=citations_for(context),
         retrieved_count=len(retrieved),
         context_tokens=context.estimated_tokens,
@@ -169,31 +190,41 @@ def stream_answer_events(
     "token" events carry raw model output as it is generated. The final
     "answer" event carries the validated answer (invalid citations removed,
     uncited answers replaced by a refusal) and is authoritative: clients
-    must render it in place of the concatenated tokens.
+    must render it in place of the concatenated tokens. If the model fails,
+    an "error" event replaces "answer" and "citations".
     """
     context, refusal = context_or_refusal(retrieved, max_context_tokens)
 
     if refusal is not None:
+        record(answer_outcome=_refusal_outcome(refusal))
         yield "answer", {"text": refusal}
         return
 
     yield "status", {"stage": "generation"}
 
+    started = time.perf_counter()
     parts = []
     try:
         for token in stream_answer(
             system_prompt=SYSTEM_PROMPT,
             user_prompt=build_user_prompt(question=question, context=context.text),
         ):
+            if not parts:
+                record(first_token_ms=ms_since(started))
             parts.append(token)
             yield "token", {"text": token}
     except LLMUnavailable:
         # No "answer" or "citations": the partial tokens are not an answer.
+        record(generation_ms=ms_since(started), answer_outcome="llm_unavailable")
         yield "error", {"detail": UNAVAILABLE_MESSAGE}
         return
 
+    # Includes time the client took to read the stream (backpressure).
+    record(generation_ms=ms_since(started))
+    answer = finalize_answer("".join(parts), context)
+    record(answer_outcome=_answer_outcome(answer), context_chunks=len(context.chunks))
 
-    yield "answer", {"text": finalize_answer("".join(parts), context)}
+    yield "answer", {"text": answer}
     yield "citations", {
         "sources": [citation.to_dict() for citation in citations_for(context)]
     }

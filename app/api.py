@@ -1,6 +1,8 @@
 from pathlib import Path
 import shutil
 import uuid
+import logging
+
 
 from fastapi import (
     FastAPI,
@@ -14,7 +16,8 @@ from celery.result import AsyncResult
 from pydantic import BaseModel, ConfigDict
 from fastapi.responses import JSONResponse, StreamingResponse
 
-from app.config import get_settings
+from app.config import get_infra_settings, get_settings
+from app.observability import RequestContextMiddleware, configure_logging, record
 from app.conversations import ConversationNotFound
 from app.security import Principal, get_current_principal, require_admin
 from app.authz import normalize_roles
@@ -29,9 +32,13 @@ from app.search import search_policies
 from app.conversation_api import router as conversation_router
 
 
+configure_logging(get_infra_settings().log_level)
+logger = logging.getLogger("policy_copilot.api")
+
 app = FastAPI(
     title="Policy Copilot"
 )
+app.add_middleware(RequestContextMiddleware)
 
 app.include_router(conversation_router)
 
@@ -40,6 +47,7 @@ app.include_router(conversation_router)
 def conversation_not_found(request, exc):
     # Identical response for "does not exist" and "belongs to another user",
     # and no ID in the body: never confirm that someone else's ID is valid.
+    logger.info("conversation_not_found")
     return JSONResponse(
         status_code=404,
         content={"detail": "Conversation not found."},
@@ -48,7 +56,9 @@ def conversation_not_found(request, exc):
 
 @app.exception_handler(LLMUnavailable)
 def llm_unavailable(request, exc):
-    # exc carries internal detail (status, timeout type) for logs only.
+    # Internal detail goes to the log; the client gets the generic message.
+    logger.error("llm_unavailable", extra={"detail": str(exc)})
+    record(answer_outcome="llm_unavailable")
     return JSONResponse(
         status_code=503,
         content={"detail": UNAVAILABLE_MESSAGE},

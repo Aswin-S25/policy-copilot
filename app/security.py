@@ -1,12 +1,17 @@
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 
+import logging
+
 import jwt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from app.authz import ROLES
 from app.config import get_settings
+from app.observability import record
+
+logger = logging.getLogger("policy_copilot.auth")
 
 ADMIN_ROLE = "admin"
 TOKEN_ROLES = ROLES | {ADMIN_ROLE}
@@ -101,18 +106,25 @@ def get_current_principal(
     credentials: HTTPAuthorizationCredentials | None = Depends(bearer_schema)
 ) -> Principal:
     if credentials is None or credentials.scheme.lower() != "bearer":
+        logger.warning("auth_failed", extra={"reason": "missing_bearer_token"})
         raise _unauthorized()
-    
+
     try:
-        return decode_token(credentials.credentials)
-    except AuthError:
+        principal = decode_token(credentials.credentials)
+    except AuthError as exc:
+        # The reason comes from claim validation; the token is never logged.
+        logger.warning("auth_failed", extra={"reason": str(exc)})
         raise _unauthorized()
+
+    record(sub=principal.subject, roles=sorted(principal.roles))
+    return principal
 
 
 def require_admin(
     principal: Principal = Depends(get_current_principal),
 ) -> Principal:
     if not principal.is_admin:
+        logger.warning("forbidden", extra={"required_role": ADMIN_ROLE})
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Admin role required.",

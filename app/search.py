@@ -17,6 +17,7 @@ from collections.abc import Sequence
 from sqlalchemy.orm import Session
 
 from app.hybrid_retrieval import retrieve_hybrid
+from app.observability import record, stage
 from app.retrieval import RetrievedChunk
 
 DEFAULT_TOP_K = 5
@@ -32,10 +33,13 @@ def search_policies(
 ) -> list[RetrievedChunk]:
     # Authorization is enforced inside dense and lexical SQL; roles must
     # come from the authenticated principal, never from the request.
-    return retrieve_hybrid(
-        db=db,
-        query=query,
-        top_k=top_k,
-        candidate_k=CANDIDATE_K,
-        roles=roles,
-    )
+    with stage("retrieval"):
+        chunks = retrieve_hybrid(
+            db=db,
+            query=query,
+            top_k=top_k,
+            candidate_k=CANDIDATE_K,
+            roles=roles,
+        )
+    record(retrieved=len(chunks))
+    return chunks

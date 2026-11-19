@@ -10,6 +10,7 @@ so no connection or row lock is held while the model generates:
   record_answer  store the answer with its context chunk ids     -> commit
 """
 
+import logging
 import uuid
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
@@ -26,8 +27,11 @@ from app.conversations import (
 from app.followup import answer_is_visible, plan_follow_up, readable_chunk_ids
 from app.llm import complete
 from app.models import Message
+from app.observability import record
 from app.retrieval import RetrievedChunk
 from app.search import search_policies
+
+logger = logging.getLogger("policy_copilot.conversations")
 from app.security import Principal
 
 
@@ -65,7 +69,8 @@ def prepare_turn(
         question,
         complete_fn=complete_fn or complete,
     )
-    
+    record(history_turns=plan.history_turns, dropped_answers=plan.dropped_answers)
+
     conversation = get_owned_conversation(db, conversation_id, principal.subject)
     if not conversation.title:
         conversation.title = question.strip()[:TITLE_MAX_LENTH]
@@ -131,8 +136,10 @@ def discard_turn(
     try:
         delete_message(db, conversation_id, owner_sub, user_message_id)
         db.commit()
+        logger.info("turn_discarded")
     except ConversationNotFound:
-        pass  # conversation deleted meanwhile: nothing left to clean up
+        # Conversation deleted meanwhile: nothing left to clean up.
+        logger.info("turn_discard_skipped", extra={"reason": "conversation_gone"})
 
 
 def visible_messages(

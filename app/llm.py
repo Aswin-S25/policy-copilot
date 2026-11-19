@@ -11,6 +11,7 @@ No retry for:
   * other 4xx, e.g. 404 "model not found": configuration errors
   * failures after streaming started: the client already shows tokens
 """
+import logging
 import time
 from collections.abc import Iterator
 
@@ -18,6 +19,8 @@ import httpx
 from ollama import Client, ResponseError
 
 from app.config import get_infra_settings
+
+logger = logging.getLogger("policy_copilot.llm")
 
 _settings = get_infra_settings()
 
@@ -73,7 +76,12 @@ def _chat(chat_client: Client, **kwargs) -> str:
             response = chat_client.chat(**kwargs)
             return response["message"]["content"]
         except LLM_ERRORS as exc:
-            if attempt < MAX_ATTEMPTS and _retryable(exc):
+            retry = attempt < MAX_ATTEMPTS and _retryable(exc)
+            logger.warning("llm_call_failed", extra={
+                "model": kwargs.get("model"), "attempt": attempt,
+                "will_retry": retry, "detail": _describe(exc),
+            })
+            if retry:
                 time.sleep(RETRY_BACKOFF_S * attempt)
                 continue
             raise LLMUnavailable(_describe(exc)) from exc
@@ -137,7 +145,13 @@ def stream_answer(system_prompt: str, user_prompt: str) -> Iterator[str]:
                     yield content
             return
         except LLM_ERRORS as exc:
-            if not yielded and attempt < MAX_ATTEMPTS and _retryable(exc):
+            retry = not yielded and attempt < MAX_ATTEMPTS and _retryable(exc)
+            logger.warning("llm_call_failed", extra={
+                "model": LLM_MODEL, "attempt": attempt, "streaming": True,
+                "after_output": yielded, "will_retry": retry,
+                "detail": _describe(exc),
+            })
+            if retry:
                 time.sleep(RETRY_BACKOFF_S * attempt)
                 continue
             raise LLMUnavailable(_describe(exc)) from exc

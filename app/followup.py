@@ -1,3 +1,4 @@
+import logging
 import uuid
 from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass
@@ -9,7 +10,10 @@ from app.authz import readable_by
 from app.conversations import get_messages
 from app.llm import LLMUnavailable, complete
 from app.models import Chunk, Message
+from app.observability import record, stage
 from app.prompt import REWRITE_SYSTEM_PROMPT, build_rewrite_prompt
+
+logger = logging.getLogger("policy_copilot.followup")
 
 
 MAX_HISTORY_MESSAGES = 6
@@ -128,15 +132,20 @@ def rewrite_question(
         return question
 
     try:
-        raw = complete_fn(
-            system_prompt=REWRITE_SYSTEM_PROMPT,
-            user_prompt=build_rewrite_prompt(format_history(turns), question),
-        )
-    except LLMUnavailable:
+        with stage("rewrite"):
+            raw = complete_fn(
+                system_prompt=REWRITE_SYSTEM_PROMPT,
+                user_prompt=build_rewrite_prompt(format_history(turns), question),
+            )
+    except LLMUnavailable as exc:
         # Degrade to the raw follow-up: worse retrieval, but the turn works.
+        logger.warning("rewrite_fallback", extra={"detail": str(exc)})
+        record(rewrite="fallback")
         return question
 
-    return clean_rewrite(raw, fallback=question)
+    rewritten = clean_rewrite(raw, fallback=question)
+    record(rewrite="changed" if rewritten != question else "unchanged")
+    return rewritten
 
 
 # ---- entry point -----------------------------------------------------------------

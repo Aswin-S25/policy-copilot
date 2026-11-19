@@ -29,6 +29,9 @@ class InfraSettings(BaseSettings):
     celery_broker_url: str = "redis://localhost:6379/0"
     celery_result_backend: str = "redis://localhost:6379/1"
     
+    log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
+
+    
     @field_validator("database_url")
     @classmethod
     def postgres_url(cls, value: SecretStr) -> SecretStr:

@@ -10,7 +10,8 @@ engine = create_engine(
     _settings.database_url.get_secret_value(),
     pool_pre_ping=True,
     pool_size=_settings.db_pool_size,
-    max_overflow=_settings.db_max_overflow
+    max_overflow=_settings.db_max_overflow,
+    hide_parameters=True,
 )
 
 SessionLocal = sessionmaker(
