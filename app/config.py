@@ -24,9 +24,23 @@ class InfraSettings(BaseSettings):
     # first and Ollama listens on IPv4 only, costing ~2 s per new connection.
     ollama_host: str = "http://127.0.0.1:11434"
     llm_model: str = "qwen3:8b"
+    judge_model: str = "qwen3:8b"
     llm_timeout_s: float = 120.0
     llm_helper_timeout_s: float = 30.0
     llm_keep_alive: str = "30m"
+
+    # Concurrent LLM calls per API process. Match OLLAMA_NUM_PARALLEL: a
+    # higher value only moves the queue into Ollama, where it is unbounded.
+    # Measured: the local Ollama serves one generation at a time.
+    llm_max_concurrency: int = 1
+    llm_queue_timeout_s: float = 10.0
+
+    # Per-user request budgets (fixed one-minute windows).
+    rate_limit_enabled: bool = True
+    rate_limit_backend: Literal["redis", "memory"] = "redis"
+    rate_limit_redis_url: str = "redis://localhost:6379/2"
+    rate_limit_llm_per_minute: int = 10
+    rate_limit_search_per_minute: int = 60
     
     embedding_model: str = "BAAI/bge-small-en-v1.5"
     
@@ -46,14 +60,19 @@ class InfraSettings(BaseSettings):
             raise ValueError("POLICY_DATABASE_URL must be a postgresql URL.")
         return value
     
-    @field_validator("db_pool_size")
+    @field_validator(
+        "db_pool_size",
+        "llm_max_concurrency",
+        "rate_limit_llm_per_minute",
+        "rate_limit_search_per_minute",
+    )
     @classmethod
-    def pool_size_positive(cls, value: int) -> int:
+    def at_least_one(cls, value: int, info) -> int:
         if value < 1:
-            raise ValueError("POLICY_DB_POOL_SIZE must be at least 1.")
+            raise ValueError(f"POLICY_{info.field_name.upper()} must be at least 1.")
         return value
-    
-    @field_validator("llm_timeout_s", "llm_helper_timeout_s")
+
+    @field_validator("llm_timeout_s", "llm_helper_timeout_s", "llm_queue_timeout_s")
     @classmethod
     def timeout_positive(cls, value: float, info) -> float:
         if value <= 0:

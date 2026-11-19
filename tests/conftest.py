@@ -18,6 +18,10 @@ if not make_url(TEST_DATABASE_URL).database.endswith("_test"):
 # settings at import time, so even SessionLocal points at the test database.
 os.environ["POLICY_DATABASE_URL"] = TEST_DATABASE_URL
 os.environ.setdefault("POLICY_JWT_SECRET", "test-secret-" + "x" * 40)
+# Rate limits are exercised explicitly in tests/test_rate_limit.py; elsewhere
+# they would make unrelated tests depend on how many requests ran before.
+os.environ["POLICY_RATE_LIMIT_ENABLED"] = "false"
+os.environ["POLICY_RATE_LIMIT_BACKEND"] = "memory"
 
 import pytest  # noqa: E402
 

@@ -21,6 +21,7 @@ from app.conversations import (
 )
 from app.db import SessionLocal
 from app.rag import answer_from_chunks, stream_answer_events
+from app.rate_limit import llm_rate_limited
 from app.security import Principal, get_current_principal
 from app.sse import sse_event
 
@@ -102,7 +103,7 @@ def delete(
 def post_message(
     conversation_id: uuid.UUID,
     request: MessageRequest,
-    principal: Principal = Depends(get_current_principal),
+    principal: Principal = Depends(llm_rate_limited),
 ):
     with SessionLocal() as db:
         turn = prepare_turn(
@@ -142,7 +143,7 @@ def post_message(
 def post_message_stream(
     conversation_id: uuid.UUID,
     request: MessageRequest,
-    principal: Principal = Depends(get_current_principal),
+    principal: Principal = Depends(llm_rate_limited),
 ):
     # Check ownership before the response starts: once SSE bytes are sent
     # the status is already 200, so a 404 is only possible up front.

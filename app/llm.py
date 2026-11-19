@@ -12,13 +12,16 @@ No retry for:
   * failures after streaming started: the client already shows tokens
 """
 import logging
+import threading
 import time
 from collections.abc import Iterator
+from contextlib import contextmanager
 
 import httpx
 from ollama import Client, ResponseError
 
 from app.config import get_infra_settings
+from app.observability import stage
 
 logger = logging.getLogger("policy_copilot.llm")
 
@@ -28,6 +31,11 @@ OLLAMA_HOST = _settings.ollama_host
 LLM_MODEL = _settings.llm_model
 GENERATION_TIMEOUT_S = _settings.llm_timeout_s
 KEEP_ALIVE = _settings.llm_keep_alive
+QUEUE_TIMEOUT_S = _settings.llm_queue_timeout_s
+MAX_CONCURRENCY = _settings.llm_max_concurrency
+
+# Bounded, visible queue in front of Ollama (per process).
+_slots = threading.BoundedSemaphore(MAX_CONCURRENCY)
 
 MAX_ATTEMPTS = 2
 RETRY_BACKOFF_S = 1.0
@@ -48,6 +56,25 @@ LLM_ERRORS = (ConnectionError, httpx.TransportError, ResponseError)
 
 class LLMUnavailable(Exception):
     """The model produced no usable output. The detail is for logs only."""
+
+
+class LLMBusy(LLMUnavailable):
+    """Every generation slot stayed busy for the whole queue timeout."""
+
+
+@contextmanager
+def _generation_slot():
+    with stage("llm_queue"):
+        acquired = _slots.acquire(timeout=QUEUE_TIMEOUT_S)
+    if not acquired:
+        logger.warning("llm_busy", extra={
+            "max_concurrency": MAX_CONCURRENCY, "queue_timeout_s": QUEUE_TIMEOUT_S,
+        })
+        raise LLMBusy(f"no generation slot within {QUEUE_TIMEOUT_S}s")
+    try:
+        yield
+    finally:
+        _slots.release()
 
 
 def _retryable(exc: Exception) -> bool:
@@ -72,20 +99,21 @@ def _messages(system_prompt: str, user_prompt: str) -> list[dict]:
 
 
 def _chat(chat_client: Client, **kwargs) -> str:
-    for attempt in range(1, MAX_ATTEMPTS + 1):
-        try:
-            response = chat_client.chat(**kwargs)
-            return response["message"]["content"]
-        except LLM_ERRORS as exc:
-            retry = attempt < MAX_ATTEMPTS and _retryable(exc)
-            logger.warning("llm_call_failed", extra={
-                "model": kwargs.get("model"), "attempt": attempt,
-                "will_retry": retry, "detail": _describe(exc),
-            })
-            if retry:
-                time.sleep(RETRY_BACKOFF_S * attempt)
-                continue
-            raise LLMUnavailable(_describe(exc)) from exc
+    with _generation_slot():
+        for attempt in range(1, MAX_ATTEMPTS + 1):
+            try:
+                response = chat_client.chat(**kwargs)
+                return response["message"]["content"]
+            except LLM_ERRORS as exc:
+                retry = attempt < MAX_ATTEMPTS and _retryable(exc)
+                logger.warning("llm_call_failed", extra={
+                    "model": kwargs.get("model"), "attempt": attempt,
+                    "will_retry": retry, "detail": _describe(exc),
+                })
+                if retry:
+                    time.sleep(RETRY_BACKOFF_S * attempt)
+                    continue
+                raise LLMUnavailable(_describe(exc)) from exc
     raise AssertionError("unreachable")
 
 
@@ -126,42 +154,45 @@ def stream_answer(system_prompt: str, user_prompt: str) -> Iterator[str]:
     """
     yielded = False
 
-    for attempt in range(1, MAX_ATTEMPTS + 1):
-        deadline = time.monotonic() + GENERATION_TIMEOUT_S
-        stream = None
-        try:
-            stream = client.chat(
-                model=LLM_MODEL,
-                messages=_messages(system_prompt, user_prompt),
-                options={"temperature": 0.0},
-                think=True,
-                stream=True,
-                keep_alive=KEEP_ALIVE,
-            )
-            for chunk in stream:
-                if time.monotonic() > deadline:
-                    raise LLMUnavailable(
-                        f"generation exceeded {GENERATION_TIMEOUT_S}s"
-                    )
-                content = chunk["message"]["content"]
-                if content:
-                    yielded = True
-                    yield content
-            return
-        except LLM_ERRORS as exc:
-            retry = not yielded and attempt < MAX_ATTEMPTS and _retryable(exc)
-            logger.warning("llm_call_failed", extra={
-                "model": LLM_MODEL, "attempt": attempt, "streaming": True,
-                "after_output": yielded, "will_retry": retry,
-                "detail": _describe(exc),
-            })
-            if retry:
-                time.sleep(RETRY_BACKOFF_S * attempt)
-                continue
-            raise LLMUnavailable(_describe(exc)) from exc
-        finally:
-            if stream is not None and hasattr(stream, "close"):
-                stream.close()  # release the HTTP connection on any exit
+    # A generator: the slot is taken at the first next() and released when
+    # the stream finishes, fails, or is closed early (client disconnect).
+    with _generation_slot():
+        for attempt in range(1, MAX_ATTEMPTS + 1):
+            deadline = time.monotonic() + GENERATION_TIMEOUT_S
+            stream = None
+            try:
+                stream = client.chat(
+                    model=LLM_MODEL,
+                    messages=_messages(system_prompt, user_prompt),
+                    options={"temperature": 0.0},
+                    think=True,
+                    stream=True,
+                    keep_alive=KEEP_ALIVE,
+                )
+                for chunk in stream:
+                    if time.monotonic() > deadline:
+                        raise LLMUnavailable(
+                            f"generation exceeded {GENERATION_TIMEOUT_S}s"
+                        )
+                    content = chunk["message"]["content"]
+                    if content:
+                        yielded = True
+                        yield content
+                return
+            except LLM_ERRORS as exc:
+                retry = not yielded and attempt < MAX_ATTEMPTS and _retryable(exc)
+                logger.warning("llm_call_failed", extra={
+                    "model": LLM_MODEL, "attempt": attempt, "streaming": True,
+                    "after_output": yielded, "will_retry": retry,
+                    "detail": _describe(exc),
+                })
+                if retry:
+                    time.sleep(RETRY_BACKOFF_S * attempt)
+                    continue
+                raise LLMUnavailable(_describe(exc)) from exc
+            finally:
+                if stream is not None and hasattr(stream, "close"):
+                    stream.close()  # release the HTTP connection on any exit
 
 
 def load_model() -> None:

@@ -23,7 +23,8 @@ from app.security import Principal, get_current_principal, require_admin
 from app.authz import normalize_roles
 from app.celery_app import celery_app
 from app.db import SessionLocal
-from app.llm import UNAVAILABLE_MESSAGE, LLMUnavailable
+from app.llm import UNAVAILABLE_MESSAGE, LLMBusy, LLMUnavailable
+from app.rate_limit import llm_rate_limited, search_rate_limited
 from app.sse import sse_event
 from ingest.tasks import ingest_file
 from app.context import build_context
@@ -61,7 +62,7 @@ def conversation_not_found(request, exc):
 def llm_unavailable(request, exc):
     # Internal detail goes to the log; the client gets the generic message.
     logger.error("llm_unavailable", extra={"detail": str(exc)})
-    record(answer_outcome="llm_unavailable")
+    record(answer_outcome="llm_busy" if isinstance(exc, LLMBusy) else "llm_unavailable")
     return JSONResponse(
         status_code=503,
         content={"detail": UNAVAILABLE_MESSAGE},
@@ -155,7 +156,7 @@ class SearchRequest(BaseModel):
 @app.post("/search")
 def search_documents(
     request: SearchRequest,
-    principal: Principal = Depends(get_current_principal)
+    principal: Principal = Depends(search_rate_limited),
 ):
     db = SessionLocal()
     
@@ -208,7 +209,7 @@ class AskRequest(BaseModel):
 @app.post("/talk")
 def ask(
     request: AskRequest,
-    principal: Principal = Depends(get_current_principal)
+    principal: Principal = Depends(llm_rate_limited),
 ):
     db = SessionLocal()
     
@@ -237,7 +238,7 @@ def ask(
 @app.post("/ask/stream")
 def ask_stream(
     request: AskRequest,
-    principal: Principal = Depends(get_current_principal)
+    principal: Principal = Depends(llm_rate_limited),
 ):
 
     def event_generator():

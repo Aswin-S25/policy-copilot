@@ -8,6 +8,7 @@ from app.citations import exact_citations, remove_invalid_citations
 from app.context import BuildContext, build_context
 from app.llm import (
     UNAVAILABLE_MESSAGE,
+    LLMBusy,
     LLMUnavailable,
     generate_answer,
     stream_answer,
@@ -213,9 +214,12 @@ def stream_answer_events(
                 record(first_token_ms=ms_since(started))
             parts.append(token)
             yield "token", {"text": token}
-    except LLMUnavailable:
+    except LLMUnavailable as exc:
         # No "answer" or "citations": the partial tokens are not an answer.
-        record(generation_ms=ms_since(started), answer_outcome="llm_unavailable")
+        record(
+            generation_ms=ms_since(started),
+            answer_outcome="llm_busy" if isinstance(exc, LLMBusy) else "llm_unavailable",
+        )
         yield "error", {"detail": UNAVAILABLE_MESSAGE}
         return
 
