@@ -1,7 +1,7 @@
 import uuid
 from collections.abc import Sequence
 
-from sqlalchemy import func, select
+from sqlalchemy import delete, func, select
 from sqlalchemy.orm import Session
 
 from app.models import Conversation, Message
@@ -136,4 +136,22 @@ def delete_conversation(
 ) -> None:
     conversation = get_owned_conversation(db, conversation_id, owner_sub)
     db.delete(conversation)  # messages go via ON DELETE CASCADE
+    db.flush()
+
+def delete_message(
+    db: Session,
+    conversation_id: uuid.UUID,
+    owner_sub: str,
+    message_id: uuid.UUID,
+) -> None:
+    """Remove one message; used to discard a turn whose answer failed."""
+    conversation = get_owned_conversation(
+        db, conversation_id, owner_sub, for_update=True
+    )
+    db.execute(
+        delete(Message).where(
+            Message.id == message_id,
+            Message.conversation_id == conversation.id,
+        )
+    )
     db.flush()

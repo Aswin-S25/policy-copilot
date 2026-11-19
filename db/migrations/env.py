@@ -5,9 +5,17 @@ from sqlalchemy import pool
 
 from alembic import context
 
+from app.config import get_infra_settings
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
+
+# configparser treats "%" as interpolation, so escape it (passwords may contain "%").
+config.set_main_option(
+    "sqlalchemy.url",
+    get_infra_settings().database_url.get_secret_value().replace("%", "%%"),
+)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.

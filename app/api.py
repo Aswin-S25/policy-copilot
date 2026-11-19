@@ -15,12 +15,12 @@ from pydantic import BaseModel, ConfigDict
 from fastapi.responses import JSONResponse, StreamingResponse
 
 from app.config import get_settings
-from app.conversation_api import router as conversation_router
 from app.conversations import ConversationNotFound
 from app.security import Principal, get_current_principal, require_admin
 from app.authz import normalize_roles
 from app.celery_app import celery_app
 from app.db import SessionLocal
+from app.llm import UNAVAILABLE_MESSAGE, LLMUnavailable
 from app.sse import sse_event
 from ingest.tasks import ingest_file
 from app.context import build_context
@@ -44,6 +44,17 @@ def conversation_not_found(request, exc):
         status_code=404,
         content={"detail": "Conversation not found."},
     )
+
+
+@app.exception_handler(LLMUnavailable)
+def llm_unavailable(request, exc):
+    # exc carries internal detail (status, timeout type) for logs only.
+    return JSONResponse(
+        status_code=503,
+        content={"detail": UNAVAILABLE_MESSAGE},
+        headers={"Retry-After": "10"},
+    )
+
 
 UPLOAD_DIR = Path("data/uploads")
 UPLOAD_DIR.mkdir(

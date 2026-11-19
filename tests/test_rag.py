@@ -115,3 +115,17 @@ def test_stream_without_chunks_refuses_without_calling_llm(monkeypatch):
     events = list(rag.stream_answer_events("q", []))
 
     assert events == [("answer", {"text": rag.NO_CONTEXT_REFUSAL})]
+
+
+def test_stream_llm_failure_yields_error_event_without_answer(monkeypatch):
+    from app.llm import LLMUnavailable
+
+    def failing(**_):
+        yield "partial "
+        raise LLMUnavailable("ReadTimeout")
+
+    monkeypatch.setattr(rag, "stream_answer", failing)
+
+    names = [name for name, _ in rag.stream_answer_events("q", [make_chunk()])]
+
+    assert names == ["status", "token", "error"]

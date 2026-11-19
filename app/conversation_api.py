@@ -4,7 +4,13 @@ from fastapi import APIRouter, Depends, status
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, ConfigDict, Field
 
-from app.conversation_service import prepare_turn, record_answer, visible_messages
+from app.conversation_service import (
+    discard_turn,
+    prepare_turn,
+    record_answer,
+    visible_messages
+)
+from app.llm import LLMUnavailable
 from app.conversations import (
     ConversationNotFound,
     create_conversation,
@@ -103,11 +109,17 @@ def post_message(
             db, conversation_id, principal, request.question, top_k=request.top_k
         )
 
-    response = answer_from_chunks(
-        question=turn.standalone_question,
-        retrieved=turn.retrieved,
-        max_context_tokens=request.max_context_tokens,
-    )
+    try:
+        response = answer_from_chunks(
+            question=turn.standalone_question,
+            retrieved=turn.retrieved,
+            max_context_tokens=request.max_context_tokens,
+        )
+    except LLMUnavailable:
+        with SessionLocal() as db:
+            discard_turn(db, conversation_id, principal.subject, turn.user_message_id)
+        raise  # mapped to 503 by the handler in app/api.py
+
 
     with SessionLocal() as db:
         message_id = record_answer(
@@ -151,32 +163,50 @@ def post_message_stream(
             yield sse_event("done", {})
             return
 
-        yield sse_event("question", {"standalone": turn.standalone_question})
-
-        answer, sources = "", []
-        for event, data in stream_answer_events(
-            question=turn.standalone_question,
-            retrieved=turn.retrieved,
-            max_context_tokens=request.max_context_tokens,
-        ):
-            if event == "answer":
-                answer = data["text"]
-            elif event == "citations":
-                sources = [uuid.UUID(s["chunk_id"]) for s in data["sources"]]
-            yield sse_event(event, data)
-
+        saved = False
         try:
-            with SessionLocal() as db:
-                message_id = record_answer(
-                    db, conversation_id, principal.subject, answer, sources
-                )
-            yield sse_event("saved", {"message_id": str(message_id)})
-        except ConversationNotFound:
-            yield sse_event(
-                "error", {"detail": "Conversation was deleted; answer not saved."}
-            )
+            yield sse_event("question", {"standalone": turn.standalone_question})
 
-        yield sse_event("done", {})
+            answer, sources, failed = None, [], False
+            for event, data in stream_answer_events(
+                question=turn.standalone_question,
+                retrieved=turn.retrieved,
+                max_context_tokens=request.max_context_tokens,
+            ):
+                if event == "answer":
+                    answer = data["text"]
+                elif event == "citations":
+                    sources = [uuid.UUID(s["chunk_id"]) for s in data["sources"]]
+                elif event == "error":
+                    failed = True
+                yield sse_event(event, data)
+
+            if not failed and answer is not None:
+                try:
+                    with SessionLocal() as db:
+                        message_id = record_answer(
+                            db, conversation_id, principal.subject, answer, sources
+                        )
+                    # Set before yielding: a disconnect at the next yield
+                    # must not discard a turn that is already stored.
+                    saved = True
+                    yield sse_event("saved", {"message_id": str(message_id)})
+                except ConversationNotFound:
+                    saved = True  # conversation is gone: nothing to discard
+                    yield sse_event(
+                        "error", {"detail": "Conversation was deleted; answer not saved."}
+                    )
+
+            yield sse_event("done", {})
+        finally:
+            # LLM failure, client disconnect, or any error before the answer
+            # was stored: remove the question so history stays consistent.
+            if not saved:
+                with SessionLocal() as db:
+                    discard_turn(
+                        db, conversation_id, principal.subject, turn.user_message_id
+                    )
+
 
     return StreamingResponse(
         events(),

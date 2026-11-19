@@ -5,7 +5,12 @@ from sqlalchemy.orm import Session
 
 from app.citations import exact_citations, remove_invalid_citations
 from app.context import BuildContext, build_context
-from app.llm import generate_answer, stream_answer
+from app.llm import (
+    UNAVAILABLE_MESSAGE,
+    LLMUnavailable,
+    generate_answer,
+    stream_answer,
+)
 from app.prompt import SYSTEM_PROMPT, build_user_prompt
 from app.search import search_policies
 
@@ -175,12 +180,18 @@ def stream_answer_events(
     yield "status", {"stage": "generation"}
 
     parts = []
-    for token in stream_answer(
-        system_prompt=SYSTEM_PROMPT,
-        user_prompt=build_user_prompt(question=question, context=context.text),
-    ):
-        parts.append(token)
-        yield "token", {"text": token}
+    try:
+        for token in stream_answer(
+            system_prompt=SYSTEM_PROMPT,
+            user_prompt=build_user_prompt(question=question, context=context.text),
+        ):
+            parts.append(token)
+            yield "token", {"text": token}
+    except LLMUnavailable:
+        # No "answer" or "citations": the partial tokens are not an answer.
+        yield "error", {"detail": UNAVAILABLE_MESSAGE}
+        return
+
 
     yield "answer", {"text": finalize_answer("".join(parts), context)}
     yield "citations", {

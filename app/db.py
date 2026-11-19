@@ -1,14 +1,16 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
-DATABASE_URL = (
-    "postgresql+psycopg://"
-    "policy_user:policy_password@localhost:5433/policy_copilot"
-)
+from app.config import get_infra_settings
+
+_settings = get_infra_settings()
+
 
 engine = create_engine(
-    DATABASE_URL,
-    pool_pre_ping=True
+    _settings.database_url.get_secret_value(),
+    pool_pre_ping=True,
+    pool_size=_settings.db_pool_size,
+    max_overflow=_settings.db_max_overflow
 )
 
 SessionLocal = sessionmaker(

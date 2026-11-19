@@ -2,12 +2,14 @@ import json
 from dataclasses import dataclass
 
 from ollama import Client
+from app.config import get_infra_settings
 
+_settings = get_infra_settings()
 
-OLLAMA_HOST = "http://localhost:11434"
-JUDGE_MODEL = "qwen3:8b"
+OLLAMA_HOST = _settings.ollama_host
+JUDGE_MODEL = _settings.judge_model
 
-client = Client(host=OLLAMA_HOST)
+client = Client(host=OLLAMA_HOST, timeout=_settings.llm_timeout_s)
 
 
 @dataclass

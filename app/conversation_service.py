@@ -17,6 +17,8 @@ from dataclasses import dataclass
 from sqlalchemy.orm import Session
 
 from app.conversations import (
+    ConversationNotFound,
+    delete_message,
     TITLE_MAX_LENTH,
     append_message,
     get_owned_conversation
@@ -41,6 +43,7 @@ class PreparedTurn:
     retrieved: list[RetrievedChunk]
     history_turns: int
     dropped_answers: int
+    user_message_id: uuid.UUID
     
 
 def prepare_turn(
@@ -68,7 +71,7 @@ def prepare_turn(
         conversation.title = question.strip()[:TITLE_MAX_LENTH]
     
     
-    append_message(
+    user_message = append_message(
         db,
         conversation_id,
         principal.subject,
@@ -76,6 +79,7 @@ def prepare_turn(
         content=question,
         standalone_question=plan.standalone_question,
     )
+    user_message_id = user_message.id
 
     retrieved = search_policies(
         db=db,
@@ -91,6 +95,7 @@ def prepare_turn(
         retrieved=retrieved,
         history_turns=plan.history_turns,
         dropped_answers=plan.dropped_answers,
+        user_message_id=user_message_id,
     )
 
 
@@ -112,6 +117,22 @@ def record_answer(
     message_id = message.id  # read before commit expires the instance
     db.commit()
     return message_id
+
+
+
+def discard_turn(
+    db: Session,
+    conversation_id: uuid.UUID,
+    owner_sub: str,
+    user_message_id: uuid.UUID,
+) -> None:
+    """Undo a turn whose answer could not be produced, so history never
+    holds a question without an answer and the client can simply retry."""
+    try:
+        delete_message(db, conversation_id, owner_sub, user_message_id)
+        db.commit()
+    except ConversationNotFound:
+        pass  # conversation deleted meanwhile: nothing left to clean up
 
 
 def visible_messages(

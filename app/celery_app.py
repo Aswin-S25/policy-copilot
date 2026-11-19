@@ -1,11 +1,15 @@
 from celery import Celery
 
+from app.config import get_infra_settings
+
+_settings = get_infra_settings()
 
 celery_app = Celery(
     "policy_copilot",
-    broker="redis://localhost:6379/0",
-    backend="redis://localhost:6379/1",
+    broker=_settings.celery_broker_url,
+    backend=_settings.celery_result_backend,
 )
+
 
 
 celery_app.conf.update(

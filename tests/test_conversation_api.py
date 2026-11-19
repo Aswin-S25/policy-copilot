@@ -13,6 +13,7 @@ from app.api import app
 from app.conversations import append_message, create_conversation, get_messages
 from app.models import Chunk
 from app.security import create_access_token
+from app.llm import LLMUnavailable
 from ingest.embed import embed_document_chunks
 from ingest.models import ParsedDocument, ParsedSection
 from ingest.upsert import ingest_document
@@ -248,3 +249,72 @@ def test_concurrent_appends_get_unique_sequential_positions(sessions):
     with sessions() as s:
         positions = [m.position for m in get_messages(s, conversation_id, "alice")]
     assert positions == list(range(20))
+
+
+
+
+def raise_unavailable(**_):
+    raise LLMUnavailable("ollama 503: model loading")
+
+
+def test_talk_returns_503_with_generic_message(monkeypatch):
+    from app.retrieval import RetrievedChunk
+
+    chunk = RetrievedChunk(
+        chunk_id=uuid.uuid4(), document_id=uuid.uuid4(), document_title="H",
+        section_path="S", content=PUBLIC, chunk_index=0, score=0.03,
+    )
+    monkeypatch.setattr(rag, "search_policies", lambda **_: [chunk])
+    monkeypatch.setattr(rag, "generate_answer", raise_unavailable)
+
+    response = client.post("/talk", json={"question": "q"},
+                           headers=bearer("alice", ["employee"]))
+
+    assert response.status_code == 503
+    assert response.headers["Retry-After"] == "10"
+    assert "model loading" not in response.text  # internal detail not exposed
+
+
+def test_blocking_turn_failure_discards_question(sessions, corpus, llm, monkeypatch):
+    monkeypatch.setattr(rag, "generate_answer", raise_unavailable)
+    conversation_id = new_conversation("alice", ["employee"])
+
+    response = ask(conversation_id, "alice", ["employee"], "How many days of annual leave?")
+
+    assert response.status_code == 503
+    assert stored_messages(sessions, conversation_id) == []
+
+
+def test_stream_turn_failure_emits_error_and_discards_question(
+    sessions, corpus, llm, monkeypatch
+):
+    def failing_stream(**_):
+        yield "Partial "
+        raise LLMUnavailable("ReadTimeout")
+
+    monkeypatch.setattr(rag, "stream_answer", failing_stream)
+    conversation_id = new_conversation("alice", ["employee"])
+
+    response = client.post(
+        f"/conversations/{conversation_id}/messages/stream",
+        json={"question": "How many days of annual leave?"},
+        headers=bearer("alice", ["employee"]),
+    )
+
+    names = [line[7:] for line in response.text.splitlines() if line.startswith("event: ")]
+    assert "error" in names
+    assert "answer" not in names and "saved" not in names
+    assert names[-1] == "done"
+    assert stored_messages(sessions, conversation_id) == []
+
+
+def test_failed_turn_can_be_retried_cleanly(sessions, corpus, llm, monkeypatch):
+    conversation_id = new_conversation("alice", ["employee"])
+
+    monkeypatch.setattr(rag, "generate_answer", raise_unavailable)
+    assert ask(conversation_id, "alice", ["employee"], "Leave days?").status_code == 503
+
+    monkeypatch.setattr(rag, "generate_answer", lambda **_: STUB_ANSWER)
+    assert ask(conversation_id, "alice", ["employee"], "Leave days?").status_code == 200
+
+    assert [m.position for m in stored_messages(sessions, conversation_id)] == [0, 1]

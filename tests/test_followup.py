@@ -15,6 +15,7 @@ from app.followup import (
     plan_follow_up,
     rewrite_question,
 )
+from app.llm import LLMUnavailable
 from app.models import Chunk
 from ingest.models import ParsedDocument, ParsedSection
 from ingest.upsert import ingest_document
@@ -126,7 +127,7 @@ def test_no_history_returns_question_without_llm_call():
 
 def test_llm_failure_falls_back_to_raw_question():
     def broken(**_):
-        raise TimeoutError
+        raise LLMUnavailable("timeout")
 
     turns = [HistoryTurn("user", "How much annual leave?")]
 

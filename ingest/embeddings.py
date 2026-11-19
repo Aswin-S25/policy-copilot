@@ -1,8 +1,10 @@
 from functools import lru_cache
 
 from sentence_transformers import SentenceTransformer
+from app.config import get_infra_settings
 
-EMBEDDING_MODEL = "BAAI/bge-small-en-v1.5"
+EMBEDDING_MODEL = get_infra_settings().embedding_model
+
 
 
 @lru_cache

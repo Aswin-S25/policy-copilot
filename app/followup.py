@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from app.authz import readable_by
 from app.conversations import get_messages
-from app.llm import complete
+from app.llm import LLMUnavailable, complete
 from app.models import Chunk, Message
 from app.prompt import REWRITE_SYSTEM_PROMPT, build_rewrite_prompt
 
@@ -132,7 +132,7 @@ def rewrite_question(
             system_prompt=REWRITE_SYSTEM_PROMPT,
             user_prompt=build_rewrite_prompt(format_history(turns), question),
         )
-    except Exception:
+    except LLMUnavailable:
         # Degrade to the raw follow-up: worse retrieval, but the turn works.
         return question
 
