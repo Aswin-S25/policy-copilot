@@ -185,3 +185,27 @@ def test_logs_never_contain_questions_answers_documents_or_tokens(caplog, stub_r
                       "CANARY-BAD-TOKEN", token):
         assert forbidden not in output
     assert "auth_failed" in output  # the failure itself is recorded
+
+
+def test_upload_passes_request_id_to_worker(monkeypatch, tmp_path):
+    captured = {}
+
+    class QueuedTask:
+        id = "task-123"
+
+    def fake_delay(*args, **kwargs):
+        captured.update(args=args, kwargs=kwargs)
+        return QueuedTask()
+
+    monkeypatch.setattr(api.ingest_file, "delay", fake_delay)
+    monkeypatch.setattr(api, "UPLOAD_DIR", tmp_path)
+
+    response = client.post(
+        "/documents/ingest",
+        files={"file": ("policy.md", b"# Policy\n\nText.", "text/markdown")},
+        data={"allowed_roles": "employee"},
+        headers=bearer(create_access_token("ops", ["admin"])),
+    )
+
+    assert response.status_code == 200
+    assert captured["kwargs"]["request_id"] == response.headers["x-request-id"]

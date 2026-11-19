@@ -1,6 +1,8 @@
 from celery import Celery
+from celery.signals import setup_logging
 
 from app.config import get_infra_settings
+from app.observability import configure_logging
 
 _settings = get_infra_settings()
 
@@ -8,7 +10,16 @@ celery_app = Celery(
     "policy_copilot",
     broker=_settings.celery_broker_url,
     backend=_settings.celery_result_backend,
+    # Register tasks so "celery -A app.celery_app worker" finds them.
+    include=["ingest.tasks"],
 )
+
+
+@setup_logging.connect
+def _configure_worker_logging(**kwargs):
+    # Connecting to this signal stops Celery from installing its own
+    # handlers: the worker logs the same JSON lines as the API.
+    configure_logging(_settings.log_level)
 
 
 

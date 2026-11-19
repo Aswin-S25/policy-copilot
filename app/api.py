@@ -17,7 +17,12 @@ from pydantic import BaseModel, ConfigDict
 from fastapi.responses import JSONResponse, StreamingResponse
 
 from app.config import get_infra_settings, get_settings
-from app.observability import RequestContextMiddleware, configure_logging, record
+from app.observability import (
+    RequestContextMiddleware,
+    configure_logging,
+    current_request_id,
+    record,
+)
 from app.conversations import ConversationNotFound
 from app.security import Principal, get_current_principal, require_admin
 from app.authz import normalize_roles
@@ -114,6 +119,7 @@ async def upload_document(
     task = ingest_file.delay(
         str(destination),
         roles,
+        request_id=current_request_id(),
     )
     
     

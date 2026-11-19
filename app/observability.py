@@ -53,6 +53,11 @@ def record(**fields) -> None:
         ctx["fields"].update(fields)
 
 
+def current_request_id() -> str | None:
+    ctx = _request.get()
+    return ctx["request_id"] if ctx else None
+
+
 def ms_since(start: float) -> float:
     return round((time.perf_counter() - start) * 1000, 1)
 
