@@ -51,6 +51,10 @@ def readable_chunk_ids(
     )
 
 
+def answer_is_visible(message: Message, readable: set[uuid.UUID]) -> bool:
+    sources = message.source_chunk_ids
+    return sources is not None and set(sources) <= readable
+
 def authorize_history(
     db: Session,
     messages: Sequence[Message],
@@ -78,11 +82,10 @@ def authorize_history(
     
     turns, dropped = [], 0
     for message in messages:
-        if message.sender == "assistant":
+        if message.sender == "assistant" and not answer_is_visible(message, readable):
             sources = message.source_chunk_ids
-            if sources is None or not set(sources) <= readable:
-                dropped += 1
-                continue
+            dropped += 1
+            continue
         turns.append(HistoryTurn(sender=message.sender, content=message.content))
 
     return turns, dropped

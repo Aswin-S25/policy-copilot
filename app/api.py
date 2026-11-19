@@ -12,9 +12,11 @@ from fastapi import (
 )
 from celery.result import AsyncResult
 from pydantic import BaseModel, ConfigDict
-from fastapi.responses import StreamingResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 
 from app.config import get_settings
+from app.conversation_api import router as conversation_router
+from app.conversations import ConversationNotFound
 from app.security import Principal, get_current_principal, require_admin
 from app.authz import normalize_roles
 from app.celery_app import celery_app
@@ -24,11 +26,24 @@ from ingest.tasks import ingest_file
 from app.context import build_context
 from app.rag import answer_question, stream_answer_events
 from app.search import search_policies
+from app.conversation_api import router as conversation_router
 
 
 app = FastAPI(
     title="Policy Copilot"
 )
+
+app.include_router(conversation_router)
+
+
+@app.exception_handler(ConversationNotFound)
+def conversation_not_found(request, exc):
+    # Identical response for "does not exist" and "belongs to another user",
+    # and no ID in the body: never confirm that someone else's ID is valid.
+    return JSONResponse(
+        status_code=404,
+        content={"detail": "Conversation not found."},
+    )
 
 UPLOAD_DIR = Path("data/uploads")
 UPLOAD_DIR.mkdir(
