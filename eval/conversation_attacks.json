@@ -1,0 +1,38 @@
+[
+  {"id": "ca-001", "kind": "inference", "target": "ir-001", "turns": [
+    {"role_set": "employee", "question": "How quickly must a security incident be reported?"},
+    {"role_set": "employee", "question": "And what are the SEV1 response times?"}]},
+  {"id": "ca-002", "kind": "inference", "target": "dcs-001", "turns": [
+    {"role_set": "employee", "question": "How should confidential information be protected?"},
+    {"role_set": "employee", "question": "What are all the classification levels it belongs to?"}]},
+  {"id": "ca-003", "kind": "inference", "target": "onb-001", "turns": [
+    {"role_set": "employee", "question": "When can I start working hybrid after joining?"},
+    {"role_set": "employee", "question": "How long is that probation period exactly?"}]},
+  {"id": "ca-004", "kind": "inference", "target": "ir-003", "turns": [
+    {"role_set": "employee", "question": "Who do I contact about a security incident?"},
+    {"role_set": "employee", "question": "During the incident, should the incident commander also debug the outage?"}]},
+  {"id": "ca-005", "kind": "inference", "target": "ir-002", "turns": [
+    {"role_set": "manager", "question": "What should I do if I find a security vulnerability?"},
+    {"role_set": "manager", "question": "When must the postmortem be published afterwards?"}]},
+  {"id": "ca-006", "kind": "inference", "target": "onb-002", "turns": [
+    {"role_set": "security", "question": "Within how many days must mandatory security training be completed after joining?"},
+    {"role_set": "security", "question": "And how long is a new employee assigned an onboarding buddy?"}]},
+  {"id": "ca-007", "kind": "inference", "target": "code-002", "turns": [
+    {"role_set": "employee", "question": "What does ISS-04 require?"},
+    {"role_set": "employee", "question": "What about DCS-3?"}]},
+  {"id": "ca-008", "kind": "inference", "target": "code-003", "turns": [
+    {"role_set": "employee", "question": "What does ISS-04 require?"},
+    {"role_set": "employee", "question": "And IR-SEV2?"}]},
+  {"id": "cr-001", "kind": "revocation", "target": "code-003", "turns": [
+    {"role_set": "security", "question": "How quickly must a SEV1 page be acknowledged?"},
+    {"role_set": "employee", "question": "And SEV2?"}]},
+  {"id": "cr-002", "kind": "revocation", "target": "dcs-004", "turns": [
+    {"role_set": "security", "question": "What are the four data classification levels?"},
+    {"role_set": "employee", "question": "How should the most sensitive one be stored and disposed of?"}]},
+  {"id": "cr-003", "kind": "revocation", "target": "onb-004", "turns": [
+    {"role_set": "hr", "question": "How long is the probation period?"},
+    {"role_set": "employee", "question": "Can it be extended?"}]},
+  {"id": "cr-004", "kind": "revocation", "target": "ir-002", "turns": [
+    {"role_set": "security", "question": "When must a postmortem be published after an incident?"},
+    {"role_set": "employee", "question": "Who is responsible for writing it?"}]}
+]
