@@ -7,8 +7,16 @@ import { expect, test, type Page } from "@playwright/test";
 
 test.describe.configure({ mode: "serial" });
 
-const employeeToken = () => process.env.E2E_EMPLOYEE_TOKEN!;
-const securityToken = () => process.env.E2E_SECURITY_TOKEN!;
+interface Account {
+  username: string;
+  password: string;
+}
+const account = (key: "EMPLOYEE" | "SECURITY"): Account => ({
+  username: process.env[`E2E_${key}_USERNAME`]!,
+  password: process.env[`E2E_${key}_PASSWORD`]!,
+});
+const employee = () => account("EMPLOYEE");
+const security = () => account("SECURITY");
 
 // From eval/datasets/golden.json: answerable for the employee role.
 const QUESTION = "How many days of annual leave do employees get?";
@@ -16,11 +24,15 @@ const FOLLOW_UP = "Can unused days be carried over to next year?";
 
 let conversationUrl = "";
 
-async function signIn(page: Page, token: string) {
-  await page.goto("/login");
-  await page.getByLabel("Access token").fill(token);
-  await expect(page.getByText("Signs in as")).toBeVisible();
+async function fillSignIn(page: Page, { username, password }: Account) {
+  await page.getByLabel("Username").fill(username);
+  await page.getByLabel("Password", { exact: true }).fill(password);
   await page.getByRole("button", { name: "Sign in" }).click();
+}
+
+async function signIn(page: Page, who: Account) {
+  await page.goto("/login");
+  await fillSignIn(page, who);
   await expect(page.getByRole("heading", { name: "Ask about a company policy" })).toBeVisible();
 }
 
@@ -29,21 +41,26 @@ async function waitForAnswer(page: Page) {
   await expect(page.getByRole("button", { name: "Send question" })).toBeVisible({ timeout: 150_000 });
 }
 
-test("rejects a malformed token, then signs in with a real one", async ({ page }) => {
+test("rejects a wrong password, then signs in and out", async ({ page }) => {
   await page.goto("/");
   await expect(page).toHaveURL(/\/login$/);
 
-  await page.getByLabel("Access token").fill("not-a-token");
-  await page.getByRole("button", { name: "Sign in" }).click();
-  await expect(page.getByRole("alert")).toContainText("isn't an access token");
+  await fillSignIn(page, { username: employee().username, password: "definitely-not-it" });
+  await expect(page.getByRole("alert")).toHaveText("Incorrect username or password.");
+  await expect(page.getByLabel("Password", { exact: true })).toHaveValue(""); // cleared for retry
 
-  await page.getByLabel("Access token").fill(employeeToken());
-  await page.getByRole("button", { name: "Sign in" }).click();
+  await fillSignIn(page, employee());
   await expect(page.getByText("Searching documents shared with")).toContainText("Employee");
+  await expect(page.getByText(employee().username, { exact: true })).toBeVisible();
+
+  await page.getByRole("button", { name: "Sign out" }).click();
+  await expect(page).toHaveURL(/\/login$/);
+  await page.goto("/");
+  await expect(page).toHaveURL(/\/login$/); // the session is really gone
 });
 
 test("streams a cited answer, opens a source passage, and keeps citations after reload", async ({ page }) => {
-  await signIn(page, employeeToken());
+  await signIn(page, employee());
 
   const composer = page.locator("#composer-input");
   await composer.fill(QUESTION);
@@ -76,7 +93,7 @@ test("streams a cited answer, opens a source passage, and keeps citations after 
 });
 
 test("answers a follow-up in the same conversation", async ({ page }) => {
-  await signIn(page, employeeToken());
+  await signIn(page, employee());
   await page.goto(conversationUrl);
   await expect(page.locator("button.cite").first()).toBeVisible();
 
@@ -93,9 +110,9 @@ test("answers a follow-up in the same conversation", async ({ page }) => {
 
 test("lists only documents the role can read", async ({ browser }) => {
   // The "Your access" cell of each row (titles may contain role words).
-  const accessFor = async (token: string) => {
+  const accessFor = async (who: Account) => {
     const page = await browser.newPage();
-    await signIn(page, token);
+    await signIn(page, who);
     await page.getByRole("link", { name: "Policy documents" }).click();
     await expect(page.getByText(/^\d+ documents?$/)).toBeVisible();
     const cells = await page.locator("tbody tr td:nth-child(2)").allInnerTexts();
@@ -103,23 +120,23 @@ test("lists only documents the role can read", async ({ browser }) => {
     return cells.map((cell) => cell.replace("Your access:", "").trim());
   };
 
-  const employee = await accessFor(employeeToken());
-  const security = await accessFor(securityToken());
-  expect(employee.length).toBeGreaterThan(0);
-  expect(security.length).toBeGreaterThan(0);
+  const employeeAccess = await accessFor(employee());
+  const securityAccess = await accessFor(security());
+  expect(employeeAccess.length).toBeGreaterThan(0);
+  expect(securityAccess.length).toBeGreaterThan(0);
   // Each user sees only their own granting role, never other roles on the ACL.
-  expect(employee.every((access) => access === "Employee")).toBe(true);
-  expect(security.every((access) => access === "Security")).toBe(true);
+  expect(employeeAccess.every((access) => access === "Employee")).toBe(true);
+  expect(securityAccess.every((access) => access === "Security")).toBe(true);
 });
 
 test("another user can't open this conversation", async ({ page }) => {
-  await signIn(page, securityToken());
+  await signIn(page, security());
   await page.goto(conversationUrl);
   await expect(page.getByRole("heading", { name: "This conversation isn't available" })).toBeVisible();
 });
 
 test("deletes the conversation", async ({ page }) => {
-  await signIn(page, employeeToken());
+  await signIn(page, employee());
   await page.goto(conversationUrl);
   await page.getByRole("button", { name: "Delete conversation" }).click();
   const dialog = page.getByRole("dialog", { name: "Delete conversation?" });
@@ -133,11 +150,10 @@ test("deletes the conversation", async ({ page }) => {
 test("a token the API rejects ends the session", async ({ page }) => {
   // Well-formed and unexpired, but not signed by this API: the server's 401
   // must sign the user out, not just the client-side expiry check.
-  const [header, payload] = employeeToken().split(".");
-  await page.addInitScript(
-    (forged) => sessionStorage.setItem("policy-copilot.session", forged),
-    `${header}.${payload}.invalid-signature`,
-  );
+  const b64 = (value: object) => Buffer.from(JSON.stringify(value)).toString("base64url");
+  const exp = Math.floor(Date.now() / 1000) + 3600;
+  const forged = `${b64({ alg: "HS256", typ: "JWT" })}.${b64({ sub: "mallory", roles: ["employee"], exp })}.bad-signature`;
+  await page.addInitScript((token) => sessionStorage.setItem("policy-copilot.session", token), forged);
   await page.goto("/");
   await expect(page).toHaveURL(/\/login$/);
   await expect(page.getByText("Your session expired")).toBeVisible();

@@ -17,15 +17,22 @@ npm install
 npm run dev                       # http://localhost:5173
 ```
 
-Sign in with a token from the backend's development CLI (run from the
-repository root):
+Create an account, then sign in with it (run from the repository root; the
+password is asked for twice at a hidden prompt):
 
 ```bash
-python -m app.cli.issue_token --sub alice --roles employee manager
+python -m app.cli.users create alice --roles employee manager
 ```
 
-In production an identity provider issues these tokens; the API only verifies
-them. There is no username/password login because the backend has none.
+Other account commands: `set-password`, `set-roles`, `disable`, `enable`,
+`delete`, `list` (see `app/cli/users.py`). Roles are `employee`, `manager`,
+`hr`, `security` (document access) and `admin` (document upload only).
+
+Sign-in calls `POST /auth/login`, which checks the Argon2id password hash and
+returns the same bearer token every other endpoint already verifies.
+Attempts are rate-limited per account and per client address. Tokens last
+`POLICY_JWT_TTL_MINUTES` (60 by default); signing out discards the token in
+the browser, and role changes apply at the next sign-in.
 
 ### Configuration
 
@@ -50,11 +57,12 @@ FastAPI. Same origin, so the API needs no CORS configuration.
 | `npm test` | Unit tests (Vitest): stream parser, citations, token parsing, turn lifecycle |
 | `npm run test:e2e` | End-to-end tests (Playwright) against the **real** stack |
 
-`npm run test:e2e` needs the backend running and ready. It mints short-lived
-tokens with `app.cli.issue_token` (so it needs the backend's Python
-environment and `.env`), starts the dev server if needed, and runs serially
-because local Ollama answers one question at a time. Expect about a minute.
-Run `npx playwright install chromium` once beforehand.
+`npm run test:e2e` needs the backend running and ready. It creates two
+throwaway accounts with random passwords through `app.cli.users` (so it needs
+the backend's Python environment and `.env`), signs in through the real form,
+and deletes the accounts afterwards. It starts the dev server if needed and
+runs serially because local Ollama answers one question at a time. Expect
+about a minute. Run `npx playwright install chromium` once beforehand.
 
 ## How it works
 
@@ -104,10 +112,16 @@ model's words.
 
 ### Sessions and security
 
+- Wrong username, wrong password and disabled account all get the same
+  "Incorrect username or password." The password field is cleared after a
+  failed attempt; the form supports password managers (`autocomplete`).
 - The token is kept in `sessionStorage` (this tab only, cleared on close)
   and sent only as an `Authorization` header, never in URLs or logs.
 - Token claims are decoded only to show who is signed in and when the
   session ends. The API verifies every request; any 401 signs the user out.
+- Behind a reverse proxy, run uvicorn with `--proxy-headers` (and trusted
+  `--forwarded-allow-ips`) so the per-address sign-in limit sees real client
+  addresses rather than the proxy's.
 - Model output and policy text are rendered as Markdown with raw HTML
   disabled.
 

@@ -44,6 +44,10 @@ class InfraSettings(BaseSettings):
     rate_limit_redis_url: str = "redis://127.0.0.1:6379/2"
     rate_limit_llm_per_minute: int = 10
     rate_limit_search_per_minute: int = 60
+    # Sign-in attempts (successful or not), per username and per client IP:
+    # slows password guessing against one account and spraying across many.
+    rate_limit_login_per_minute: int = 10
+    rate_limit_login_ip_per_minute: int = 60
     
     embedding_model: str = "BAAI/bge-small-en-v1.5"
     
@@ -71,6 +75,8 @@ class InfraSettings(BaseSettings):
         "llm_max_concurrency",
         "rate_limit_llm_per_minute",
         "rate_limit_search_per_minute",
+        "rate_limit_login_per_minute",
+        "rate_limit_login_ip_per_minute",
     )
     @classmethod
     def at_least_one(cls, value: int, info) -> int:
