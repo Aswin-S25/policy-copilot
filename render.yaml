@@ -1,0 +1,49 @@
+# Render Blueprint: the API on Render's free plan (deploy/README.md).
+# Secrets are marked sync: false: Render asks for them when the Blueprint is
+# applied and stores them encrypted; they never live in this file.
+services:
+  - type: web
+    name: policy-copilot-api
+    runtime: docker
+    plan: free
+    region: singapore
+    branch: main
+    dockerfilePath: ./deploy/Dockerfile
+    dockerContext: .
+    # Liveness only: no database or LLM calls. Render uses it to decide a
+    # deploy is healthy. It does not (and must not) keep the free service awake.
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      # PostgreSQL (Neon), e.g. postgresql+psycopg://USER:PASSWORD@HOST/DB?sslmode=require
+      - key: POLICY_DATABASE_URL
+        sync: false
+      # Signs sign-in tokens. Generated once by Render; never reuse the local one.
+      - key: POLICY_JWT_SECRET
+        generateValue: true
+
+      # LLM: Groq's OpenAI-compatible API (free tier).
+      - key: POLICY_LLM_PROVIDER
+        value: openai
+      - key: POLICY_LLM_BASE_URL
+        value: https://api.groq.com/openai/v1
+      - key: POLICY_LLM_MODEL
+        value: openai/gpt-oss-120b
+      - key: POLICY_LLM_REASONING_EFFORT
+        value: low
+      - key: POLICY_LLM_API_KEY
+        sync: false
+      # Hosted generation isn't limited to one at a time like local Ollama;
+      # the provider's per-minute token cap is the real limit.
+      - key: POLICY_LLM_MAX_CONCURRENCY
+        value: "3"
+
+      # The Vercel site's origin, e.g. https://policy-copilot.vercel.app
+      - key: POLICY_CORS_ORIGINS
+        sync: false
+
+      # One-click sample accounts for visitors (synthetic policies only).
+      - key: POLICY_DEMO_MODE
+        value: "true"
+      - key: POLICY_LOG_LEVEL
+        value: INFO
