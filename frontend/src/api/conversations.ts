@@ -2,7 +2,7 @@ import { request, requestJson } from "./client";
 import { readEventStream } from "./sse";
 import type { ConversationDetail, ConversationSummary, StreamEvent } from "./types";
 
-export function listConversations(options: { signal?: AbortSignal; token?: string } = {}) {
+export function listConversations(options: { signal?: AbortSignal } = {}) {
   return requestJson<{ conversations: ConversationSummary[] }>("/conversations", options);
 }
 

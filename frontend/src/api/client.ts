@@ -73,13 +73,16 @@ export interface RequestOptions {
   body?: unknown;
   signal?: AbortSignal;
   accept?: string;
-  /** Use a specific token instead of the session's (sign-in verification). */
-  token?: string;
+  /**
+   * Sign-in: send no session token, and treat 401 as an ordinary answer
+   * (wrong credentials) rather than an expired session.
+   */
+  anonymous?: boolean;
 }
 
 /** Performs the request and returns the raw Response if it was 2xx. */
 export async function request(path: string, options: RequestOptions = {}): Promise<Response> {
-  const token = options.token ?? currentToken;
+  const token = options.anonymous ? null : currentToken;
   const headers: Record<string, string> = { Accept: options.accept ?? "application/json" };
   if (token) headers.Authorization = `Bearer ${token}`;
   if (options.body !== undefined) headers["Content-Type"] = "application/json";
@@ -100,9 +103,8 @@ export async function request(path: string, options: RequestOptions = {}): Promi
 
   if (!response.ok) {
     const error = await errorFromResponse(response);
-    // A rejected session token means the session is over. A token being
-    // verified at sign-in is not the session yet, so it is left alone.
-    if (response.status === 401 && options.token === undefined) {
+    // A rejected session token means the session is over.
+    if (response.status === 401 && !options.anonymous) {
       onUnauthorized?.();
       throw new ApiError(401, fallbackMessage(401));
     }

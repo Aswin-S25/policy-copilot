@@ -9,8 +9,8 @@ import {
   type ReactNode,
 } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { ApiError, configureAuth } from "../api/client";
-import { listConversations } from "../api/conversations";
+import { login } from "../api/auth";
+import { configureAuth } from "../api/client";
 import { clearPassageCache } from "../api/sources";
 import { abortAllTurns } from "../chat/turns";
 import { clearSession, loadSession, parseToken, saveSession, type Session } from "./session";
@@ -21,7 +21,8 @@ interface AuthValue {
   session: Session | null;
   /** Why the last session ended, shown once on the sign-in screen. */
   signOutReason: SignOutReason | null;
-  signIn: (rawToken: string) => Promise<void>;
+  /** Throws ApiError (401 wrong credentials, 429 too many attempts). */
+  signIn: (username: string, password: string) => Promise<void>;
   signOut: (reason?: SignOutReason) => void;
 }
 
@@ -68,21 +69,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => window.clearTimeout(timer);
   }, [session, signOut]);
 
-  const signIn = useCallback(async (rawToken: string) => {
-    const candidate = parseToken(rawToken);
-    // Ask the API to accept the token before treating it as a session.
-    try {
-      await listConversations({ token: candidate.token });
-    } catch (error) {
-      if (error instanceof ApiError && error.status === 401) {
-        throw new Error(
-          "Policy Copilot didn't accept this token. It may have been issued for a different environment or revoked.",
-        );
-      }
-      throw error;
-    }
-    saveSession(candidate);
-    setSession(candidate);
+  const signIn = useCallback(async (username: string, password: string) => {
+    const { access_token } = await login(username, password);
+    // Claims are read for display only; the API verifies every request.
+    const next = parseToken(access_token);
+    saveSession(next);
+    setSession(next);
     setSignOutReason(null);
   }, []);
 

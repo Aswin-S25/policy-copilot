@@ -1,9 +1,26 @@
-import { useId, useMemo, useState, type FormEvent } from "react";
+import { useId, useRef, useState, type FormEvent } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { ApiError } from "../api/client";
 import { Button } from "../ui/Button";
 import { BrandMark, Notice, Spinner } from "../ui/feedback";
 import { useAuth } from "./AuthContext";
-import { formatExpiry, parseToken, roleName, TokenError } from "./session";
+
+const field =
+  "mt-1.5 block h-10 w-full rounded-control border bg-surface px-3 text-control text-ink " +
+  "placeholder:text-faint focus:border-accent focus:outline-none";
+
+function errorMessage(error: unknown): string {
+  if (error instanceof ApiError) {
+    if (error.status === 401) return "Incorrect username or password.";
+    if (error.status === 429) {
+      return error.retryAfter
+        ? `Too many sign-in attempts. Try again in ${error.retryAfter} seconds.`
+        : "Too many sign-in attempts. Try again in a minute.";
+    }
+    return error.message;
+  }
+  return "Sign-in failed. Try again.";
+}
 
 export function LoginView() {
   const { session, signIn, signOutReason } = useAuth();
@@ -11,35 +28,29 @@ export function LoginView() {
   const location = useLocation();
   const from = (location.state as { from?: string } | null)?.from ?? "/";
 
-  const [token, setToken] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const fieldId = useId();
-
-  // Show whose token this is before it's submitted. Display only: the API
-  // verifies the signature when the form is sent.
-  const preview = useMemo(() => {
-    if (!token.trim()) return null;
-    try {
-      return parseToken(token);
-    } catch {
-      return null;
-    }
-  }, [token]);
+  const passwordInput = useRef<HTMLInputElement>(null);
+  const ids = { username: useId(), password: useId(), error: useId() };
 
   if (session) return <Navigate to={from} replace />;
 
   async function submit(event: FormEvent) {
     event.preventDefault();
-    if (!token.trim() || submitting) return;
+    if (!username.trim() || !password || submitting) return;
     setSubmitting(true);
     setError(null);
     try {
-      await signIn(token);
+      await signIn(username.trim(), password);
       navigate(from, { replace: true });
     } catch (err) {
-      setError(err instanceof TokenError || err instanceof Error ? err.message : "Sign-in failed. Try again.");
+      setError(errorMessage(err));
+      setPassword("");
       setSubmitting(false);
+      passwordInput.current?.focus();
     }
   }
 
@@ -53,9 +64,7 @@ export function LoginView() {
 
         <div className="rounded-panel border border-line bg-surface p-6 shadow-composer sm:p-7">
           <h1 className="text-heading font-semibold tracking-[-0.015em] text-ink">Sign in</h1>
-          <p className="mt-1.5 text-control text-muted">
-            Paste the access token issued for your account.
-          </p>
+          <p className="mt-1.5 text-control text-muted">Use your Policy Copilot account.</p>
 
           {signOutReason === "expired" && !error && (
             <div className="mt-5">
@@ -63,49 +72,73 @@ export function LoginView() {
             </div>
           )}
 
-          <form onSubmit={submit} className="mt-6" noValidate>
-            <label htmlFor={fieldId} className="block text-ui font-medium text-ink">
-              Access token
-            </label>
-            <input
-              id={fieldId}
-              type="password"
-              value={token}
-              onChange={(event) => {
-                setToken(event.target.value);
-                setError(null);
-              }}
-              autoComplete="off"
-              autoCapitalize="off"
-              spellCheck={false}
-              autoFocus
-              placeholder="eyJhbGciOi…"
-              aria-invalid={Boolean(error) || undefined}
-              aria-describedby={`${fieldId}-hint`}
-              className={
-                "mt-1.5 block h-10 w-full rounded-control border bg-surface px-3 font-mono text-ui text-ink " +
-                "placeholder:text-faint focus:border-accent focus:outline-none focus-visible:outline-2 " +
-                "focus-visible:outline-offset-0 focus-visible:outline-accent/30 " +
-                (error ? "border-danger" : "border-line-strong")
-              }
-            />
-
-            <div id={`${fieldId}-hint`} className="mt-2 min-h-5 text-ui">
-              {error ? (
-                <p role="alert" className="text-danger">{error}</p>
-              ) : preview ? (
-                <p className="text-muted">
-                  Signs in as <span className="font-medium text-ink">{preview.subject}</span>
-                  {preview.roles.length > 0 && <> with {preview.roles.map(roleName).join(", ")} access</>}.
-                  Expires {formatExpiry(preview.expiresAt)}.
-                </p>
-              ) : null}
+          <form onSubmit={submit} className="mt-6 space-y-4" noValidate>
+            <div>
+              <label htmlFor={ids.username} className="block text-ui font-medium text-ink">
+                Username
+              </label>
+              <input
+                id={ids.username}
+                name="username"
+                type="text"
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+                autoComplete="username"
+                autoCapitalize="none"
+                spellCheck={false}
+                autoFocus
+                required
+                aria-invalid={Boolean(error) || undefined}
+                aria-describedby={error ? ids.error : undefined}
+                className={`${field} ${error ? "border-danger" : "border-line-strong"}`}
+              />
             </div>
 
-            <Button type="submit" variant="primary" className="mt-4 w-full" disabled={!token.trim() || submitting}>
+            <div>
+              <label htmlFor={ids.password} className="block text-ui font-medium text-ink">
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  id={ids.password}
+                  ref={passwordInput}
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  autoComplete="current-password"
+                  required
+                  aria-invalid={Boolean(error) || undefined}
+                  aria-describedby={error ? ids.error : undefined}
+                  className={`${field} pr-16 ${error ? "border-danger" : "border-line-strong"}`}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((shown) => !shown)}
+                  aria-pressed={showPassword}
+                  aria-controls={ids.password}
+                  className="absolute top-1/2 right-1.5 h-7 -translate-y-1/2 rounded-control px-2 text-ui font-medium text-muted hover:bg-sunken hover:text-ink"
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </button>
+              </div>
+            </div>
+
+            {error && (
+              <p id={ids.error} role="alert" className="text-ui text-danger">
+                {error}
+              </p>
+            )}
+
+            <Button
+              type="submit"
+              variant="primary"
+              className="w-full"
+              disabled={!username.trim() || !password || submitting}
+            >
               {submitting ? (
                 <>
-                  <Spinner size={14} /> Checking token…
+                  <Spinner size={14} /> Signing in…
                 </>
               ) : (
                 "Sign in"
@@ -114,11 +147,15 @@ export function LoginView() {
           </form>
         </div>
 
+        <p className="mt-5 px-1 text-ui text-muted">
+          Don't have an account? Ask your Policy Copilot administrator.
+        </p>
+
         {import.meta.env.DEV && (
           <div className="mt-6 px-1 text-ui text-muted">
-            <p>For local development, issue a token from the project root:</p>
+            <p>For local development, create an account from the project root:</p>
             <pre className="mt-2 whitespace-pre-wrap rounded-control border border-line bg-surface px-3 py-2 font-mono text-meta text-ink-soft">
-              python -m app.cli.issue_token --sub alice --roles employee
+              python -m app.cli.users create alice --roles employee
             </pre>
           </div>
         )}

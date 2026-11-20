@@ -39,6 +39,7 @@ from app.api.conversations import router as conversation_router
 from app.api.health import lifespan, router as health_router
 from app.api.sources import router as sources_router
 from app.api.documents import router as documents_router
+from app.api.auth import router as auth_router
 
 
 configure_logging(get_infra_settings().log_level)
@@ -54,6 +55,7 @@ app.include_router(health_router)
 app.include_router(conversation_router)
 app.include_router(sources_router)
 app.include_router(documents_router)
+app.include_router(auth_router)
 
 
 @app.exception_handler(ConversationNotFound)

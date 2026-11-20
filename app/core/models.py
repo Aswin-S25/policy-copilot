@@ -3,6 +3,7 @@ from datetime import datetime
 
 from pgvector.sqlalchemy import Vector
 from sqlalchemy import (
+    Boolean,
     CheckConstraint,
     DateTime,
     ForeignKey,
@@ -11,7 +12,8 @@ from sqlalchemy import (
     String,
     Text,
     UniqueConstraint,
-    func
+    func,
+    true,
 )
 from sqlalchemy.dialects.postgresql import ARRAY, UUID, TSVECTOR
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -376,4 +378,60 @@ class Message(Base):
             "sender IN ('user', 'assistant')",
             name="ck_messages_sender"
         ),
+    )
+
+class User(Base):
+    """A person who signs in with a username and password.
+
+    The username becomes the token's "sub" claim, so it is also the owner
+    key of the user's conversations. Roles are copied into each token at
+    sign-in; a role change takes effect at the user's next sign-in.
+    """
+    __tablename__ = "users"
+
+    id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        primary_key=True,
+        default=uuid.uuid4
+    )
+
+    # Stored normalized (lowercase); see app/core/users.py.
+    username: Mapped[str] = mapped_column(
+        String(64),
+        nullable=False
+    )
+
+    # Argon2id hash in PHC string format; never the password.
+    password_hash: Mapped[str] = mapped_column(
+        String(255),
+        nullable=False
+    )
+
+    roles: Mapped[list[str]] = mapped_column(
+        ARRAY(String(32)),
+        nullable=False
+    )
+
+    is_active: Mapped[bool] = mapped_column(
+        Boolean,
+        nullable=False,
+        default=True,
+        server_default=true()
+    )
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        nullable=False
+    )
+
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        onupdate=func.now(),
+        nullable=False
+    )
+
+    __table_args__ = (
+        UniqueConstraint("username", name="uq_users_username"),
     )

@@ -108,6 +108,8 @@ def build_limiter() -> RateLimiter:
         limits={
             "llm": settings.rate_limit_llm_per_minute,
             "search": settings.rate_limit_search_per_minute,
+            "login_user": settings.rate_limit_login_per_minute,
+            "login_ip": settings.rate_limit_login_ip_per_minute,
         },
         enabled=settings.rate_limit_enabled,
     )
@@ -143,3 +145,20 @@ def rate_limited(scope: str):
 
 llm_rate_limited = rate_limited("llm")
 search_rate_limited = rate_limited("search")
+
+
+def check_login_attempt(username: str, client_ip: str) -> None:
+    """Counts a sign-in attempt against both the account and the client
+    address; raises 429 if either budget is spent. Runs before the password
+    is checked, so failed and successful attempts count alike."""
+    for scope, key in (("login_user", username), ("login_ip", client_ip)):
+        decision = limiter.check(scope, key)
+        if not decision.allowed:
+            # The key is not logged: a username field can hold a mistyped password.
+            logger.warning("rate_limited", extra={"scope": scope, "limit": decision.limit})
+            record(rate_limited=scope)
+            raise HTTPException(
+                status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+                detail="Too many sign-in attempts. Try again later.",
+                headers={"Retry-After": str(decision.reset_s)},
+            )

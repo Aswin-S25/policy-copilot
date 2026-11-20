@@ -1,23 +1,24 @@
 import { execFileSync } from "node:child_process";
+import { randomBytes } from "node:crypto";
 import path from "node:path";
 
-const REPO_ROOT = path.resolve(import.meta.dirname, "../..");
+export const REPO_ROOT = path.resolve(import.meta.dirname, "../..");
 const API = process.env.API_PROXY_TARGET ?? "http://127.0.0.1:8000";
 
-/**
- * Mints short-lived tokens with the project's own dev CLI
- * (app/cli/issue_token.py), so tests authenticate exactly like a user.
- * Tokens live only in this process's environment; nothing is written to disk.
- * Set E2E_EMPLOYEE_TOKEN / E2E_SECURITY_TOKEN to supply your own instead.
- */
-function mint(sub: string, roles: string[]): string {
-  return execFileSync(
-    process.env.PYTHON ?? "python",
-    ["-m", "app.cli.issue_token", "--sub", sub, "--roles", ...roles, "--ttl", "30"],
-    { cwd: REPO_ROOT, encoding: "utf8" },
-  ).trim();
+/** Runs the project's account CLI (app/cli/users.py) from the repository root. */
+export function usersCli(args: string[], stdin?: string): string {
+  return execFileSync(process.env.PYTHON ?? "python", ["-m", "app.cli.users", ...args], {
+    cwd: REPO_ROOT,
+    encoding: "utf8",
+    input: stdin,
+  }).trim();
 }
 
+/**
+ * Creates two throwaway accounts (employee, security) with random passwords,
+ * so tests sign in through the real form and /auth/login. Credentials live
+ * only in this process's environment; global-teardown deletes the accounts.
+ */
 export default async function globalSetup() {
   const ready = await fetch(`${API}/health/ready`).catch(() => null);
   if (!ready?.ok) {
@@ -27,6 +28,12 @@ export default async function globalSetup() {
   }
 
   const run = Date.now().toString(36);
-  process.env.E2E_EMPLOYEE_TOKEN ??= mint(`e2e-employee-${run}`, ["employee"]);
-  process.env.E2E_SECURITY_TOKEN ??= mint(`e2e-security-${run}`, ["security"]);
+  const accounts = { EMPLOYEE: "employee", SECURITY: "security" } as const;
+  for (const [key, role] of Object.entries(accounts)) {
+    const username = `e2e-${role}-${run}`;
+    const password = randomBytes(18).toString("base64url");
+    usersCli(["create", username, "--roles", role, "--password-stdin"], `${password}\n`);
+    process.env[`E2E_${key}_USERNAME`] = username;
+    process.env[`E2E_${key}_PASSWORD`] = password;
+  }
 }
