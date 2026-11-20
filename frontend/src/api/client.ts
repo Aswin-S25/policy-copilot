@@ -3,11 +3,15 @@
  * hook for 401 so an expired session signs the user out wherever it happens.
  */
 
+import { configureWake, ensureAwake, noteApiResponse, noteApiUnreachable, WakeTimeoutError } from "./wake";
+
 const BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? "/api").replace(/\/$/, "");
 
 export function apiUrl(path: string): string {
   return `${BASE_URL}${path}`;
 }
+
+configureWake(apiUrl("/health"));
 
 export class ApiError extends Error {
   /** HTTP status, or 0 when the server could not be reached. */
@@ -80,26 +84,59 @@ export interface RequestOptions {
   anonymous?: boolean;
 }
 
+/** Waits for a sleeping API (free-tier cold start); see api/wake.ts. */
+async function awake(): Promise<void> {
+  try {
+    await ensureAwake();
+  } catch (error) {
+    if (error instanceof WakeTimeoutError) throw new ApiError(0, error.message);
+    throw error;
+  }
+}
+
+/**
+ * Gateway errors come from the hosting proxy (the API never sends them):
+ * the request didn't reach the application.
+ */
+const GATEWAY_STATUSES = new Set([502, 504]);
+
 /** Performs the request and returns the raw Response if it was 2xx. */
 export async function request(path: string, options: RequestOptions = {}): Promise<Response> {
   const token = options.anonymous ? null : currentToken;
   const headers: Record<string, string> = { Accept: options.accept ?? "application/json" };
   if (token) headers.Authorization = `Bearer ${token}`;
   if (options.body !== undefined) headers["Content-Type"] = "application/json";
+  const method = options.method ?? "GET";
 
-  let response: Response;
-  try {
-    response = await fetch(apiUrl(path), {
-      method: options.method ?? "GET",
-      headers,
-      body: options.body !== undefined ? JSON.stringify(options.body) : undefined,
-      signal: options.signal,
-      cache: "no-store",
-    });
-  } catch (error) {
-    if (isAbortError(error)) throw error;
-    throw new ApiError(0, fallbackMessage(0));
-  }
+  const send = async (): Promise<Response | null> => {
+    await awake();
+    try {
+      const response = await fetch(apiUrl(path), {
+        method,
+        headers,
+        body: options.body !== undefined ? JSON.stringify(options.body) : undefined,
+        signal: options.signal,
+        cache: "no-store",
+      });
+      if (GATEWAY_STATUSES.has(response.status)) {
+        noteApiUnreachable();
+        return null;
+      }
+      noteApiResponse();
+      return response;
+    } catch (error) {
+      if (isAbortError(error)) throw error;
+      noteApiUnreachable();
+      return null;
+    }
+  };
+
+  // Only reads are retried after the API was unreachable (it may have just
+  // gone to sleep). Writes, and above all questions, are never re-sent:
+  // the server may have received them.
+  let response = await send();
+  if (!response && method === "GET") response = await send();
+  if (!response) throw new ApiError(0, fallbackMessage(0));
 
   if (!response.ok) {
     const error = await errorFromResponse(response);

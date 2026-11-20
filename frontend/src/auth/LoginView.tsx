@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { getSignInOptions, type DemoPersona } from "../api/auth";
 import { ApiError } from "../api/client";
+import { useWakeState } from "../api/wake";
 import { Button } from "../ui/Button";
 import { BrandMark, Notice, Spinner } from "../ui/feedback";
 import { useAuth } from "./AuthContext";
@@ -23,16 +24,22 @@ function errorMessage(error: unknown): string {
   return "Sign-in failed. Try again.";
 }
 
-/** Demo personas, if the server runs in demo mode; empty otherwise or on error. */
+/**
+ * Demo personas, if the server runs in demo mode; empty otherwise or on
+ * error. Fetched again when a sleeping API finishes waking up.
+ */
 function useDemoPersonas(): DemoPersona[] {
   const [personas, setPersonas] = useState<DemoPersona[]>([]);
+  const wake = useWakeState();
+  const loaded = personas.length > 0;
   useEffect(() => {
+    if (loaded || wake === "waking") return;
     const controller = new AbortController();
     getSignInOptions(controller.signal)
       .then((options) => setPersonas(options.demo?.personas ?? []))
       .catch(() => {}); // the password form still works without them
     return () => controller.abort();
-  }, []);
+  }, [loaded, wake]);
   return personas;
 }
 
