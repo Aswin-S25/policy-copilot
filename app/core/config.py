@@ -107,6 +107,9 @@ class Settings(BaseSettings):
     
      
     jwt_secret: SecretStr
+    # One-click sign-in as sample users (POST /auth/demo). For showcase
+    # deployments only: anyone who can reach the API can use it.
+    demo_mode: bool = False
     jwt_algorithm: Literal["HS256", "HS384", "HS512"] = "HS256"
     jwt_issuer: str = "policy-copilot"
     jwt_audience: str = "policy-copilot-api"

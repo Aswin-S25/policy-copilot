@@ -9,7 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { login } from "../api/auth";
+import { demoSignIn, login, type DemoPersona } from "../api/auth";
 import { configureAuth } from "../api/client";
 import { clearPassageCache } from "../api/sources";
 import { abortAllTurns } from "../chat/turns";
@@ -23,6 +23,8 @@ interface AuthValue {
   signOutReason: SignOutReason | null;
   /** Throws ApiError (401 wrong credentials, 429 too many attempts). */
   signIn: (username: string, password: string) => Promise<void>;
+  /** Demo mode only: sign in as a sample persona. */
+  signInDemo: (persona: DemoPersona["id"]) => Promise<void>;
   signOut: (reason?: SignOutReason) => void;
 }
 
@@ -69,18 +71,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => window.clearTimeout(timer);
   }, [session, signOut]);
 
-  const signIn = useCallback(async (username: string, password: string) => {
-    const { access_token } = await login(username, password);
+  const start = useCallback((accessToken: string) => {
     // Claims are read for display only; the API verifies every request.
-    const next = parseToken(access_token);
+    const next = parseToken(accessToken);
     saveSession(next);
     setSession(next);
     setSignOutReason(null);
   }, []);
 
+  const signIn = useCallback(
+    async (username: string, password: string) => start((await login(username, password)).access_token),
+    [start],
+  );
+
+  const signInDemo = useCallback(
+    async (persona: DemoPersona["id"]) => start((await demoSignIn(persona)).access_token),
+    [start],
+  );
+
   const value = useMemo(
-    () => ({ session, signOutReason, signIn, signOut }),
-    [session, signOutReason, signIn, signOut],
+    () => ({ session, signOutReason, signIn, signInDemo, signOut }),
+    [session, signOutReason, signIn, signInDemo, signOut],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

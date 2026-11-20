@@ -1,5 +1,6 @@
-import { useId, useRef, useState, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { getSignInOptions, type DemoPersona } from "../api/auth";
 import { ApiError } from "../api/client";
 import { Button } from "../ui/Button";
 import { BrandMark, Notice, Spinner } from "../ui/feedback";
@@ -22,8 +23,23 @@ function errorMessage(error: unknown): string {
   return "Sign-in failed. Try again.";
 }
 
+/** Demo personas, if the server runs in demo mode; empty otherwise or on error. */
+function useDemoPersonas(): DemoPersona[] {
+  const [personas, setPersonas] = useState<DemoPersona[]>([]);
+  useEffect(() => {
+    const controller = new AbortController();
+    getSignInOptions(controller.signal)
+      .then((options) => setPersonas(options.demo?.personas ?? []))
+      .catch(() => {}); // the password form still works without them
+    return () => controller.abort();
+  }, []);
+  return personas;
+}
+
 export function LoginView() {
-  const { session, signIn, signOutReason } = useAuth();
+  const { session, signIn, signInDemo, signOutReason } = useAuth();
+  const personas = useDemoPersonas();
+  const [demoStarting, setDemoStarting] = useState<DemoPersona["id"] | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const from = (location.state as { from?: string } | null)?.from ?? "/";
@@ -37,6 +53,19 @@ export function LoginView() {
   const ids = { username: useId(), password: useId(), error: useId() };
 
   if (session) return <Navigate to={from} replace />;
+
+  async function startDemo(persona: DemoPersona["id"]) {
+    if (demoStarting || submitting) return;
+    setDemoStarting(persona);
+    setError(null);
+    try {
+      await signInDemo(persona);
+      navigate(from, { replace: true });
+    } catch (err) {
+      setError(errorMessage(err));
+      setDemoStarting(null);
+    }
+  }
 
   async function submit(event: FormEvent) {
     event.preventDefault();
@@ -64,7 +93,6 @@ export function LoginView() {
 
         <div className="rounded-panel border border-line bg-surface p-6 shadow-composer sm:p-7">
           <h1 className="text-heading font-semibold tracking-[-0.015em] text-ink">Sign in</h1>
-          <p className="mt-1.5 text-control text-muted">Use your Policy Copilot account.</p>
 
           {signOutReason === "expired" && !error && (
             <div className="mt-5">
@@ -72,7 +100,50 @@ export function LoginView() {
             </div>
           )}
 
-          <form onSubmit={submit} className="mt-6 space-y-4" noValidate>
+          {personas.length > 0 && (
+            <section aria-labelledby="demo-heading" className="mt-5">
+              <h2 id="demo-heading" className="text-control font-medium text-ink">
+                Try it with a sample account
+              </h2>
+              <p className="mt-1 text-ui text-muted">
+                Each role can read a different set of policies, so the same question can get a
+                different answer. No password needed.
+              </p>
+              <div className="mt-3 grid grid-cols-2 gap-2">
+                {personas.map((persona) => (
+                  <button
+                    key={persona.id}
+                    type="button"
+                    onClick={() => startDemo(persona.id)}
+                    disabled={demoStarting !== null || submitting}
+                    className={
+                      "flex flex-col items-start rounded-control border border-line-strong px-3 py-2.5 text-left " +
+                      "transition-colors hover:border-accent/60 hover:bg-canvas disabled:cursor-not-allowed disabled:opacity-60"
+                    }
+                  >
+                    <span className="flex w-full items-center justify-between gap-2 text-control font-medium text-ink">
+                      {persona.label}
+                      {demoStarting === persona.id && <Spinner size={13} />}
+                    </span>
+                    <span className="mt-0.5 text-meta text-muted">
+                      {persona.document_count} {persona.document_count === 1 ? "policy" : "policies"}
+                    </span>
+                  </button>
+                ))}
+              </div>
+              <div className="mt-5 flex items-center gap-3 text-meta text-muted" aria-hidden="true">
+                <span className="h-px flex-1 bg-line" />
+                or use your account
+                <span className="h-px flex-1 bg-line" />
+              </div>
+            </section>
+          )}
+
+          {personas.length === 0 && (
+            <p className="mt-1.5 text-control text-muted">Use your Policy Copilot account.</p>
+          )}
+
+          <form onSubmit={submit} className={`${personas.length > 0 ? "mt-4" : "mt-6"} space-y-4`} noValidate>
             <div>
               <label htmlFor={ids.username} className="block text-ui font-medium text-ink">
                 Username
@@ -134,7 +205,7 @@ export function LoginView() {
               type="submit"
               variant="primary"
               className="w-full"
-              disabled={!username.trim() || !password || submitting}
+              disabled={!username.trim() || !password || submitting || demoStarting !== null}
             >
               {submitting ? (
                 <>

@@ -32,6 +32,11 @@ class UserError(ValueError):
     """Invalid input or a conflicting account; the message is user-facing."""
 
 
+#: Subjects of demo sessions (app/api/auth.py) start with this; no real
+#: account may, so a demo session can never act as a real user.
+DEMO_PREFIX = "demo-"
+
+
 def normalize_username(username: str) -> str:
     name = username.strip().lower()
     if not USERNAME_RE.match(name):
@@ -39,6 +44,8 @@ def normalize_username(username: str) -> str:
             "Usernames are 3 to 64 characters: lowercase letters, digits, "
             "'.', '_' or '-', starting and ending with a letter or digit."
         )
+    if name.startswith(DEMO_PREFIX):
+        raise UserError(f"Usernames starting with {DEMO_PREFIX!r} are reserved for demo sessions.")
     return name
 
 

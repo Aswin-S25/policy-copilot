@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import type { ConversationSummary } from "../api/types";
 import { useAuth, useSession } from "../auth/AuthContext";
-import { roleName } from "../auth/session";
+import { demoPersonaName, roleName } from "../auth/session";
 import { isInFlight, useTurn } from "../chat/turns";
 import { groupByRecency, UNTITLED, useConversations } from "../conversations/ConversationsContext";
 import { DeleteConversationDialog } from "../conversations/DeleteConversationDialog";
@@ -163,6 +163,9 @@ function AccountFooter() {
   const session = useSession();
   const { signOut } = useAuth();
   const roles = session.roles.map(roleName).join(", ");
+  // Demo identities are random ("demo-hr-1a2b3c4d"); show the role instead.
+  const demoPersona = demoPersonaName(session);
+  const name = demoPersona ? `${demoPersona} (demo)` : session.subject;
 
   return (
     <div className="flex shrink-0 items-center gap-2.5 border-t border-line px-3 py-2.5">
@@ -170,15 +173,15 @@ function AccountFooter() {
         aria-hidden="true"
         className="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent-soft text-ui font-semibold text-accent-ink uppercase"
       >
-        {session.subject.slice(0, 1)}
+        {name.slice(0, 1)}
       </span>
       <div className="min-w-0 flex-1">
-        <p className="truncate text-ui font-medium text-ink">{session.subject}</p>
+        <p className="truncate text-ui font-medium text-ink">{name}</p>
         <p className="truncate text-meta text-muted" title={roles}>
           {roles}
         </p>
       </div>
-      <IconButton label="Sign out" onClick={() => signOut()}>
+      <IconButton label={demoPersona ? "Sign out to switch role" : "Sign out"} onClick={() => signOut()}>
         <SignOutIcon size={17} />
       </IconButton>
     </div>

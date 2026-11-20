@@ -147,11 +147,14 @@ llm_rate_limited = rate_limited("llm")
 search_rate_limited = rate_limited("search")
 
 
-def check_login_attempt(username: str, client_ip: str) -> None:
-    """Counts a sign-in attempt against both the account and the client
+def check_login_attempt(username: str | None, client_ip: str) -> None:
+    """Counts a sign-in attempt against the account (if any) and the client
     address; raises 429 if either budget is spent. Runs before the password
     is checked, so failed and successful attempts count alike."""
-    for scope, key in (("login_user", username), ("login_ip", client_ip)):
+    budgets = [("login_ip", client_ip)]
+    if username is not None:
+        budgets.insert(0, ("login_user", username))
+    for scope, key in budgets:
         decision = limiter.check(scope, key)
         if not decision.allowed:
             # The key is not logged: a username field can hold a mistyped password.
