@@ -14,6 +14,7 @@ from fastapi import (
 )
 from celery.result import AsyncResult
 from pydantic import BaseModel, ConfigDict
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse
 
 from app.core.config import get_infra_settings, get_settings
@@ -50,6 +51,22 @@ app = FastAPI(
     lifespan=lifespan,
 )
 app.add_middleware(RequestContextMiddleware)
+
+# Cross-origin access for a frontend hosted elsewhere (e.g. Vercel). Only the
+# configured origins; no cookies (auth is a bearer header). Retry-After is
+# exposed so the browser can show rate-limit countdowns. Added last, so it is
+# the outermost middleware and answers preflight requests itself.
+_cors_origins = get_infra_settings().cors_origin_list
+if _cors_origins:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=_cors_origins,
+        allow_credentials=False,
+        allow_methods=["GET", "POST", "DELETE"],
+        allow_headers=["Authorization", "Content-Type", "X-Request-ID"],
+        expose_headers=["Retry-After", "X-Request-ID"],
+        max_age=600,
+    )
 
 app.include_router(health_router)
 app.include_router(conversation_router)

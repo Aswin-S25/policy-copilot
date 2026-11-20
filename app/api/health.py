@@ -3,9 +3,10 @@
 /health        liveness: the process is up. No dependency checks, so a slow
                database never makes the supervisor restart a healthy API.
 /health/ready  readiness: should this instance receive traffic?
-               critical:      database, Ollama reachable with the model
-                              pulled, embedding model loaded in-process
-               informational: LLM resident in memory, Redis (ingestion only)
+               critical:      database, LLM provider reachable and serving the
+                              model, embedding model loaded in-process
+               informational: LLM resident in memory (Ollama only), Redis
+                              (ingestion and shared rate limits only)
 
 Warm-up runs in a background thread at startup: liveness answers at once,
 readiness reports "warming_up" until the embedding model is loaded.
@@ -15,7 +16,6 @@ import threading
 import time
 from contextlib import asynccontextmanager
 
-import httpx
 import redis
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
@@ -23,7 +23,7 @@ from sqlalchemy import text
 
 from app.core.config import get_infra_settings
 from app.core.db import engine
-from app.rag.llm import LLM_MODEL, OLLAMA_HOST, LLMUnavailable, load_model
+from app.rag.llm import LLMUnavailable, check_model_available, check_model_loaded, load_model
 from ingest.embeddings import embed_text, embedding_model_loaded
 
 logger = logging.getLogger("policy_copilot.health")
@@ -39,27 +39,13 @@ _cache_lock = threading.Lock()
 
 # ---- checks: return normally if healthy, raise otherwise --------------------------
 
-def _canonical(model: str) -> str:
-    return model if ":" in model else f"{model}:latest"
-
-
-def _ollama_models(path: str) -> set[str]:
-    response = httpx.get(f"{OLLAMA_HOST}{path}", timeout=PROBE_TIMEOUT_S)
-    response.raise_for_status()
-    return {
-        _canonical(m.get("model") or m.get("name", ""))
-        for m in response.json().get("models", [])
-    }
-
-
 def check_database() -> None:
     with engine.connect() as connection:
         connection.execute(text("SELECT 1"))
 
 
-def check_ollama() -> None:
-    if _canonical(LLM_MODEL) not in _ollama_models("/api/tags"):
-        raise RuntimeError(f"model {LLM_MODEL!r} is not pulled")
+def check_llm() -> None:
+    check_model_available()
 
 
 def check_embedding_model() -> None:
@@ -68,8 +54,7 @@ def check_embedding_model() -> None:
 
 
 def check_llm_loaded() -> None:
-    if _canonical(LLM_MODEL) not in _ollama_models("/api/ps"):
-        raise RuntimeError("model not resident; the next request will load it")
+    check_model_loaded()
 
 
 def check_redis() -> None:
@@ -87,7 +72,7 @@ def check_redis() -> None:
 # (name, check, critical)
 CHECKS = [
     ("database", check_database, True),
-    ("ollama", check_ollama, True),
+    ("llm", check_llm, True),
     ("embedding_model", check_embedding_model, True),
     ("llm_loaded", check_llm_loaded, False),
     ("redis", check_redis, False),
