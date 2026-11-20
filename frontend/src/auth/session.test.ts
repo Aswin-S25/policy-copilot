@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { documentRoles, parseToken, TokenError } from "./session";
+import { demoPersonaName, documentRoles, parseToken, TokenError } from "./session";
 
 const b64url = (value: unknown) =>
   Buffer.from(JSON.stringify(value)).toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
@@ -33,5 +33,16 @@ describe("parseToken", () => {
     ["expired", jwt({ sub: "a", roles: ["employee"], exp: 1 })],
   ])("rejects a token with %s", (_reason, token) => {
     expect(() => parseToken(token)).toThrow(TokenError);
+  });
+});
+
+describe("demoPersonaName", () => {
+  const session = (subject: string) => ({ token: "t", subject, roles: [], expiresAt: 0 });
+
+  it("names demo sessions by persona and ignores real accounts", () => {
+    expect(demoPersonaName(session("demo-hr-1a2b3c4d"))).toBe("HR");
+    expect(demoPersonaName(session("demo-security-00ff00ff"))).toBe("Security");
+    expect(demoPersonaName(session("alice"))).toBeNull();
+    expect(demoPersonaName(session("demo-hr"))).toBeNull();
   });
 });

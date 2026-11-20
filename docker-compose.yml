@@ -70,6 +70,8 @@ services:
       <<: *infra-env
       # Only the API gets the token-signing secret.
       POLICY_JWT_SECRET: ${POLICY_JWT_SECRET:?POLICY_JWT_SECRET must be set in .env}
+      # One-click demo sign-in; off unless POLICY_DEMO_MODE=true in .env.
+      POLICY_DEMO_MODE: ${POLICY_DEMO_MODE:-false}
     ports:
       - "127.0.0.1:8000:8000"
     volumes:

@@ -147,6 +147,29 @@ test("deletes the conversation", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "This conversation isn't available" })).toBeVisible();
 });
 
+test("demo sign-in shows each role its own documents", async ({ page, request }) => {
+  const options = await (await request.get("/api/auth/options")).json();
+  test.skip(!options.demo, "Demo mode is off (POLICY_DEMO_MODE)");
+
+  const documentsAs = async (role: string) => {
+    await page.goto("/login");
+    await page.getByRole("button", { name: new RegExp(`^${role}`) }).click();
+    await expect(page.getByText(`${role} (demo)`)).toBeVisible();
+    await page.getByRole("link", { name: "Policy documents" }).click();
+    await expect(page.getByText(/^\d+ documents?$/)).toBeVisible();
+    const count = await page.locator("tbody tr").count();
+    await page.getByRole("button", { name: "Sign out to switch role" }).click();
+    await expect(page).toHaveURL(/\/login$/);
+    return count;
+  };
+
+  const personas: { label: string; document_count: number }[] = options.demo.personas;
+  for (const label of ["Employee", "Security"]) {
+    const expected = personas.find((p) => p.label === label)!.document_count;
+    expect(await documentsAs(label)).toBe(expected);
+  }
+});
+
 test("a token the API rejects ends the session", async ({ page }) => {
   // Well-formed and unexpired, but not signed by this API: the server's 401
   // must sign the user out, not just the client-side expiry check.

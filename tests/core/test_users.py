@@ -20,7 +20,7 @@ PASSWORD = "correct horse battery"
 
 def test_username_rules():
     assert normalize_username("  Alice.Smith ") == "alice.smith"
-    for bad in ("ab", "-alice", "alice-", "al ice", "alice@corp", "a" * 65):
+    for bad in ("ab", "-alice", "alice-", "al ice", "alice@corp", "a" * 65, "demo-alice"):
         with pytest.raises(UserError):
             normalize_username(bad)
 

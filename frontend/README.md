@@ -28,6 +28,18 @@ Other account commands: `set-password`, `set-roles`, `disable`, `enable`,
 `delete`, `list` (see `app/cli/users.py`). Roles are `employee`, `manager`,
 `hr`, `security` (document access) and `admin` (document upload only).
 
+### Demo mode (for showing the project)
+
+Set `POLICY_DEMO_MODE=true` in the root `.env` and restart the API
+(`docker compose up -d api`). The sign-in page then offers one-click sample
+accounts (Employee, Manager, HR, Security), each with the number of
+policies it can read, so a visitor can see the same question answered from
+different documents without a password. Each click creates a fresh private
+identity (`demo-<role>-<random>`), so visitors never see each other's
+conversations; real usernames can't start with `demo-`. Demo sign-ins are
+rate-limited per address. Leave it off for anything but a showcase: anyone
+who can reach the API can use it.
+
 Sign-in calls `POST /auth/login`, which checks the Argon2id password hash and
 returns the same bearer token every other endpoint already verifies.
 Attempts are rate-limited per account and per client address. Tokens last

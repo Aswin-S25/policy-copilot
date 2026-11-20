@@ -34,6 +34,16 @@ export function roleName(role: string): string {
   return ROLE_NAMES[role] ?? role;
 }
 
+/**
+ * Demo sessions have subjects like "demo-security-1a2b3c4d" (app/api/auth.py;
+ * real usernames can't start with "demo-"). Returns the persona's display
+ * name, or null for a real account.
+ */
+export function demoPersonaName(session: Session): string | null {
+  const match = /^demo-([a-z]+)-[0-9a-f]+$/.exec(session.subject);
+  return match ? roleName(match[1]!) : null;
+}
+
 export function documentRoles(session: Session): string[] {
   return session.roles.filter((role) => (DOCUMENT_ROLES as readonly string[]).includes(role));
 }
