@@ -17,18 +17,18 @@ import statistics
 import time
 from pathlib import Path
 
-from app.authz import ALL_ROLES
-from app.db import SessionLocal
-from app.followup import HistoryTurn, rewrite_question
-from app.llm import load_model
-from app.observability import request_context
-from app.rag import answer_from_chunks, answer_question
-from app.search import search_policies
-from eval.load import load_golden_cases
-from eval.provenance import provenance
+from app.core.authz import ALL_ROLES
+from app.core.db import SessionLocal
+from app.conversations.followup import HistoryTurn, rewrite_question
+from app.rag.llm import load_model
+from app.core.observability import request_context
+from app.rag.pipeline import answer_from_chunks, answer_question
+from app.retrieval.search import search_policies
+from eval.lib.load import load_golden_cases
+from eval.lib.provenance import provenance
 
 REPORT_PATH = Path("eval/reports/latency.json")
-FOLLOWUPS_PATH = Path("eval/followups.json")
+FOLLOWUPS_PATH = Path("eval/datasets/followups.json")
 FOLLOWUP_CACHE = Path("eval/reports/followup_cache.json")
 STAGES = ["total_ms", "rewrite_ms", "retrieval_ms", "llm_queue_ms", "generation_ms"]
 

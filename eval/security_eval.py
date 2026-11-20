@@ -9,15 +9,15 @@ from pathlib import Path
 from ollama import Client
 from sqlalchemy import text
 
-import app.llm
-from app.authz import ALL_ROLES
-from app.db import SessionLocal
-from app.lexical_retreival import retrieve_lexical
-from app.rag import answer_from_chunks
-from app.retrieval import retrieve_chunks
-from app.search import search_policies
-from eval.answers import looks_like_refusal
-from eval.load import load_golden_cases
+import app.rag.llm
+from app.core.authz import ALL_ROLES
+from app.core.db import SessionLocal
+from app.retrieval.lexical import retrieve_lexical
+from app.rag.pipeline import answer_from_chunks
+from app.retrieval.dense import retrieve_chunks
+from app.retrieval.search import search_policies
+from eval.lib.answers import looks_like_refusal
+from eval.lib.load import load_golden_cases
 
 
 ROLE_SETS = {
@@ -32,7 +32,7 @@ TOP_K = 5
 POOL_K = 20
 
 OLLAMA_TIMEOUT_S = int(os.environ.get("OLLAMA_TIMEOUT_S", "300"))
-app.llm.client = Client(host=app.llm.OLLAMA_HOST, timeout=OLLAMA_TIMEOUT_S)
+app.rag.llm.client = Client(host=app.rag.llm.OLLAMA_HOST, timeout=OLLAMA_TIMEOUT_S)
 
 CACHE_PATH = Path("eval/reports/security_answers.json")
 SEED_PATH = Path("eval/reports/gating_answers.json")

@@ -38,4 +38,4 @@ USER appuser
 EXPOSE 8000
 
 # One process: the LLM concurrency cap is per process (item 5).
-CMD ["uvicorn", "app.api:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]

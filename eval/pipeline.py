@@ -4,24 +4,24 @@ from dataclasses import asdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-from app.db import SessionLocal
-from app.authz import ALL_ROLES
-from app.llm import LLMUnavailable
-from app.rag import answer_question
+from app.core.db import SessionLocal
+from app.core.authz import ALL_ROLES
+from app.rag.llm import LLMUnavailable
+from app.rag.pipeline import answer_question
 
-from eval.answers import evaluate_refusal, looks_like_refusal
-from eval.answer_quality import evaluate_answer_quality
-from eval.load import load_golden_cases
-from eval.provenance import provenance
-from eval.report import generate_report
-from eval.regression import (
+from eval.lib.answers import evaluate_refusal, looks_like_refusal
+from eval.lib.answer_quality import evaluate_answer_quality
+from eval.lib.load import load_golden_cases
+from eval.lib.provenance import provenance
+from eval.lib.report import generate_report
+from eval.lib.regression import (
     check_regressions,
     floor_checks_passed,
     load_baseline_or_none,
     print_checks,
     targets,
 )
-from eval.retrieval import (
+from eval.lib.retrieval import (
     calculate_metrics,
     evaluate_retrieval_case,
 )
@@ -239,7 +239,7 @@ def run_evaluation(update_baseline: bool = False):
             "generation_failures": generation_failures,
             "judge_failures": judge_failures,
             # Share of cases that produced an answer / of judge attempts that
-            # produced scores. Gated by floors in eval/regression.py.
+            # produced scores. Gated by floors in eval/lib/regression.py.
             "answer_coverage": 1 - len(generation_failures) / len(cases),
             "judge_coverage": (
                 1 - len(judge_failures) / judge_attempts if judge_attempts else 1.0

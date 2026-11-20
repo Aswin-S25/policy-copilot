@@ -24,7 +24,7 @@ import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
-from eval.provenance import provenance
+from eval.lib.provenance import provenance
 
 REPORT_DIR = Path("eval/reports")
 
@@ -56,10 +56,10 @@ def run_module(name: str, args: list[str]) -> StageResult:
 
 
 def retrieval_regression() -> StageResult:
-    from app.db import SessionLocal
-    from eval.load import load_golden_cases
-    from eval.regression import check_regressions, load_baseline_or_none, print_checks
-    from eval.retrieval import calculate_metrics, evaluate_retrieval_case
+    from app.core.db import SessionLocal
+    from eval.lib.load import load_golden_cases
+    from eval.lib.regression import check_regressions, load_baseline_or_none, print_checks
+    from eval.lib.retrieval import calculate_metrics, evaluate_retrieval_case
 
     start = time.perf_counter()
     cases = load_golden_cases()

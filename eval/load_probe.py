@@ -11,7 +11,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import httpx
 
-from app.security import create_access_token
+from app.core.security import create_access_token
 
 QUESTION = "How many days of annual leave do employees get?"
 

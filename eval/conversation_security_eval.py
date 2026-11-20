@@ -24,14 +24,14 @@ import sys
 import uuid
 from pathlib import Path
 
-from app.conversation_service import prepare_turn, record_answer, visible_messages
-from app.conversations import create_conversation, delete_conversation, get_messages
-from app.db import SessionLocal
-from app.llm import complete
-from app.rag import answer_from_chunks
-from app.security import Principal
-from eval.answers import looks_like_refusal
-from eval.load import load_golden_cases
+from app.conversations.service import prepare_turn, record_answer, visible_messages
+from app.conversations.repository import create_conversation, delete_conversation, get_messages
+from app.core.db import SessionLocal
+from app.rag.llm import complete
+from app.rag.pipeline import answer_from_chunks
+from app.core.security import Principal
+from eval.lib.answers import looks_like_refusal
+from eval.lib.load import load_golden_cases
 from eval.security_eval import (
     ROLE_SETS,
     fact_tokens,
@@ -40,7 +40,7 @@ from eval.security_eval import (
     restricted_fingerprints,
 )
 
-CASES_PATH = Path("eval/conversation_attacks.json")
+CASES_PATH = Path("eval/datasets/conversation_attacks.json")
 REPORT_PATH = Path("eval/reports/conversation_security_eval.json")
 WITHHELD_PROBE_CHARS = 200
 

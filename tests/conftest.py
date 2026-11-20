@@ -14,7 +14,7 @@ if not make_url(TEST_DATABASE_URL).database.endswith("_test"):
         f"{make_url(TEST_DATABASE_URL).database!r}"
     )
 
-# Must run before any app module is imported: app.db builds its engine from
+# Must run before any app module is imported: app.core.db builds its engine from
 # settings at import time, so even SessionLocal points at the test database.
 os.environ["POLICY_DATABASE_URL"] = TEST_DATABASE_URL
 os.environ.setdefault("POLICY_JWT_SECRET", "test-secret-" + "x" * 40)
@@ -28,7 +28,7 @@ import pytest  # noqa: E402
 from sqlalchemy import create_engine  # noqa: E402
 from sqlalchemy.orm import sessionmaker  # noqa: E402
 
-from app.db import Base  # noqa: E402
+from app.core.db import Base  # noqa: E402
 
 @pytest.fixture
 def db():

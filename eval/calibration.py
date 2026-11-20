@@ -2,7 +2,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
-from eval.judge import judge_answer
+from eval.lib.judge import judge_answer
 
 @dataclass
 class CalibrationCase:
@@ -29,7 +29,7 @@ class CalibrationResult:
 
 
 def load_calibration_cases(
-    path: str = "eval/judge_calibration.json",
+    path: str = "eval/datasets/judge_calibration.json",
 ) -> list[CalibrationCase]:
     
     data = json.loads(

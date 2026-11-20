@@ -1,14 +1,14 @@
-from app.db import SessionLocal
+from app.core.db import SessionLocal
 
-from eval.load import load_golden_cases
-from eval.retrieval import (
+from eval.lib.load import load_golden_cases
+from eval.lib.retrieval import (
     calculate_metrics,
     evaluate_retrieval_case,
 )
-from app.authz import ALL_ROLES
-from app.rag import answer_question
-from eval.answers import evaluate_refusal
-from eval.answer_quality import evaluate_answer_quality
+from app.core.authz import ALL_ROLES
+from app.rag.pipeline import answer_question
+from eval.lib.answers import evaluate_refusal
+from eval.lib.answer_quality import evaluate_answer_quality
 
 
 def run_retrieval_evaluation():
