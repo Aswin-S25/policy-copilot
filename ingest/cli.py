@@ -1,6 +1,6 @@
 import argparse
 
-from app.db import SessionLocal
+from app.core.db import SessionLocal
 from ingest.parse import parse_markdown
 from ingest.upsert import ingest_document
 

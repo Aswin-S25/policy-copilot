@@ -4,9 +4,9 @@ from pathlib import Path
 
 from celery import Task
 
-from app.celery_app import celery_app
-from app.db import SessionLocal
-from app.observability import ms_since, request_context
+from app.core.celery_app import celery_app
+from app.core.db import SessionLocal
+from app.core.observability import ms_since, request_context
 
 from ingest.embed import embed_document_chunks
 from ingest.parse import parse_markdown

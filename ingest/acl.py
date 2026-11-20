@@ -4,8 +4,8 @@ from collections.abc import Iterable
 from sqlalchemy import delete
 from sqlalchemy.orm import Session
 
-from app.authz import normalize_roles
-from app.models import DocumentACL
+from app.core.authz import normalize_roles
+from app.core.models import DocumentACL
 
 def replace_document_acl(
     db: Session,

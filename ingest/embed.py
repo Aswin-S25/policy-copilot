@@ -1,7 +1,7 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from app.models import Chunk, Document, Section
+from app.core.models import Chunk, Document, Section
 from ingest.chunk import build_contextual_text
 from ingest.embeddings import embed_texts, EMBEDDING_MODEL
 

@@ -4,8 +4,8 @@ from collections import defaultdict
 from sqlalchemy import select, delete, text
 from sqlalchemy.orm import Session
 
-from app.models import Document, Section, Chunk
-from app.authz import normalize_roles
+from app.core.models import Document, Section, Chunk
+from app.core.authz import normalize_roles
 
 from ingest.acl import replace_document_acl
 from ingest.hashing import hash_content

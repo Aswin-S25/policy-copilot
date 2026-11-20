@@ -3,8 +3,8 @@ from pathlib import Path
 
 from sqlalchemy import func, select
 
-from app.db import SessionLocal
-from app.models import Document, DocumentACL
+from app.core.db import SessionLocal
+from app.core.models import Document, DocumentACL
 from ingest.acl import replace_document_acl
 
 

@@ -3,7 +3,7 @@ from functools import lru_cache
 
 from sentence_transformers import SentenceTransformer
 
-from app.config import get_infra_settings
+from app.core.config import get_infra_settings
 
 EMBEDDING_MODEL = get_infra_settings().embedding_model
 
