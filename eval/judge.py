@@ -1,15 +1,21 @@
 import json
 from dataclasses import dataclass
 
+import logging
+
 from ollama import Client
 from app.config import get_infra_settings
+from app.llm import LLM_ERRORS
+
+logger = logging.getLogger("policy_copilot.judge")
 
 _settings = get_infra_settings()
 
 OLLAMA_HOST = _settings.ollama_host
 JUDGE_MODEL = _settings.judge_model
+KEEP_ALIVE = _settings.llm_keep_alive
 
-client = Client(host=OLLAMA_HOST, timeout=_settings.llm_timeout_s)
+client = Client(host=OLLAMA_HOST, timeout=_settings.judge_timeout_s)
 
 
 @dataclass
@@ -95,27 +101,35 @@ POLICY SOURCES:
 {context}
 """.strip()
 
-    # The judge occasionally returns empty or malformed JSON;
-    # retry, then give up so one bad case doesn't abort the run.
-    for _ in range(retries + 1):
-        response = client.chat(
-            model=JUDGE_MODEL,
-            messages=[
-                {
-                    "role": "system",
-                    "content": JUDGE_PROMPT,
+    # The judge occasionally returns malformed JSON, times out, or loses the
+    # connection; retry, then give up on this case only so one bad case
+    # doesn't abort the run. Callers count None as a judge failure.
+    for attempt in range(retries + 1):
+        try:
+            response = client.chat(
+                model=JUDGE_MODEL,
+                messages=[
+                    {
+                        "role": "system",
+                        "content": JUDGE_PROMPT,
+                    },
+                    {
+                        "role": "user",
+                        "content": user_prompt,
+                    },
+                ],
+                options={
+                    "temperature": 0.0,
                 },
-                {
-                    "role": "user",
-                    "content": user_prompt,
-                },
-            ],
-            options={
-                "temperature": 0.0,
-            },
-            format="json",
-            think=True,
-        )
+                format="json",
+                think=True,
+                keep_alive=KEEP_ALIVE,
+            )
+        except LLM_ERRORS as exc:
+            logger.warning("judge_call_failed", extra={
+                "attempt": attempt + 1, "detail": f"{type(exc).__name__}: {exc}",
+            })
+            continue
 
         raw = response["message"]["content"]
 

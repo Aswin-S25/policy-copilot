@@ -4,7 +4,7 @@ from sqlalchemy.engine import make_url
 
 TEST_DATABASE_URL = os.environ.get(
     "POLICY_TEST_DATABASE_URL",
-    "postgresql+psycopg://policy_user:policy_password@localhost:5433/policy_copilot_test",
+    "postgresql+psycopg://policy_user:policy_password@127.0.0.1:5433/policy_copilot_test",
 )
 
 # The db fixture runs drop_all: refuse anything that is not a test database.

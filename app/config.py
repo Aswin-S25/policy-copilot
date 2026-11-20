@@ -25,6 +25,9 @@ class InfraSettings(BaseSettings):
     ollama_host: str = "http://127.0.0.1:11434"
     llm_model: str = "qwen3:8b"
     judge_model: str = "qwen3:8b"
+    # The judge thinks before scoring and can exceed the answer budget on
+    # long answers; eval-only, so a longer wait is acceptable.
+    judge_timeout_s: float = 300.0
     llm_timeout_s: float = 120.0
     llm_helper_timeout_s: float = 30.0
     llm_keep_alive: str = "30m"
@@ -38,14 +41,17 @@ class InfraSettings(BaseSettings):
     # Per-user request budgets (fixed one-minute windows).
     rate_limit_enabled: bool = True
     rate_limit_backend: Literal["redis", "memory"] = "redis"
-    rate_limit_redis_url: str = "redis://localhost:6379/2"
+    rate_limit_redis_url: str = "redis://127.0.0.1:6379/2"
     rate_limit_llm_per_minute: int = 10
     rate_limit_search_per_minute: int = 60
     
     embedding_model: str = "BAAI/bge-small-en-v1.5"
     
-    celery_broker_url: str = "redis://localhost:6379/0"
-    celery_result_backend: str = "redis://localhost:6379/1"
+    # 127.0.0.1, not "localhost", for every host-side address: compose binds
+    # Postgres and Redis to IPv4 loopback only, and on Windows "localhost"
+    # tries IPv6 (::1) first and stalls before falling back.
+    celery_broker_url: str = "redis://127.0.0.1:6379/0"
+    celery_result_backend: str = "redis://127.0.0.1:6379/1"
     
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
     
@@ -72,7 +78,9 @@ class InfraSettings(BaseSettings):
             raise ValueError(f"POLICY_{info.field_name.upper()} must be at least 1.")
         return value
 
-    @field_validator("llm_timeout_s", "llm_helper_timeout_s", "llm_queue_timeout_s")
+    @field_validator(
+        "llm_timeout_s", "llm_helper_timeout_s", "llm_queue_timeout_s", "judge_timeout_s"
+    )
     @classmethod
     def timeout_positive(cls, value: float, info) -> float:
         if value <= 0:

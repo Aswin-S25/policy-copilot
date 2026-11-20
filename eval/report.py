@@ -9,34 +9,27 @@ def build_regression_section(
 ) -> str:
 
     regression = results.get("regression")
-
     if regression is None:
         return ""
 
-    if not baseline_path.exists():
-        return (
-            "## Regression vs Baseline\n\n"
-            "No baseline found; this run is the first baseline.\n"
-        )
+    def fmt(value):
+        if value is None:
+            return "-"
+        return f"{value:.4f}" if isinstance(value, float) else str(value)
 
-    baseline = json.loads(
-        baseline_path.read_text(
-            encoding="utf-8"
-        )
+    rows = "\n".join(
+        f"| {c['metric']} | {c['kind']} | {fmt(c['baseline'])} | "
+        f"{fmt(c['current'])} | {fmt(c['limit'])} | "
+        f"{'PASS' if c['passed'] else 'FAIL'} |"
+        for c in regression.get("checks", [])
     )
+    overall = "PASS" if regression["passed"] else "FAIL"
 
-    baseline_recall = baseline["retrieval"]["recall_at_5"]
-    current_recall = results["retrieval"]["recall_at_5"]
-    drop = baseline_recall - current_recall
-    status = "PASS" if regression["passed"] else "FAIL"
+    return f"""## Gates: {overall}
 
-    return f"""## Regression vs Baseline
-
-Baseline: {baseline.get("timestamp", "unknown")}
-
-| Metric | Baseline | Current | Drop | Allowed Drop | Status |
-|---|---:|---:|---:|---:|---|
-| Recall@5 | {baseline_recall:.4f} | {current_recall:.4f} | {drop:.4f} | {regression["recall_drop_threshold"]:.4f} | {status} |
+| Metric | Check | Baseline | Current | Limit | Status |
+|---|---|---:|---:|---:|---|
+{rows}
 """
 
 

@@ -1,19 +1,25 @@
 import argparse
 import json
+from dataclasses import asdict
 from datetime import datetime, timezone
 from pathlib import Path
 
 from app.db import SessionLocal
 from app.authz import ALL_ROLES
+from app.llm import LLMUnavailable
 from app.rag import answer_question
 
-from eval.answers import evaluate_refusal
+from eval.answers import evaluate_refusal, looks_like_refusal
 from eval.answer_quality import evaluate_answer_quality
 from eval.load import load_golden_cases
+from eval.provenance import provenance
 from eval.report import generate_report
 from eval.regression import (
-    MAX_RECALL_DROP,
-    check_recall_regression,
+    check_regressions,
+    floor_checks_passed,
+    load_baseline_or_none,
+    print_checks,
+    targets,
 )
 from eval.retrieval import (
     calculate_metrics,
@@ -38,6 +44,12 @@ def run_evaluation(update_baseline: bool = False):
     retrieval_results = []
     refusal_results = []
     quality_results = []
+
+    # Cases whose answer could not be generated or judged. Their share is
+    # gated (coverage floors): averages over a small subset are not trusted.
+    generation_failures = []
+    judge_failures = []
+    judge_attempts = 0
 
     try:
         for case in cases:
@@ -72,13 +84,20 @@ def run_evaluation(update_baseline: bool = False):
             # 2. Full RAG answer
             # -------------------------------------------------
 
-            rag_result = answer_question(
-                db=db,
-                question=case.question,
-                top_k=5,
-                max_context_tokens=3000,
-                roles=ALL_ROLES,
-            )
+            try:
+                rag_result = answer_question(
+                    db=db,
+                    question=case.question,
+                    top_k=5,
+                    max_context_tokens=3000,
+                    roles=ALL_ROLES,
+                )
+            except LLMUnavailable as exc:
+                # One slow or failed generation must not abort the run.
+                print(f"Answer generation failed, skipped: {exc}")
+                generation_failures.append(case.id)
+                db.rollback()
+                continue
 
             print()
             print("Answer:")
@@ -107,8 +126,11 @@ def run_evaluation(update_baseline: bool = False):
             # 4. Answer quality
             # -------------------------------------------------
 
-            if rag_result.context:
+            # Refusals have no claims to judge; scoring them would count a
+            # correct refusal as relevance 0 / citation correctness 0.
+            if rag_result.context and not looks_like_refusal(rag_result.answer):
 
+                judge_attempts += 1
                 quality_result = (
                     evaluate_answer_quality(
                         case_id=case.id,
@@ -119,7 +141,8 @@ def run_evaluation(update_baseline: bool = False):
                 )
 
                 if quality_result is None:
-                    print("Judge returned invalid JSON, skipped")
+                    print("Judge failed (invalid JSON, timeout or connection), skipped")
+                    judge_failures.append(case.id)
                     continue
 
                 quality_results.append(
@@ -192,102 +215,68 @@ def run_evaluation(update_baseline: bool = False):
         citation_correctness = 0.0
 
     # =========================================================
-    # Regression check against the previous baseline
+    # Results and gates
     # =========================================================
 
-    previous_baseline = None
-
-    if BASELINE_PATH.exists():
-        previous_baseline = json.loads(
-            BASELINE_PATH.read_text(
-                encoding="utf-8"
-            )
-        )
-
-        previous_recall = previous_baseline[
-            "retrieval"
-        ]["recall_at_5"]
-
-        regression_passed = check_recall_regression(
-            baseline_recall=previous_recall,
-            current_recall=retrieval_metrics.recall_at_5,
-        )
-
-    else:
-        regression_passed = True
-
-    # =========================================================
-    # Results
-    # =========================================================
-
-    results = {
-        "timestamp": datetime.now(
-            timezone.utc
-        ).isoformat(),
-
+    current = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "provenance": provenance(),
         "dataset": {
             "cases": len(cases),
-            "answerable_cases": sum(
-                case.answerable
-                for case in cases
-            ),
-            "unanswerable_cases": sum(
-                not case.answerable
-                for case in cases
-            ),
+            "answerable_cases": sum(case.answerable for case in cases),
+            "unanswerable_cases": sum(not case.answerable for case in cases),
         },
-
         "retrieval": {
             "recall_at_5": retrieval_metrics.recall_at_5,
             "mrr": retrieval_metrics.mrr,
         },
-
         "answers": {
             "refusal_accuracy": refusal_accuracy,
             "faithfulness": faithfulness,
             "relevance": relevance,
             "citation_correctness": citation_correctness,
+            "judged_answers": len(quality_results),
+            "generation_failures": generation_failures,
+            "judge_failures": judge_failures,
+            # Share of cases that produced an answer / of judge attempts that
+            # produced scores. Gated by floors in eval/regression.py.
+            "answer_coverage": 1 - len(generation_failures) / len(cases),
+            "judge_coverage": (
+                1 - len(judge_failures) / judge_attempts if judge_attempts else 1.0
+            ),
         },
+        "targets": targets(),
+    }
 
-        "targets": {
-            "recall_at_5": 0.85,
-            "mrr": 0.70,
-            "faithfulness": 0.90,
-            "refusal_accuracy": 0.90,
-        },
+    previous_baseline = load_baseline_or_none()
+    checks = check_regressions(previous_baseline, current)
+    print_checks(checks)
 
+    # Replacing the baseline is judged on absolute floors only: the old
+    # baseline may describe a different dataset, which is why it is replaced.
+    passed = (
+        floor_checks_passed(checks) if update_baseline
+        else all(check.passed for check in checks)
+    )
+
+    results = {
+        **current,
         "regression": {
-            "recall_drop_threshold": MAX_RECALL_DROP,
-            "passed": regression_passed,
+            "passed": passed,
+            "checks": [asdict(check) for check in checks],
         },
     }
 
-    results_json = json.dumps(
-        results,
-        indent=2,
-    )
+    results_json = json.dumps(results, indent=2)
 
-    LATEST_RUN_PATH.parent.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-    LATEST_RUN_PATH.write_text(
-        results_json,
-        encoding="utf-8",
-    )
+    LATEST_RUN_PATH.parent.mkdir(parents=True, exist_ok=True)
+    LATEST_RUN_PATH.write_text(results_json, encoding="utf-8")
 
-    # Never overwrite the baseline implicitly: only create it on the
-    # first run, or when explicitly asked with --update-baseline.
-    baseline_written = (
-        previous_baseline is None
-        or update_baseline
-    )
-
+    # Never overwrite the baseline implicitly, and never with a run that
+    # misses an absolute floor.
+    baseline_written = (previous_baseline is None or update_baseline) and passed
     if baseline_written:
-        BASELINE_PATH.write_text(
-            results_json,
-            encoding="utf-8",
-        )
+        BASELINE_PATH.write_text(results_json, encoding="utf-8")
 
     generate_report(
         results_path=str(LATEST_RUN_PATH),
@@ -295,99 +284,41 @@ def run_evaluation(update_baseline: bool = False):
         baseline_path=str(BASELINE_PATH),
     )
 
-    # =========================================================
-    # Print summary
-    # =========================================================
-
-    print()
     print()
     print("=" * 60)
-    print("POLICY COPILOT — EVALUATION")
+    print("POLICY COPILOT - EVALUATION")
     print("=" * 60)
-
+    print(f"Cases:                {len(cases)}")
+    print(f"Recall@5:             {retrieval_metrics.recall_at_5:.4f}")
+    print(f"MRR:                  {retrieval_metrics.mrr:.4f}")
+    print(f"Refusal accuracy:     {refusal_accuracy:.4f}")
+    print(f"Faithfulness:         {faithfulness:.4f}")
+    print(f"Relevance:            {relevance:.4f}")
+    print(f"Citation correctness: {citation_correctness:.4f}")
+    print(f"Judged answers:       {len(quality_results)}")
+    print(f"Generation failures:  {len(generation_failures)} {generation_failures or ''}")
+    print(f"Judge failures:       {len(judge_failures)} {judge_failures or ''}")
+    print(f"Gates:                {'PASS' if passed else 'FAIL'}")
+    print(f"Saved results -> {LATEST_RUN_PATH}")
+    print(f"Saved report  -> {LATEST_REPORT_PATH}")
     print(
-        f"Cases:              {len(cases)}"
+        f"Saved baseline -> {BASELINE_PATH}" if baseline_written
+        else f"Baseline unchanged ({BASELINE_PATH})"
     )
 
-    print(
-        f"Recall@5:           "
-        f"{retrieval_metrics.recall_at_5:.4f}"
-    )
-
-    print(
-        f"MRR:                "
-        f"{retrieval_metrics.mrr:.4f}"
-    )
-
-    print(
-        f"Faithfulness:       "
-        f"{faithfulness:.4f}"
-    )
-
-    print(
-        f"Relevance:          "
-        f"{relevance:.4f}"
-    )
-
-    print(
-        f"Citation correctness:"
-        f" {citation_correctness:.4f}"
-    )
-
-    print(
-        f"Refusal accuracy:   "
-        f"{refusal_accuracy:.4f}"
-    )
-
-    print(
-        f"Recall regression:  "
-        f"{'PASS' if regression_passed else 'FAIL'}"
-    )
-
-    print()
-    print(
-        f"Saved results → "
-        f"{LATEST_RUN_PATH}"
-    )
-
-    print(
-        f"Saved report → "
-        f"{LATEST_REPORT_PATH}"
-    )
-
-    if baseline_written:
-        print(
-            f"Saved baseline → "
-            f"{BASELINE_PATH}"
-        )
-    else:
-        print(
-            f"Baseline unchanged ({BASELINE_PATH}); "
-            f"use --update-baseline to replace it"
-        )
-
-    if not regression_passed:
-        raise SystemExit(
-            "Evaluation failed: "
-            f"Recall@5 regression exceeded "
-            f"{MAX_RECALL_DROP * 100:g} percentage points."
-        )
+    if not passed:
+        failed = [c.metric + f" ({c.kind})" for c in checks if not c.passed]
+        raise SystemExit("Evaluation failed: " + ", ".join(failed))
 
     return results
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser()
-
     parser.add_argument(
         "--update-baseline",
         action="store_true",
-        help="Replace eval/baseline.json with this run's results",
+        help="Replace eval/baseline.json with this run (requires all floors to pass)",
     )
-
     args = parser.parse_args()
-
-    run_evaluation(
-        update_baseline=args.update_baseline,
-    )
+    run_evaluation(update_baseline=args.update_baseline)

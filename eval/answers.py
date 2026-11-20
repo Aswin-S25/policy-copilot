@@ -1,3 +1,4 @@
+import re
 from dataclasses import dataclass
 
 
@@ -18,7 +19,12 @@ NOT_FOUND_PHRASES = (
     "do not state", "does not state",
     "do not include", "does not include",
     "no information", "no specific information",
+    "not specified",
 )
+
+# First sentence of the answer: up to the first ., ! or ? followed by
+# whitespace or the end of the text.
+_FIRST_SENTENCE = re.compile(r"^\s*(.*?(?:[.!?](?=\s|$)|$))", re.S)
 
 
 
@@ -31,11 +37,17 @@ class AnswerEvaluation:
 
 
 def looks_like_refusal(answer: str) -> bool:
+    """A refusal leads with "not found": only the first sentence is checked.
 
-    normalized = answer.lower()
+    An answer that gives the information and then adds a caveat ("... The
+    exact calculation method is not specified in the policy.") is an answer,
+    not a refusal. Checking the whole text counted such answers as refusals.
+    """
+    match = _FIRST_SENTENCE.match(answer)
+    first_sentence = (match.group(1) if match else answer).lower()
 
     return any(
-        phrase in normalized
+        phrase in first_sentence
         for phrase in NOT_FOUND_PHRASES
     )
 

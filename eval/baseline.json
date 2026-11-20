@@ -1,24 +1,104 @@
 {
-  "timestamp": "2026-11-02T18:25:03.953061+00:00",
+  "timestamp": "2026-11-20T00:46:41.939639+00:00",
+  "provenance": {
+    "git_commit": "4746c29",
+    "git_dirty": true,
+    "retrieval": "hybrid RRF k=60, 20 dense + 20 lexical candidates, top-5",
+    "llm_model": "qwen3:8b",
+    "judge_model": "qwen3:8b",
+    "embedding_model": "BAAI/bge-small-en-v1.5"
+  },
   "dataset": {
-    "cases": 80,
-    "answerable_cases": 70,
-    "unanswerable_cases": 10
+    "cases": 138,
+    "answerable_cases": 124,
+    "unanswerable_cases": 14
   },
   "retrieval": {
-    "recall_at_5": 0.9535714285714286,
-    "mrr": 0.9885714285714287
+    "recall_at_5": 0.8978494623655914,
+    "mrr": 0.9518817204301075
   },
   "answers": {
-    "refusal_accuracy": 0.925,
-    "faithfulness": 1.0,
-    "relevance": 0.9875,
-    "citation_correctness": 0.975
+    "refusal_accuracy": 0.9635036496350365,
+    "faithfulness": 0.9924369747899159,
+    "relevance": 1.0,
+    "citation_correctness": 0.9782913165266107,
+    "judged_answers": 119,
+    "generation_failures": [
+      "multi-002"
+    ],
+    "judge_failures": [
+      "amb-011"
+    ],
+    "answer_coverage": 0.9927536231884058,
+    "judge_coverage": 0.9916666666666667
   },
   "targets": {
     "recall_at_5": 0.85,
     "mrr": 0.7,
+    "refusal_accuracy": 0.9,
     "faithfulness": 0.9,
-    "refusal_accuracy": 0.9
+    "answer_coverage": 0.95,
+    "judge_coverage": 0.95
+  },
+  "regression": {
+    "passed": true,
+    "checks": [
+      {
+        "metric": "dataset.cases",
+        "kind": "dataset",
+        "baseline": 80,
+        "current": 138,
+        "limit": null,
+        "passed": false
+      },
+      {
+        "metric": "retrieval.recall_at_5",
+        "kind": "floor",
+        "baseline": null,
+        "current": 0.8978494623655914,
+        "limit": 0.85,
+        "passed": true
+      },
+      {
+        "metric": "retrieval.mrr",
+        "kind": "floor",
+        "baseline": null,
+        "current": 0.9518817204301075,
+        "limit": 0.7,
+        "passed": true
+      },
+      {
+        "metric": "answers.refusal_accuracy",
+        "kind": "floor",
+        "baseline": null,
+        "current": 0.9635036496350365,
+        "limit": 0.9,
+        "passed": true
+      },
+      {
+        "metric": "answers.faithfulness",
+        "kind": "floor",
+        "baseline": null,
+        "current": 0.9924369747899159,
+        "limit": 0.9,
+        "passed": true
+      },
+      {
+        "metric": "answers.answer_coverage",
+        "kind": "floor",
+        "baseline": null,
+        "current": 0.9927536231884058,
+        "limit": 0.95,
+        "passed": true
+      },
+      {
+        "metric": "answers.judge_coverage",
+        "kind": "floor",
+        "baseline": null,
+        "current": 0.9916666666666667,
+        "limit": 0.95,
+        "passed": true
+      }
+    ]
   }
 }
