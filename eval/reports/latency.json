@@ -1,0 +1,526 @@
+{
+  "provenance": {
+    "git_commit": "4746c29",
+    "git_dirty": true,
+    "retrieval": "hybrid RRF k=60, 20 dense + 20 lexical candidates, top-5",
+    "llm_model": "qwen3:8b",
+    "judge_model": "qwen3:8b",
+    "embedding_model": "BAAI/bge-small-en-v1.5"
+  },
+  "mode": "sequential, in-process, warm model",
+  "single": {
+    "summary": {
+      "total_ms": {
+        "n": 30,
+        "p50": 9036.8,
+        "p95": 20586.1,
+        "max": 30966.5,
+        "mean": 10788.6
+      },
+      "retrieval_ms": {
+        "n": 30,
+        "p50": 154.8,
+        "p95": 214.3,
+        "max": 217.6,
+        "mean": 160.9
+      },
+      "llm_queue_ms": {
+        "n": 30,
+        "p50": 0.0,
+        "p95": 0.1,
+        "max": 0.1,
+        "mean": 0.0
+      },
+      "generation_ms": {
+        "n": 30,
+        "p50": 8881.0,
+        "p95": 20371.1,
+        "max": 30754.2,
+        "mean": 10627.0
+      }
+    },
+    "rows": [
+      {
+        "total_ms": 7291.4,
+        "retrieval_ms": 132.2,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 7158.6,
+        "answer_outcome": "answered",
+        "case": "leave-001"
+      },
+      {
+        "total_ms": 6463.7,
+        "retrieval_ms": 154.6,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 6308.6,
+        "answer_outcome": "answered",
+        "case": "leave-004"
+      },
+      {
+        "total_ms": 6710.9,
+        "retrieval_ms": 148.9,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 6561.3,
+        "answer_outcome": "answered",
+        "case": "hours-002"
+      },
+      {
+        "total_ms": 4652.2,
+        "retrieval_ms": 140.0,
+        "llm_queue_ms": 0.1,
+        "generation_ms": 4511.7,
+        "answer_outcome": "answered",
+        "case": "security-005"
+      },
+      {
+        "total_ms": 7303.4,
+        "retrieval_ms": 143.9,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 7158.9,
+        "answer_outcome": "answered",
+        "case": "perf-001"
+      },
+      {
+        "total_ms": 5261.6,
+        "retrieval_ms": 217.6,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 5043.3,
+        "answer_outcome": "answered",
+        "case": "contacts-001"
+      },
+      {
+        "total_ms": 6544.8,
+        "retrieval_ms": 135.1,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 6409.2,
+        "answer_outcome": "answered",
+        "case": "leave-010"
+      },
+      {
+        "total_ms": 9556.8,
+        "retrieval_ms": 172.6,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 9383.6,
+        "answer_outcome": "answered",
+        "case": "security-007"
+      },
+      {
+        "total_ms": 9743.6,
+        "retrieval_ms": 158.1,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 9584.9,
+        "answer_outcome": "answered",
+        "case": "data-002"
+      },
+      {
+        "total_ms": 15124.6,
+        "retrieval_ms": 139.3,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 14984.8,
+        "answer_outcome": "answered",
+        "case": "multi-002"
+      },
+      {
+        "total_ms": 19582.0,
+        "retrieval_ms": 166.6,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 19414.7,
+        "answer_outcome": "answered",
+        "case": "multi-007"
+      },
+      {
+        "total_ms": 11200.1,
+        "retrieval_ms": 190.6,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 11008.7,
+        "answer_outcome": "answered",
+        "case": "multi-011"
+      },
+      {
+        "total_ms": 14677.4,
+        "retrieval_ms": 136.8,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 14540.0,
+        "answer_outcome": "answered",
+        "case": "multi-016"
+      },
+      {
+        "total_ms": 11478.0,
+        "retrieval_ms": 187.8,
+        "llm_queue_ms": 0.1,
+        "generation_ms": 11289.7,
+        "answer_outcome": "answered",
+        "case": "multi-020"
+      },
+      {
+        "total_ms": 30966.5,
+        "retrieval_ms": 211.8,
+        "llm_queue_ms": 0.1,
+        "generation_ms": 30754.2,
+        "answer_outcome": "answered",
+        "case": "amb-005"
+      },
+      {
+        "total_ms": 9036.8,
+        "retrieval_ms": 154.8,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 8881.0,
+        "answer_outcome": "answered",
+        "case": "amb-010"
+      },
+      {
+        "total_ms": 10211.3,
+        "retrieval_ms": 166.7,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 10044.1,
+        "answer_outcome": "answered",
+        "case": "unknown-004"
+      },
+      {
+        "total_ms": 9963.6,
+        "retrieval_ms": 162.7,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 9800.2,
+        "answer_outcome": "answered",
+        "case": "unknown-009"
+      },
+      {
+        "total_ms": 7180.7,
+        "retrieval_ms": 140.8,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 7039.3,
+        "answer_outcome": "answered",
+        "case": "iss-003"
+      },
+      {
+        "total_ms": 6530.7,
+        "retrieval_ms": 192.5,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 6337.6,
+        "answer_outcome": "answered",
+        "case": "onb-001"
+      },
+      {
+        "total_ms": 7373.7,
+        "retrieval_ms": 185.5,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 7187.4,
+        "answer_outcome": "answered",
+        "case": "ahg-001"
+      },
+      {
+        "total_ms": 6779.6,
+        "retrieval_ms": 160.3,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 6618.9,
+        "answer_outcome": "answered",
+        "case": "ita-001"
+      },
+      {
+        "total_ms": 9428.2,
+        "retrieval_ms": 156.0,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 9271.7,
+        "answer_outcome": "answered",
+        "case": "rhw-005"
+      },
+      {
+        "total_ms": 13637.8,
+        "retrieval_ms": 135.7,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 13501.7,
+        "answer_outcome": "answered",
+        "case": "dcs-002"
+      },
+      {
+        "total_ms": 8144.7,
+        "retrieval_ms": 137.8,
+        "llm_queue_ms": 0.1,
+        "generation_ms": 8006.1,
+        "answer_outcome": "answered",
+        "case": "ir-003"
+      },
+      {
+        "total_ms": 20586.1,
+        "retrieval_ms": 214.3,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 20371.1,
+        "answer_outcome": "answered",
+        "case": "ir-004"
+      },
+      {
+        "total_ms": 8904.8,
+        "retrieval_ms": 176.4,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 8727.9,
+        "answer_outcome": "answered",
+        "case": "cross-001"
+      },
+      {
+        "total_ms": 16130.3,
+        "retrieval_ms": 150.5,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 15979.3,
+        "answer_outcome": "answered",
+        "case": "cross-006"
+      },
+      {
+        "total_ms": 8884.6,
+        "retrieval_ms": 120.8,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 8763.3,
+        "answer_outcome": "answered",
+        "case": "code-003"
+      },
+      {
+        "total_ms": 14306.9,
+        "retrieval_ms": 137.2,
+        "llm_queue_ms": 0.0,
+        "generation_ms": 14169.2,
+        "answer_outcome": "answered",
+        "case": "amb-013"
+      }
+    ]
+  },
+  "followup": {
+    "summary": {
+      "total_ms": {
+        "n": 20,
+        "p50": 8857.6,
+        "p95": 12706.5,
+        "max": 27002.5,
+        "mean": 10045.0
+      },
+      "rewrite_ms": {
+        "n": 20,
+        "p50": 633.5,
+        "p95": 756.8,
+        "max": 861.6,
+        "mean": 646.7
+      },
+      "retrieval_ms": {
+        "n": 20,
+        "p50": 124.1,
+        "p95": 203.5,
+        "max": 215.6,
+        "mean": 93.1
+      },
+      "llm_queue_ms": {
+        "n": 20,
+        "p50": 0.0,
+        "p95": 0.1,
+        "max": 0.1,
+        "mean": 0.0
+      },
+      "generation_ms": {
+        "n": 20,
+        "p50": 8092.3,
+        "p95": 12010.5,
+        "max": 26403.2,
+        "mean": 9304.7
+      }
+    },
+    "rows": [
+      {
+        "total_ms": 10559.4,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 550.2,
+        "retrieval_ms": 203.5,
+        "generation_ms": 9805.2,
+        "answer_outcome": "answered",
+        "rewrite": "unchanged",
+        "case": "fu-001"
+      },
+      {
+        "total_ms": 11768.7,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 756.8,
+        "retrieval_ms": 124.1,
+        "generation_ms": 10887.0,
+        "answer_outcome": "answered",
+        "rewrite": "changed",
+        "case": "fu-002"
+      },
+      {
+        "total_ms": 7967.6,
+        "llm_queue_ms": 0.1,
+        "rewrite_ms": 674.0,
+        "retrieval_ms": 142.5,
+        "generation_ms": 7150.2,
+        "answer_outcome": "answered",
+        "rewrite": "changed",
+        "case": "fu-003"
+      },
+      {
+        "total_ms": 27002.5,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 581.3,
+        "retrieval_ms": 17.5,
+        "generation_ms": 26403.2,
+        "answer_outcome": "answered",
+        "rewrite": "unchanged",
+        "case": "fu-004"
+      },
+      {
+        "total_ms": 6368.2,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 575.7,
+        "retrieval_ms": 23.9,
+        "generation_ms": 5768.2,
+        "answer_outcome": "answered",
+        "rewrite": "unchanged",
+        "case": "fu-005"
+      },
+      {
+        "total_ms": 9859.8,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 579.7,
+        "retrieval_ms": 15.4,
+        "generation_ms": 9264.4,
+        "answer_outcome": "answered",
+        "rewrite": "changed",
+        "case": "fu-006"
+      },
+      {
+        "total_ms": 8422.0,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 612.8,
+        "retrieval_ms": 21.0,
+        "generation_ms": 7787.9,
+        "answer_outcome": "answered",
+        "rewrite": "changed",
+        "case": "fu-007"
+      },
+      {
+        "total_ms": 12706.5,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 563.7,
+        "retrieval_ms": 131.8,
+        "generation_ms": 12010.5,
+        "answer_outcome": "answered",
+        "rewrite": "changed",
+        "case": "fu-008"
+      },
+      {
+        "total_ms": 7248.7,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 633.5,
+        "retrieval_ms": 18.2,
+        "generation_ms": 6596.7,
+        "answer_outcome": "answered",
+        "rewrite": "changed",
+        "case": "fu-009"
+      },
+      {
+        "total_ms": 10221.7,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 861.6,
+        "retrieval_ms": 127.3,
+        "generation_ms": 9232.3,
+        "answer_outcome": "answered",
+        "rewrite": "changed",
+        "case": "fu-010"
+      },
+      {
+        "total_ms": 6802.3,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 704.4,
+        "retrieval_ms": 130.1,
+        "generation_ms": 5967.1,
+        "answer_outcome": "answered",
+        "rewrite": "changed",
+        "case": "fu-011"
+      },
+      {
+        "total_ms": 10121.1,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 713.8,
+        "retrieval_ms": 17.4,
+        "generation_ms": 9389.5,
+        "answer_outcome": "answered",
+        "rewrite": "changed",
+        "case": "fu-012"
+      },
+      {
+        "total_ms": 10407.9,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 664.8,
+        "retrieval_ms": 144.6,
+        "generation_ms": 9597.8,
+        "answer_outcome": "answered",
+        "rewrite": "changed",
+        "case": "fu-013"
+      },
+      {
+        "total_ms": 7572.2,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 639.8,
+        "retrieval_ms": 15.8,
+        "generation_ms": 6916.3,
+        "answer_outcome": "answered",
+        "rewrite": "changed",
+        "case": "fu-014"
+      },
+      {
+        "total_ms": 6517.3,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 732.9,
+        "retrieval_ms": 215.6,
+        "generation_ms": 5567.8,
+        "answer_outcome": "answered",
+        "rewrite": "changed",
+        "case": "fu-015"
+      },
+      {
+        "total_ms": 12213.6,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 693.0,
+        "retrieval_ms": 164.2,
+        "generation_ms": 11355.7,
+        "answer_outcome": "answered",
+        "rewrite": "changed",
+        "case": "fu-016"
+      },
+      {
+        "total_ms": 7408.7,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 554.0,
+        "retrieval_ms": 17.6,
+        "generation_ms": 6836.7,
+        "answer_outcome": "answered",
+        "rewrite": "unchanged",
+        "case": "fu-017"
+      },
+      {
+        "total_ms": 11991.5,
+        "llm_queue_ms": 0.0,
+        "rewrite_ms": 588.7,
+        "retrieval_ms": 23.9,
+        "generation_ms": 11378.4,
+        "answer_outcome": "answered",
+        "rewrite": "changed",
+        "case": "fu-018"
+      },
+      {
+        "total_ms": 8857.6,
+        "llm_queue_ms": 0.1,
+        "rewrite_ms": 608.5,
+        "retrieval_ms": 155.9,
+        "generation_ms": 8092.3,
+        "answer_outcome": "answered",
+        "rewrite": "unchanged",
+        "case": "fu-019"
+      },
+      {
+        "total_ms": 6883.4,
+        "llm_queue_ms": 0.1,
+        "rewrite_ms": 644.5,
+        "retrieval_ms": 152.0,
+        "generation_ms": 6086.3,
+        "answer_outcome": "answered",
+        "rewrite": "unchanged",
+        "case": "fu-020"
+      }
+    ]
+  }
+}

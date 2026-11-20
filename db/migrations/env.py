@@ -5,9 +5,17 @@ from sqlalchemy import pool
 
 from alembic import context
 
+from app.core.config import get_infra_settings
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
+
+# configparser treats "%" as interpolation, so escape it (passwords may contain "%").
+config.set_main_option(
+    "sqlalchemy.url",
+    get_infra_settings().database_url.get_secret_value().replace("%", "%%"),
+)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
@@ -18,8 +26,8 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from app.db import Base
-from app import models
+from app.core.db import Base
+from app.core import models
 
 target_metadata = Base.metadata
 

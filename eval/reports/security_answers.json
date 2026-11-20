@@ -1,0 +1,119 @@
+{
+  "onb-001|fc1615fc-1059-4c3b-823c-f4f4693f90f8|d300fe97-2b2b-4f9d-b188-2ca297912629|edd53068-7dd5-4d55-be6f-7d219d173b9b|46f472cb-683e-49b9-9292-e698656ef7f1|dfd57419-6ec2-4159-8cda-789c138861e2": {
+    "answer": "I could not produce a sufficiently supported answer from the available policies."
+  },
+  "onb-001|52094ef0-b923-4eeb-ad1f-eaa51c51966b|64c98e14-440f-417a-9584-36b19cc36dde|118fb9ba-56c3-4fe0-9ec8-77f8e4b90d0e|8c350927-ffb4-4d1b-b84d-25c6e3957018|93f9a751-5e8f-4ac8-be50-0b4b289298d6": {
+    "answer": "The probation period is **6 months** for all new employees [Source 1]."
+  },
+  "onb-001|fc1615fc-1059-4c3b-823c-f4f4693f90f8|9b7cf196-a78d-4363-b2ae-a1573e69fca2|d300fe97-2b2b-4f9d-b188-2ca297912629|edd53068-7dd5-4d55-be6f-7d219d173b9b|46f472cb-683e-49b9-9292-e698656ef7f1": {
+    "answer": "I could not produce a sufficiently supported answer from the available policies."
+  },
+  "onb-002|6cc6eaae-2db1-481e-a651-9be951c4e6b2|d300fe97-2b2b-4f9d-b188-2ca297912629|99a50110-3aaa-4a91-be0d-673ca4e73515|a74acebe-eb17-4adc-bffb-7cf10c9ef279|fc1615fc-1059-4c3b-823c-f4f4693f90f8": {
+    "answer": "The information about the duration of an onboarding buddy assignment is not found in the provided policies. The Mentoring Programme mentioned in Source 1 refers to a separate initiative where pairs meet for six months, but this does not specify an \"onboarding buddy\" role [Source 1]. No other policy source addresses this directly."
+  },
+  "onb-002|cd73145a-d87c-4c5c-88df-dcc196a74173|703916db-722d-4468-ba92-3ac094c0b533|3c5db065-b4d7-4880-9470-4e4aa61f04c4|93f9a751-5e8f-4ac8-be50-0b4b289298d6|6cc6eaae-2db1-481e-a651-9be951c4e6b2": {
+    "answer": "A new employee is assigned an onboarding buddy for the first **60 days** [Source 1]."
+  },
+  "onb-002|6cc6eaae-2db1-481e-a651-9be951c4e6b2|7fbe32ab-18d6-4da2-80b8-cb29cc3230de|d300fe97-2b2b-4f9d-b188-2ca297912629|99a50110-3aaa-4a91-be0d-673ca4e73515|a74acebe-eb17-4adc-bffb-7cf10c9ef279": {
+    "answer": "I could not produce a sufficiently supported answer from the available policies."
+  },
+  "onb-003|6cc6eaae-2db1-481e-a651-9be951c4e6b2|4a81204a-180c-4656-81e2-6aa720c1977d|d300fe97-2b2b-4f9d-b188-2ca297912629|edd53068-7dd5-4d55-be6f-7d219d173b9b|558a2500-a970-461b-819c-f1ed4eb18507": {
+    "answer": "I could not produce a sufficiently supported answer from the available policies."
+  },
+  "onb-003|68c2f9f1-42cf-43d4-ab7a-915271558d70|6cc6eaae-2db1-481e-a651-9be951c4e6b2|3c5db065-b4d7-4880-9470-4e4aa61f04c4|4a81204a-180c-4656-81e2-6aa720c1977d|d300fe97-2b2b-4f9d-b188-2ca297912629": {
+    "answer": "Mandatory training must be completed within **30 days** of joining [Source 1]."
+  },
+  "onb-003|6cc6eaae-2db1-481e-a651-9be951c4e6b2|9b7cf196-a78d-4363-b2ae-a1573e69fca2|4a81204a-180c-4656-81e2-6aa720c1977d|d300fe97-2b2b-4f9d-b188-2ca297912629|edd53068-7dd5-4d55-be6f-7d219d173b9b": {
+    "answer": "I could not produce a sufficiently supported answer from the available policies."
+  },
+  "ir-001|2a116bd8-b44a-4fa2-867a-4ed9d3aa99a1|54f2ca27-f2a3-4c1e-b39c-b1d402fab82f|25dbde6c-ea23-4c84-9836-cffe4b5c36a0|1a16442e-72fc-433d-86fe-80e629fa073b|cf32cccb-529a-4428-a5b8-4c6c721d1892": {
+    "answer": "The provided policy sources do not specify how quickly a SEV1 page must be acknowledged. The closest related information is about patching critical vulnerabilities within **48 hours** [Source 1], but this pertains to patching deadlines, not SEV1 page acknowledgment requirements. No other sources mention SEV1 page response times. \n\nAnswer: The information was not found in the provider policies."
+  },
+  "ir-001|2a116bd8-b44a-4fa2-867a-4ed9d3aa99a1|3c5db065-b4d7-4880-9470-4e4aa61f04c4|54f2ca27-f2a3-4c1e-b39c-b1d402fab82f|25dbde6c-ea23-4c84-9836-cffe4b5c36a0|1a16442e-72fc-433d-86fe-80e629fa073b": {
+    "answer": "The provided policy sources do not specify the time frame for acknowledging a SEV1 page. The closest related information is about patching critical vulnerabilities within 48 hours [Source 1], but this pertains to patching deadlines, not incident acknowledgment timelines. No policy directly addresses SEV1 page acknowledgment requirements. \n\nAnswer: The information was not found in the provider policies [Source 1]."
+  },
+  "ir-001|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1|f4c67fdf-5602-4119-96bc-64c407f735a4|fbebb4af-25f7-4b8a-a330-b1aa6111f5e1|63d68040-6da6-4202-beef-6ae2b1f4c020|c969f677-dbf2-46cd-9549-ff674379f962": {
+    "answer": "A SEV1 page must be acknowledged within **15 minutes** by the on-call engineer [Source 1]."
+  },
+  "ir-002|46f472cb-683e-49b9-9292-e698656ef7f1|b931acda-aa59-402d-92e8-b4983828042d|fc1615fc-1059-4c3b-823c-f4f4693f90f8|4a21f58d-9c3f-4aa6-b71b-8fa79efe02a7|81538549-97e2-42c1-aae3-0fad7a6433c9": {
+    "answer": "I could not produce a sufficiently supported answer from the available policies."
+  },
+  "ir-002|63d68040-6da6-4202-beef-6ae2b1f4c020|9b7cf196-a78d-4363-b2ae-a1573e69fca2|46f472cb-683e-49b9-9292-e698656ef7f1|b1e44b1c-96a9-404d-822c-042ec3629d13|b931acda-aa59-402d-92e8-b4983828042d": {
+    "answer": "A postmortem must be published within **5 business days** of resolution for every SEV1 and SEV2 incident [Source 1]."
+  },
+  "dcs-001|6861ef2c-9526-43f8-89ba-8ccb4357cac9|3538737f-f672-48c6-953f-9b24e79f4df1|0b958d1f-ec73-4291-97fd-6797e820d6f3|0bceb248-cd35-4ba8-931b-015b2ff82624|cd21d535-51a0-4975-9c49-5875eb9283f1": {
+    "answer": "The provided policy sources do not explicitly define or list four data classification levels. The documents mention data types such as personal data [Source 1], confidential information [Source 4], and sensitive information [Source 2], but no specific four-level classification system is described. Therefore, the information was not found in the provider policies."
+  },
+  "dcs-001|5cf6dce8-a019-4bf0-90bc-8d378b76de55|4190f1b8-6b99-4906-95e9-49991f03aa27|c476ad1d-7b2b-4dad-a1a7-177e74dffdee|dd4a7e96-9dc1-4b5a-bf75-48d2efc148ee|45026857-ff8c-4b72-91c7-c559bb0a9b6a": {
+    "answer": "The provided policy sources mention three data classification levels: DCS-1 Public, DCS-3 Confidential, and DCS-4 Restricted [Source 2], [Source 3], [Source 4]. However, **Source 1** states there are \"four classification levels\" but does not explicitly list all four. Since the sources do not fully specify the fourth level, the information was not found in the provider policies [Source 1]."
+  },
+  "rhw-005|181fcdae-d12b-42d2-ab7f-64a1d8787963|77c03f2f-e1c5-4a67-8ed9-51048562d8be|e17e1731-b768-47fc-8e08-587f0fa77fd3|8825341f-a975-4571-82ba-5ab7f7908fa6|25bb8260-cc69-4121-8114-5e190769dec9": {
+    "answer": "The policy states that employees become eligible for hybrid working after completing their probation period [Source 1]. However, the policy does not specify the duration of the probation period or whether your two-month tenure satisfies it. Without explicit information on probation completion, we cannot confirm eligibility. Thus, the answer is not supported by the provided sources."
+  },
+  "dcs-002|0e2542ea-25a2-48ba-b7f6-2553caccbe4a|6861ef2c-9526-43f8-89ba-8ccb4357cac9|cd21d535-51a0-4975-9c49-5875eb9283f1|3538737f-f672-48c6-953f-9b24e79f4df1|7279773a-f11e-4874-b1ec-f0cd74be84aa": {
+    "answer": "You may email a customer's personal data to a colleague only if it is done through approved channels and for a legitimate business purpose, and the recipient is verified as authorized. Personal data must not be copied to personal devices or shared via unauthorized methods [Source 2], and external sharing requires verification of the recipient and compliance with secure transfer mechanisms [Source 3]. If the colleague is part of the company and the email is sent via approved systems, it may be permissible, but ensure all privacy and security requirements are met."
+  },
+  "dcs-002|0e2542ea-25a2-48ba-b7f6-2553caccbe4a|6861ef2c-9526-43f8-89ba-8ccb4357cac9|cd21d535-51a0-4975-9c49-5875eb9283f1|3538737f-f672-48c6-953f-9b24e79f4df1|3011699b-9d21-4bab-86be-71f02f4f40c4": {
+    "answer": "No, you cannot email a customer's personal data to a colleague. Personal data must be processed only for legitimate business purposes and cannot be copied to personal devices or unauthorized applications [Source 2]. Additionally, restricted information, including personal data, must never be sent by email or chat and must be shared through the approved secure file transfer system [Source 5]. Emailing such data violates these policies."
+  },
+  "dcs-003|4a21f58d-9c3f-4aa6-b71b-8fa79efe02a7|6270a819-2fde-46c1-b565-61e9fad36e2a|dc2dbd7a-aae3-492c-849e-7f77a83369b0|e4cf1b2e-5d51-493c-be37-70b5618cee88|f0dea9a1-1c3d-4775-a61d-abff24992f13": {
+    "answer": "The provided policies do not specify how to treat documents without classification labels. The sources only address handling classified documents (e.g., Confidential or Restricted) [Source 1] but do not mention guidelines for unclassified or unlabeled documents. Therefore, no specific policy guidance is available for this scenario. \n\nAnswer: The information was not found in the provider policies [Source 1]."
+  },
+  "dcs-003|ffd316cd-47ca-4d16-817c-14d9981df15e|5cf6dce8-a019-4bf0-90bc-8d378b76de55|09e79be7-7ace-4dd7-8c18-0758db1f9b9a|c476ad1d-7b2b-4dad-a1a7-177e74dffdee|4a21f58d-9c3f-4aa6-b71b-8fa79efe02a7": {
+    "answer": "If a document has no classification label, it should be treated as **Internal** by default [Source 1]. This applies because documents classified as Confidential or Restricted must carry a label, and the absence of one defaults to Internal. Internal information is intended for employees only and may be shared with contractors under confidentiality agreements [Source 3]."
+  },
+  "ir-003|c25274e3-5c3b-476a-9459-c212037369a7|2a116bd8-b44a-4fa2-867a-4ed9d3aa99a1|271d0022-4658-4138-bab2-e428f8529776|9fffbfba-383f-4be3-8546-9ee4e8cb380b|fc1615fc-1059-4c3b-823c-f4f4693f90f8": {
+    "answer": "The provided policy sources do not explicitly address whether the incident commander should debug an outage. The closest relevant guidance is from Source 1, which states that employees should not investigate beyond preserving information and protecting the company unless instructed by the security team [Source 1]. However, this does not directly clarify the incident commander's role in debugging. Since no policy explicitly assigns or prohibits debugging responsibilities to the incident commander, the information was not found in the provider policies."
+  },
+  "ir-003|ae3c06ae-d68a-401d-8b3b-01d3a1a7cbfc|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1|b1e44b1c-96a9-404d-822c-042ec3629d13|f4c67fdf-5602-4119-96bc-64c407f735a4|c25274e3-5c3b-476a-9459-c212037369a7": {
+    "answer": "No, the incident commander should not also be debugging the problem. According to the policy, the incident commander coordinates the response, makes decisions about escalation and rollback, and is the single point of contact. However, the incident commander should not also be debugging the problem [Source 1]."
+  },
+  "onb-004|1a16442e-72fc-433d-86fe-80e629fa073b|46f472cb-683e-49b9-9292-e698656ef7f1|a2f8442f-75eb-4a3a-96a1-6324b5cdfc09|fc1615fc-1059-4c3b-823c-f4f4693f90f8|e4cf1b2e-5d51-493c-be37-70b5618cee88": {
+    "answer": "I could not produce a sufficiently supported answer from the available policies."
+  },
+  "onb-004|118fb9ba-56c3-4fe0-9ec8-77f8e4b90d0e|8c350927-ffb4-4d1b-b84d-25c6e3957018|52094ef0-b923-4eeb-ad1f-eaa51c51966b|64c98e14-440f-417a-9584-36b19cc36dde|93f9a751-5e8f-4ac8-be50-0b4b289298d6": {
+    "answer": "Probation works as follows:  \n- The probation period is **6 months** for all new employees [Source 3].  \n- **Reviews** occur at the end of month **1**, month **3**, and month **5**, with a formal confirmation decision made before the end of month 6 [Source 2].  \n- **Extensions** are allowed once, by up to **3 months**, if the manager and People Operations agree that more time is needed. The employee must receive written reasons for the extension [Source 1]."
+  },
+  "ir-004|c25274e3-5c3b-476a-9459-c212037369a7|2a116bd8-b44a-4fa2-867a-4ed9d3aa99a1|1a16442e-72fc-433d-86fe-80e629fa073b|3bda4cdb-5030-41cd-a6b8-e508641c4936|3a6c3909-10b9-46b7-a012-adbd5ffea441": {
+    "answer": "The provided policy sources do not define or differentiate between SEV1, SEV2, and SEV3 incidents. The sources mention severity levels in the context of vulnerability patching (e.g., critical, high, medium, low) [Source 2], but these terms are not equated to SEV1, SEV2, or SEV3. No other policies address these specific severity classifications. \n\nAnswer: The information about SEV1, SEV2, and SEV3 incidents was not found in the provided policies [Source 1-5]."
+  },
+  "ir-004|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1|f4c67fdf-5602-4119-96bc-64c407f735a4|fbebb4af-25f7-4b8a-a330-b1aa6111f5e1|63d68040-6da6-4202-beef-6ae2b1f4c020|c969f677-dbf2-46cd-9549-ff674379f962": {
+    "answer": "The differences between SEV1, SEV2, and SEV3 incidents are defined by their impact, response requirements, and handling procedures:  \n\n- **SEV1** involves a complete outage of a customer-facing service or a confirmed data breach. The on-call engineer must acknowledge the incident within **15 minutes**, an incident commander is appointed immediately, and customer status updates are posted every **30 minutes** [Source 1].  \n- **SEV2** refers to a significant degradation affecting many customers or a full outage of an internal critical system. Acknowledgment is required within **30 minutes**, with status updates every hour [Source 2].  \n- **SEV3** involves limited customer impact with a workaround available. It must be acknowledged within **4 business hours** and can be handled during normal working hours [Source 3].  \n\nThese levels differ in urgency, customer impact, and required response times."
+  },
+  "dcs-004|54f2ca27-f2a3-4c1e-b39c-b1d402fab82f|cd21d535-51a0-4975-9c49-5875eb9283f1|cc895ba2-a49d-479d-98bd-e68785fbfb0c|4a21f58d-9c3f-4aa6-b71b-8fa79efe02a7|3a6c3909-10b9-46b7-a012-adbd5ffea441": {
+    "answer": "Restricted data should be stored, shared, and disposed of as follows:  \n\n- **Storage**: USB storage devices are blocked by default; exceptions require approval valid for 30 days [Source 1]. Printed Confidential/Restricted documents must be locked away or shredded daily [Source 4].  \n- **Sharing**: External sharing requires approved channels, recipient verification, and encryption/secure transfer mechanisms for sensitive files [Source 2].  \n- **Disposal**: Data no longer needed must be securely deleted using approved procedures. Returned devices are securely wiped by IT Operations [Source 5].  \n\nThese measures ensure compliance with data protection policies."
+  },
+  "dcs-004|2cea5417-aa08-4acb-9aa8-5fded5179008|3011699b-9d21-4bab-86be-71f02f4f40c4|54f2ca27-f2a3-4c1e-b39c-b1d402fab82f|cd21d535-51a0-4975-9c49-5875eb9283f1|4190f1b8-6b99-4906-95e9-49991f03aa27": {
+    "answer": "Restricted data should be stored by encrypting it at rest and in transit, with access limited to named individuals on an approved access list [Source 5]. Sharing must occur through approved secure file transfer systems, not via email or chat, and external sharing requires authorization via approved channels with verification of recipients [Source 2][Source 4]. Disposal requires shredding paper documents with cross-cut shredders or secure bins and deleting digital data using IT-approved secure deletion tools [Source 1]."
+  },
+  "cross-001|edd53068-7dd5-4d55-be6f-7d219d173b9b|dfd57419-6ec2-4159-8cda-789c138861e2|fdcbff79-0308-49fd-8702-45462cacfebe|d300fe97-2b2b-4f9d-b188-2ca297912629|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70": {
+    "answer": "The provided policies do not specify leave entitlements or rules for employees during probation. The information available pertains to annual leave, casual leave, sick leave, and other types of leave, but none of these policies explicitly address leave options during a probationary period [Source 1][Source 2][Source 5]. Therefore, the information was not found in the provider policies."
+  },
+  "cross-001|64c98e14-440f-417a-9584-36b19cc36dde|118fb9ba-56c3-4fe0-9ec8-77f8e4b90d0e|52094ef0-b923-4eeb-ad1f-eaa51c51966b|8c350927-ffb4-4d1b-b84d-25c6e3957018|edd53068-7dd5-4d55-be6f-7d219d173b9b": {
+    "answer": "During probation, you can take annual leave, but you may take at most **5 days** of annual leave before your probation is confirmed, unless your manager approves more [Source 1]. Other leave types (e.g., casual or sick leave) are not specifically addressed in the probation policy but are governed by general leave rules [Source 5]."
+  },
+  "cross-006|cd21d535-51a0-4975-9c49-5875eb9283f1|0bceb248-cd35-4ba8-931b-015b2ff82624|5ee67483-e742-4b54-9997-e4db2e323689|3538737f-f672-48c6-953f-9b24e79f4df1|6861ef2c-9526-43f8-89ba-8ccb4357cac9": {
+    "answer": "To share confidential information with an external partner, you must:  \n1. Use approved channels and ensure the recipient is authorized and verified [Source 1].  \n2. Share only with individuals who require the information for legitimate business purposes [Source 2].  \n3. Encrypt sensitive files or use secure file-transfer mechanisms as required by security procedures [Source 1].  \n\nConfidential information may not be shared without proper authorization or for unauthorized purposes."
+  },
+  "cross-006|cd21d535-51a0-4975-9c49-5875eb9283f1|0bceb248-cd35-4ba8-931b-015b2ff82624|dd4a7e96-9dc1-4b5a-bf75-48d2efc148ee|3011699b-9d21-4bab-86be-71f02f4f40c4|5ee67483-e742-4b54-9997-e4db2e323689": {
+    "answer": "To share confidential information with an external partner, follow these steps:  \n1. **Verify the recipient** to ensure they are authorized and require the information for legitimate business purposes [Source 1].  \n2. **Use approved encryption or secure file-transfer mechanisms** for sensitive data, avoiding email or chat for restricted information [Source 1][Source 4].  \n3. **Obtain approval from the information owner** and ensure sharing occurs through approved channels [Source 1][Source 3].  \n4. **Require a signed non-disclosure agreement (NDA)** for external sharing of confidential data, such as customer contracts or source code [Source 3].  \n\nConfidential information must never be shared without these safeguards [Source 2]."
+  },
+  "code-002|7279773a-f11e-4874-b1ec-f0cd74be84aa|3a6c3909-10b9-46b7-a012-adbd5ffea441|9fffbfba-383f-4be3-8546-9ee4e8cb380b|54f2ca27-f2a3-4c1e-b39c-b1d402fab82f|6270a819-2fde-46c1-b565-61e9fad36e2a": {
+    "answer": "The provided policy sources do not contain any information related to \"DCS-3.\" The policies referenced cover topics such as account access [Source 1], data wiping on returned devices [Source 2], policy contacts [Source 3], removable media restrictions [Source 4], and learning and development [Source 5], but none mention DCS-3. Therefore, the information was not found in the provided policies."
+  },
+  "code-002|dd4a7e96-9dc1-4b5a-bf75-48d2efc148ee|c476ad1d-7b2b-4dad-a1a7-177e74dffdee|5cf6dce8-a019-4bf0-90bc-8d378b76de55|4190f1b8-6b99-4906-95e9-49991f03aa27|09e79be7-7ace-4dd7-8c18-0758db1f9b9a": {
+    "answer": "DCS-3 refers to **Confidential** information, which includes sensitive business data such as customer contracts, financial forecasts, source code, and unreleased product plans. Sharing this information externally requires a signed non-disclosure agreement (NDA) and approval from the information owner [Source 1]."
+  },
+  "code-003|2a116bd8-b44a-4fa2-867a-4ed9d3aa99a1|cf32cccb-529a-4428-a5b8-4c6c721d1892|54f2ca27-f2a3-4c1e-b39c-b1d402fab82f|39400f93-9496-477d-bc85-4c96a1ff6da1|a44275ec-500d-41bd-9dc8-703f9a0d1c49": {
+    "answer": "The term \"IR-SEV2\" is not mentioned or defined in the provided policy sources [Source 1][Source 2][Source 3][Source 4][Source 5]. Therefore, the information was not found in the provider policies."
+  },
+  "code-003|f4c67fdf-5602-4119-96bc-64c407f735a4|b9e7aa13-e6dc-4a99-a9cb-5094ed8a3ec1|fbebb4af-25f7-4b8a-a330-b1aa6111f5e1|c969f677-dbf2-46cd-9549-ff674379f962|63d68040-6da6-4202-beef-6ae2b1f4c020": {
+    "answer": "IR-SEV2 refers to a significant degradation affecting many customers or a full outage of an internal critical system. It requires acknowledgment within **30 minutes** and status updates every hour [Source 1]."
+  },
+  "amb-012|edd53068-7dd5-4d55-be6f-7d219d173b9b|dfd57419-6ec2-4159-8cda-789c138861e2|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|1e17ec1d-a6ba-4996-9364-d83086aaf92a|9b634a76-2adc-4d4e-900a-5355a15d5079": {
+    "answer": "The \"30-day rule\" refers to the policy that expenses should typically be submitted within 30 days [Source 1]."
+  },
+  "amb-012|edd53068-7dd5-4d55-be6f-7d219d173b9b|dfd57419-6ec2-4159-8cda-789c138861e2|66a4e3b6-2ea9-4302-b55f-3dbf92f0eb70|52094ef0-b923-4eeb-ad1f-eaa51c51966b|118fb9ba-56c3-4fe0-9ec8-77f8e4b90d0e": {
+    "answer": "The 30-day rule refers to the **Expense Submission** policy, which states that expenses should typically be submitted **within 30 days** [Source 1]. No other policies explicitly mention a \"30-day rule.\""
+  }
+}

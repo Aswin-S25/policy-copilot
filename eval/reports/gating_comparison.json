@@ -1,0 +1,598 @@
+{
+  "signals": {
+    "leave-001": {
+      "best_dense": 0.873438835144043,
+      "lexical_hits": 0
+    },
+    "security-001": {
+      "best_dense": 0.7866641410193373,
+      "lexical_hits": 2
+    },
+    "leave-002": {
+      "best_dense": 0.9031789956582207,
+      "lexical_hits": 0
+    },
+    "leave-003": {
+      "best_dense": 0.8582269464866502,
+      "lexical_hits": 0
+    },
+    "leave-004": {
+      "best_dense": 0.8587372983254628,
+      "lexical_hits": 0
+    },
+    "leave-005": {
+      "best_dense": 0.8298239213333192,
+      "lexical_hits": 0
+    },
+    "leave-006": {
+      "best_dense": 0.7875202767563045,
+      "lexical_hits": 0
+    },
+    "leave-007": {
+      "best_dense": 0.8067009449005127,
+      "lexical_hits": 3
+    },
+    "hours-001": {
+      "best_dense": 0.8247120589361121,
+      "lexical_hits": 2
+    },
+    "hours-002": {
+      "best_dense": 0.8044016594407964,
+      "lexical_hits": 0
+    },
+    "security-002": {
+      "best_dense": 0.7265302105826027,
+      "lexical_hits": 0
+    },
+    "security-003": {
+      "best_dense": 0.8554860439606894,
+      "lexical_hits": 0
+    },
+    "security-004": {
+      "best_dense": 0.8341178396870008,
+      "lexical_hits": 1
+    },
+    "security-005": {
+      "best_dense": 0.6897784656418297,
+      "lexical_hits": 0
+    },
+    "security-006": {
+      "best_dense": 0.7376380719162196,
+      "lexical_hits": 1
+    },
+    "expense-001": {
+      "best_dense": 0.9186666656335212,
+      "lexical_hits": 0
+    },
+    "expense-002": {
+      "best_dense": 0.8325442275352207,
+      "lexical_hits": 1
+    },
+    "travel-001": {
+      "best_dense": 0.828909764950887,
+      "lexical_hits": 0
+    },
+    "perf-001": {
+      "best_dense": 0.8746291473728942,
+      "lexical_hits": 0
+    },
+    "conduct-001": {
+      "best_dense": 0.7806841135025024,
+      "lexical_hits": 1
+    },
+    "handbook-001": {
+      "best_dense": 0.7434454713198275,
+      "lexical_hits": 0
+    },
+    "handbook-002": {
+      "best_dense": 0.7632923722267151,
+      "lexical_hits": 0
+    },
+    "handbook-003": {
+      "best_dense": 0.724797920894748,
+      "lexical_hits": 0
+    },
+    "contacts-001": {
+      "best_dense": 0.7437587533140939,
+      "lexical_hits": 1
+    },
+    "safety-001": {
+      "best_dense": 0.8177464604377747,
+      "lexical_hits": 1
+    },
+    "leave-008": {
+      "best_dense": 0.8592606270753979,
+      "lexical_hits": 1
+    },
+    "leave-009": {
+      "best_dense": 0.7638149261474609,
+      "lexical_hits": 0
+    },
+    "leave-010": {
+      "best_dense": 0.7534613756262449,
+      "lexical_hits": 0
+    },
+    "leave-011": {
+      "best_dense": 0.7871687519999226,
+      "lexical_hits": 1
+    },
+    "ai-001": {
+      "best_dense": 0.6595685684938104,
+      "lexical_hits": 0
+    },
+    "ai-002": {
+      "best_dense": 0.8209026562629561,
+      "lexical_hits": 0
+    },
+    "procure-001": {
+      "best_dense": 0.6619651519080918,
+      "lexical_hits": 0
+    },
+    "security-007": {
+      "best_dense": 0.6881844196264646,
+      "lexical_hits": 0
+    },
+    "devices-001": {
+      "best_dense": 0.8014132023278837,
+      "lexical_hits": 0
+    },
+    "devices-002": {
+      "best_dense": 0.7831554412841797,
+      "lexical_hits": 0
+    },
+    "data-001": {
+      "best_dense": 0.7086246609687805,
+      "lexical_hits": 0
+    },
+    "data-002": {
+      "best_dense": 0.7381501949936048,
+      "lexical_hits": 0
+    },
+    "exceptions-001": {
+      "best_dense": 0.8612009369611197,
+      "lexical_hits": 0
+    },
+    "travel-002": {
+      "best_dense": 0.7602732181549072,
+      "lexical_hits": 0
+    },
+    "security-008": {
+      "best_dense": 0.640306830406189,
+      "lexical_hits": 0
+    },
+    "multi-001": {
+      "best_dense": 0.8501840919146619,
+      "lexical_hits": 0
+    },
+    "multi-002": {
+      "best_dense": 0.8114584684371948,
+      "lexical_hits": 0
+    },
+    "multi-003": {
+      "best_dense": 0.8394118797603813,
+      "lexical_hits": 0
+    },
+    "multi-004": {
+      "best_dense": 0.7107483917028683,
+      "lexical_hits": 0
+    },
+    "multi-005": {
+      "best_dense": 0.7988798022270203,
+      "lexical_hits": 0
+    },
+    "multi-006": {
+      "best_dense": 0.7702406644821221,
+      "lexical_hits": 0
+    },
+    "multi-007": {
+      "best_dense": 0.7208705114799446,
+      "lexical_hits": 4
+    },
+    "multi-008": {
+      "best_dense": 0.7315453072921869,
+      "lexical_hits": 0
+    },
+    "multi-009": {
+      "best_dense": 0.8463029448624915,
+      "lexical_hits": 0
+    },
+    "multi-010": {
+      "best_dense": 0.6550170388807642,
+      "lexical_hits": 0
+    },
+    "multi-011": {
+      "best_dense": 0.7308693688589724,
+      "lexical_hits": 0
+    },
+    "multi-012": {
+      "best_dense": 0.7735604778790203,
+      "lexical_hits": 0
+    },
+    "multi-013": {
+      "best_dense": 0.7043430981431558,
+      "lexical_hits": 0
+    },
+    "multi-014": {
+      "best_dense": 0.7432177066802979,
+      "lexical_hits": 0
+    },
+    "multi-015": {
+      "best_dense": 0.6858142222706745,
+      "lexical_hits": 0
+    },
+    "multi-016": {
+      "best_dense": 0.7687541980293885,
+      "lexical_hits": 1
+    },
+    "multi-017": {
+      "best_dense": 0.7562364339828491,
+      "lexical_hits": 0
+    },
+    "multi-018": {
+      "best_dense": 0.7712117842653197,
+      "lexical_hits": 0
+    },
+    "multi-019": {
+      "best_dense": 0.7119357929306328,
+      "lexical_hits": 0
+    },
+    "multi-020": {
+      "best_dense": 0.7888080477714539,
+      "lexical_hits": 0
+    },
+    "amb-001": {
+      "best_dense": 0.792688560921637,
+      "lexical_hits": 0
+    },
+    "amb-002": {
+      "best_dense": 0.7221582267095772,
+      "lexical_hits": 0
+    },
+    "amb-003": {
+      "best_dense": 0.6721571884202122,
+      "lexical_hits": 1
+    },
+    "amb-004": {
+      "best_dense": 0.6891827543051099,
+      "lexical_hits": 0
+    },
+    "amb-005": {
+      "best_dense": 0.7600191831588745,
+      "lexical_hits": 0
+    },
+    "amb-006": {
+      "best_dense": 0.7101682001252068,
+      "lexical_hits": 2
+    },
+    "amb-007": {
+      "best_dense": 0.6795809459936067,
+      "lexical_hits": 0
+    },
+    "amb-008": {
+      "best_dense": 0.7623138654921614,
+      "lexical_hits": 1
+    },
+    "amb-009": {
+      "best_dense": 0.6790337562561035,
+      "lexical_hits": 0
+    },
+    "amb-010": {
+      "best_dense": 0.6385855269010525,
+      "lexical_hits": 0
+    },
+    "unknown-001": {
+      "best_dense": 0.5720574514831641,
+      "lexical_hits": 0
+    },
+    "unknown-002": {
+      "best_dense": 0.6384055665006232,
+      "lexical_hits": 0
+    },
+    "unknown-003": {
+      "best_dense": 0.6382371618465038,
+      "lexical_hits": 0
+    },
+    "unknown-004": {
+      "best_dense": 0.6909230947494507,
+      "lexical_hits": 0
+    },
+    "unknown-005": {
+      "best_dense": 0.7906980639280057,
+      "lexical_hits": 0
+    },
+    "unknown-006": {
+      "best_dense": 0.7673339386383345,
+      "lexical_hits": 0
+    },
+    "unknown-007": {
+      "best_dense": 0.7002121210098267,
+      "lexical_hits": 0
+    },
+    "unknown-008": {
+      "best_dense": 0.7348333317240133,
+      "lexical_hits": 0
+    },
+    "unknown-009": {
+      "best_dense": 0.6980219247315019,
+      "lexical_hits": 0
+    },
+    "unknown-010": {
+      "best_dense": 0.6419516227884701,
+      "lexical_hits": 0
+    },
+    "iss-001": {
+      "best_dense": 0.8865224258276971,
+      "lexical_hits": 0
+    },
+    "iss-002": {
+      "best_dense": 0.8563664045115483,
+      "lexical_hits": 0
+    },
+    "iss-003": {
+      "best_dense": 0.822767972946167,
+      "lexical_hits": 0
+    },
+    "rhw-001": {
+      "best_dense": 0.8521102666854858,
+      "lexical_hits": 1
+    },
+    "rhw-002": {
+      "best_dense": 0.9030442237854004,
+      "lexical_hits": 1
+    },
+    "rhw-003": {
+      "best_dense": 0.8693647384643555,
+      "lexical_hits": 0
+    },
+    "rhw-004": {
+      "best_dense": 0.8393027377959802,
+      "lexical_hits": 0
+    },
+    "onb-001": {
+      "best_dense": 0.8509326247693391,
+      "lexical_hits": 0
+    },
+    "onb-002": {
+      "best_dense": 0.9121273264733164,
+      "lexical_hits": 0
+    },
+    "onb-003": {
+      "best_dense": 0.8595342379947268,
+      "lexical_hits": 0
+    },
+    "lnd-001": {
+      "best_dense": 0.8902883064403232,
+      "lexical_hits": 1
+    },
+    "lnd-002": {
+      "best_dense": 0.8867329623321586,
+      "lexical_hits": 0
+    },
+    "ahg-001": {
+      "best_dense": 0.7793407107185526,
+      "lexical_hits": 0
+    },
+    "ahg-002": {
+      "best_dense": 0.7359751243598751,
+      "lexical_hits": 0
+    },
+    "ir-001": {
+      "best_dense": 0.7920674209554555,
+      "lexical_hits": 0
+    },
+    "ir-002": {
+      "best_dense": 0.8313925761814476,
+      "lexical_hits": 1
+    },
+    "ita-001": {
+      "best_dense": 0.8581150939327428,
+      "lexical_hits": 0
+    },
+    "ita-002": {
+      "best_dense": 0.8665633956714397,
+      "lexical_hits": 0
+    },
+    "wb-001": {
+      "best_dense": 0.8455859422683716,
+      "lexical_hits": 0
+    },
+    "wb-002": {
+      "best_dense": 0.9027691425543528,
+      "lexical_hits": 0
+    },
+    "dcs-001": {
+      "best_dense": 0.7077629144333069,
+      "lexical_hits": 1
+    },
+    "rhw-005": {
+      "best_dense": 0.770665324608528,
+      "lexical_hits": 0
+    },
+    "rhw-006": {
+      "best_dense": 0.7207078670611591,
+      "lexical_hits": 0
+    },
+    "lnd-003": {
+      "best_dense": 0.7371710538864136,
+      "lexical_hits": 0
+    },
+    "lnd-004": {
+      "best_dense": 0.7462449073791504,
+      "lexical_hits": 0
+    },
+    "dcs-002": {
+      "best_dense": 0.7079735572353878,
+      "lexical_hits": 0
+    },
+    "dcs-003": {
+      "best_dense": 0.790316631718485,
+      "lexical_hits": 1
+    },
+    "ita-003": {
+      "best_dense": 0.6695040661392184,
+      "lexical_hits": 0
+    },
+    "ita-004": {
+      "best_dense": 0.7184655238112507,
+      "lexical_hits": 0
+    },
+    "ahg-003": {
+      "best_dense": 0.6999751329421997,
+      "lexical_hits": 0
+    },
+    "ir-003": {
+      "best_dense": 0.7478061769355232,
+      "lexical_hits": 0
+    },
+    "iss-004": {
+      "best_dense": 0.7490946503112359,
+      "lexical_hits": 0
+    },
+    "wb-003": {
+      "best_dense": 0.7908219334728105,
+      "lexical_hits": 0
+    },
+    "onb-004": {
+      "best_dense": 0.7193289566440025,
+      "lexical_hits": 0
+    },
+    "ir-004": {
+      "best_dense": 0.778711199760437,
+      "lexical_hits": 0
+    },
+    "ahg-004": {
+      "best_dense": 0.8289930820465088,
+      "lexical_hits": 0
+    },
+    "lnd-005": {
+      "best_dense": 0.7855851054191589,
+      "lexical_hits": 0
+    },
+    "dcs-004": {
+      "best_dense": 0.7415706890353385,
+      "lexical_hits": 0
+    },
+    "rhw-007": {
+      "best_dense": 0.7729764986676292,
+      "lexical_hits": 0
+    },
+    "cross-001": {
+      "best_dense": 0.7882050040899248,
+      "lexical_hits": 1
+    },
+    "cross-002": {
+      "best_dense": 0.8326161503791809,
+      "lexical_hits": 1
+    },
+    "cross-003": {
+      "best_dense": 0.7218848466873169,
+      "lexical_hits": 0
+    },
+    "cross-004": {
+      "best_dense": 0.7690937977489126,
+      "lexical_hits": 0
+    },
+    "cross-005": {
+      "best_dense": 0.7558778669906947,
+      "lexical_hits": 0
+    },
+    "cross-006": {
+      "best_dense": 0.736828760097698,
+      "lexical_hits": 0
+    },
+    "cross-007": {
+      "best_dense": 0.7287655093898034,
+      "lexical_hits": 4
+    },
+    "code-001": {
+      "best_dense": 0.6856223532186548,
+      "lexical_hits": 0
+    },
+    "code-002": {
+      "best_dense": 0.6860300506958383,
+      "lexical_hits": 0
+    },
+    "code-003": {
+      "best_dense": 0.7612813257407366,
+      "lexical_hits": 1
+    },
+    "code-004": {
+      "best_dense": 0.6222542524337769,
+      "lexical_hits": 1
+    },
+    "code-005": {
+      "best_dense": 0.8067256097033998,
+      "lexical_hits": 0
+    },
+    "amb-011": {
+      "best_dense": 0.7242929072030945,
+      "lexical_hits": 3
+    },
+    "amb-012": {
+      "best_dense": 0.6838310141764911,
+      "lexical_hits": 1
+    },
+    "amb-013": {
+      "best_dense": 0.668685793876648,
+      "lexical_hits": 0
+    },
+    "unknown-011": {
+      "best_dense": 0.6268364191055342,
+      "lexical_hits": 0
+    },
+    "unknown-012": {
+      "best_dense": 0.7825303336941853,
+      "lexical_hits": 0
+    },
+    "unknown-013": {
+      "best_dense": 0.657472571285215,
+      "lexical_hits": 0
+    },
+    "unknown-014": {
+      "best_dense": 0.7528819589089193,
+      "lexical_hits": 0
+    }
+  },
+  "answers": {
+    "refusal accuracy (n=137)": {
+      "dense": 0.8978102189781022,
+      "hybrid": 0.9124087591240876,
+      "hybrid_gated": 0.9124087591240876
+    },
+    "answerable answered (n=123)": {
+      "dense": 0.959349593495935,
+      "hybrid": 0.975609756097561,
+      "hybrid_gated": 0.975609756097561
+    },
+    "unanswerable refused (n=14)": {
+      "dense": 0.35714285714285715,
+      "hybrid": 0.35714285714285715,
+      "hybrid_gated": 0.35714285714285715
+    },
+    "faithfulness (judged)": {
+      "dense": 0.9960629921259843,
+      "hybrid": 0.9961240310077519,
+      "hybrid_gated": 0.9961240310077519
+    },
+    "relevance (judged)": {
+      "dense": 0.9763779527559056,
+      "hybrid": 0.9767441860465116,
+      "hybrid_gated": 0.9767441860465116
+    },
+    "citation correctness (judged)": {
+      "dense": 0.9448818897637795,
+      "hybrid": 0.9457364341085271,
+      "hybrid_gated": 0.9457364341085271
+    },
+    "judged answers": {
+      "dense": 127,
+      "hybrid": 129,
+      "hybrid_gated": 129
+    },
+    "LLM calls avoided by gate": {
+      "dense": 0,
+      "hybrid": 0,
+      "hybrid_gated": 0
+    }
+  }
+}

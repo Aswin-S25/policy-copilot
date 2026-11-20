@@ -1,0 +1,225 @@
+{
+  "retrieval": {
+    "single_doc": {
+      "no_cap": {
+        "recall_at_5": 0.9056047197640118,
+        "mrr": 0.956047197640118,
+        "doc_coverage": 1.0,
+        "unique_docs": 2.3185840707964602,
+        "max_chunks_per_doc": 3.47787610619469,
+        "underfill_rate": 0.0
+      },
+      "cap_2": {
+        "recall_at_5": 0.8569321533923303,
+        "mrr": 0.9579646017699115,
+        "doc_coverage": 1.0,
+        "unique_docs": 3.415929203539823,
+        "max_chunks_per_doc": 2.0,
+        "underfill_rate": 0.008849557522123894
+      },
+      "cap_3": {
+        "recall_at_5": 0.887905604719764,
+        "mrr": 0.956047197640118,
+        "doc_coverage": 1.0,
+        "unique_docs": 2.849557522123894,
+        "max_chunks_per_doc": 2.831858407079646,
+        "underfill_rate": 0.0
+      },
+      "cap_4": {
+        "recall_at_5": 0.9056047197640118,
+        "mrr": 0.956047197640118,
+        "doc_coverage": 1.0,
+        "unique_docs": 2.4424778761061945,
+        "max_chunks_per_doc": 3.353982300884956,
+        "underfill_rate": 0.0
+      }
+    },
+    "multi_doc": {
+      "no_cap": {
+        "recall_at_5": 0.8181818181818182,
+        "mrr": 0.9090909090909091,
+        "doc_coverage": 0.8181818181818182,
+        "unique_docs": 2.3636363636363638,
+        "max_chunks_per_doc": 3.1818181818181817,
+        "underfill_rate": 0.0
+      },
+      "cap_2": {
+        "recall_at_5": 0.8636363636363636,
+        "mrr": 0.9090909090909091,
+        "doc_coverage": 0.8636363636363636,
+        "unique_docs": 3.272727272727273,
+        "max_chunks_per_doc": 2.0,
+        "underfill_rate": 0.0
+      },
+      "cap_3": {
+        "recall_at_5": 0.8636363636363636,
+        "mrr": 0.9090909090909091,
+        "doc_coverage": 0.8636363636363636,
+        "unique_docs": 2.6363636363636362,
+        "max_chunks_per_doc": 2.727272727272727,
+        "underfill_rate": 0.0
+      },
+      "cap_4": {
+        "recall_at_5": 0.8181818181818182,
+        "mrr": 0.9090909090909091,
+        "doc_coverage": 0.8181818181818182,
+        "unique_docs": 2.3636363636363638,
+        "max_chunks_per_doc": 3.1818181818181817,
+        "underfill_rate": 0.0
+      }
+    },
+    "all": {
+      "no_cap": {
+        "recall_at_5": 0.8978494623655914,
+        "mrr": 0.9518817204301075,
+        "doc_coverage": 0.9838709677419355,
+        "unique_docs": 2.3225806451612905,
+        "max_chunks_per_doc": 3.4516129032258065,
+        "underfill_rate": 0.0
+      },
+      "cap_2": {
+        "recall_at_5": 0.8575268817204301,
+        "mrr": 0.9536290322580645,
+        "doc_coverage": 0.9879032258064516,
+        "unique_docs": 3.403225806451613,
+        "max_chunks_per_doc": 2.0,
+        "underfill_rate": 0.008064516129032258
+      },
+      "cap_3": {
+        "recall_at_5": 0.885752688172043,
+        "mrr": 0.9518817204301075,
+        "doc_coverage": 0.9879032258064516,
+        "unique_docs": 2.8306451612903225,
+        "max_chunks_per_doc": 2.8225806451612905,
+        "underfill_rate": 0.0
+      },
+      "cap_4": {
+        "recall_at_5": 0.8978494623655914,
+        "mrr": 0.9518817204301075,
+        "doc_coverage": 0.9838709677419355,
+        "unique_docs": 2.435483870967742,
+        "max_chunks_per_doc": 3.338709677419355,
+        "underfill_rate": 0.0
+      }
+    }
+  },
+  "answers": {
+    "single_doc": {
+      "n": 94,
+      "refusal rate": {
+        "no_cap": 0.031914893617021274,
+        "cap_2": 0.031914893617021274,
+        "cap_3": 0.031914893617021274,
+        "cap_4": 0.02127659574468085
+      },
+      "faithfulness": {
+        "no_cap": 1.0,
+        "cap_2": 0.9963296703296703,
+        "cap_3": 1.0,
+        "cap_4": 1.0
+      },
+      "relevance": {
+        "no_cap": 1.0,
+        "cap_2": 0.9945054945054945,
+        "cap_3": 1.0,
+        "cap_4": 1.0
+      },
+      "citation correctness": {
+        "no_cap": 0.9945054945054945,
+        "cap_2": 0.9963369963369964,
+        "cap_3": 0.9945054945054945,
+        "cap_4": 0.9945652173913043
+      },
+      "doc citation recall": {
+        "no_cap": 1.0,
+        "cap_2": 1.0,
+        "cap_3": 1.0,
+        "cap_4": 1.0
+      },
+      "chunk citation recall": {
+        "no_cap": 0.8874113475177305,
+        "cap_2": 0.8333333333333333,
+        "cap_3": 0.8776595744680851,
+        "cap_4": 0.8794326241134752
+      }
+    },
+    "multi_doc": {
+      "n": 8,
+      "refusal rate": {
+        "no_cap": 0.125,
+        "cap_2": 0.125,
+        "cap_3": 0.0,
+        "cap_4": 0.125
+      },
+      "faithfulness": {
+        "no_cap": 1.0,
+        "cap_2": 1.0,
+        "cap_3": 1.0,
+        "cap_4": 1.0
+      },
+      "relevance": {
+        "no_cap": 1.0,
+        "cap_2": 1.0,
+        "cap_3": 1.0,
+        "cap_4": 1.0
+      },
+      "citation correctness": {
+        "no_cap": 1.0,
+        "cap_2": 1.0,
+        "cap_3": 1.0,
+        "cap_4": 1.0
+      },
+      "doc citation recall": {
+        "no_cap": 0.75,
+        "cap_2": 0.6875,
+        "cap_3": 0.625,
+        "cap_4": 0.75
+      },
+      "chunk citation recall": {
+        "no_cap": 0.6875,
+        "cap_2": 0.6875,
+        "cap_3": 0.625,
+        "cap_4": 0.6875
+      }
+    },
+    "all": {
+      "n": 102,
+      "refusal rate": {
+        "no_cap": 0.0392156862745098,
+        "cap_2": 0.0392156862745098,
+        "cap_3": 0.029411764705882353,
+        "cap_4": 0.029411764705882353
+      },
+      "faithfulness": {
+        "no_cap": 1.0,
+        "cap_2": 0.9965918367346939,
+        "cap_3": 1.0,
+        "cap_4": 1.0
+      },
+      "relevance": {
+        "no_cap": 1.0,
+        "cap_2": 0.9948979591836735,
+        "cap_3": 1.0,
+        "cap_4": 1.0
+      },
+      "citation correctness": {
+        "no_cap": 0.9948979591836735,
+        "cap_2": 0.9965986394557823,
+        "cap_3": 0.9949494949494949,
+        "cap_4": 0.9949494949494949
+      },
+      "doc citation recall": {
+        "no_cap": 0.9803921568627451,
+        "cap_2": 0.9754901960784313,
+        "cap_3": 0.9705882352941176,
+        "cap_4": 0.9803921568627451
+      },
+      "chunk citation recall": {
+        "no_cap": 0.8717320261437909,
+        "cap_2": 0.8218954248366013,
+        "cap_3": 0.8578431372549019,
+        "cap_4": 0.8643790849673203
+      }
+    }
+  }
+}

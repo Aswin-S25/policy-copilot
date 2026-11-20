@@ -1,0 +1,48 @@
+{
+  "retrieval": {
+    "checked": 17442,
+    "leaks": [],
+    "per_role_set": {
+      "employee": {
+        "authorized": 106,
+        "restricted": 14,
+        "partial": 4,
+        "authorized_recall_at_5": 0.9111635220125786,
+        "all_roles_recall_at_5": 0.9064465408805031
+      },
+      "manager": {
+        "authorized": 112,
+        "restricted": 10,
+        "partial": 2,
+        "authorized_recall_at_5": 0.9069940476190476,
+        "all_roles_recall_at_5": 0.9025297619047619
+      },
+      "hr": {
+        "authorized": 112,
+        "restricted": 10,
+        "partial": 2,
+        "authorized_recall_at_5": 0.9069940476190476,
+        "all_roles_recall_at_5": 0.9025297619047619
+      },
+      "security": {
+        "authorized": 117,
+        "restricted": 4,
+        "partial": 3,
+        "authorized_recall_at_5": 0.9088319088319088,
+        "all_roles_recall_at_5": 0.9088319088319088
+      },
+      "employee+security": {
+        "authorized": 117,
+        "restricted": 4,
+        "partial": 3,
+        "authorized_recall_at_5": 0.9088319088319088,
+        "all_roles_recall_at_5": 0.9088319088319088
+      },
+      "no_document_roles": {
+        "restricted": 124,
+        "authorized_recall_at_5": NaN,
+        "all_roles_recall_at_5": NaN
+      }
+    }
+  }
+}

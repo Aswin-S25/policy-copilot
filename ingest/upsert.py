@@ -1,10 +1,13 @@
-
+from collections.abc import Iterable
 from collections import defaultdict
 
-from sqlalchemy import select, delete
+from sqlalchemy import select, delete, text
 from sqlalchemy.orm import Session
 
-from app.models import Document, Section, Chunk
+from app.core.models import Document, Section, Chunk
+from app.core.authz import normalize_roles
+
+from ingest.acl import replace_document_acl
 from ingest.hashing import hash_content
 from ingest.models import ParsedDocument, ParsedSection
 from ingest.chunk import chunk_sections
@@ -30,8 +33,15 @@ def build_section_path(
 def ingest_document(
     db: Session,
     parsed: ParsedDocument,
+    allowed_roles: Iterable[str] | None = None,
 ) -> Document:
 
+    roles = (
+        normalize_roles(allowed_roles)
+        if allowed_roles is not None
+        else None
+    )
+    
     document_hash = hash_content(parsed.content)
 
     # Not `with db.begin()`: the session may already be in an
@@ -47,6 +57,9 @@ def ingest_document(
 
         # 2. Skip completely unchanged documents
         if document and document.content_hash == document_hash:
+            if roles is not None:
+                replace_document_acl(db, document.id, roles)
+                db.commit()
             return document
 
         # 3. Create or update document
@@ -171,6 +184,50 @@ def ingest_document(
         for old_chunk in old_chunks:
             if old_chunk.id not in reused_ids:
                 db.delete(old_chunk)
+
+        # 9. Rebuild full-text search vectors for this document.
+        # Flush first so new chunks and sections are visible to the UPDATE.
+        db.flush()
+
+        db.execute(
+            text("""
+                UPDATE chunks c
+                SET search_vector =
+                    setweight(
+                        to_tsvector(
+                            'english',
+                            coalesce(d.title, '')
+                        ),
+                        'A'
+                    )
+                    ||
+                    setweight(
+                        to_tsvector(
+                            'english',
+                            coalesce(s.section_path, '')
+                        ),
+                        'B'
+                    )
+                    ||
+                    setweight(
+                        to_tsvector(
+                            'english',
+                            coalesce(c.content, '')
+                        ),
+                        'C'
+                    )
+                FROM chunks c2
+                JOIN documents d
+                    ON d.id = c2.document_id
+                LEFT JOIN sections s
+                    ON s.id = c2.section_id
+                WHERE c.id = c2.id
+                  AND c2.document_id = :document_id
+            """),
+            {"document_id": document.id},
+        )
+        if roles is not None:
+            replace_document_acl(db, document.id, roles)
 
         db.commit()
 

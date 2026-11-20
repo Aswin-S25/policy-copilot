@@ -31,6 +31,11 @@ celerybeat.pid
 data/uploads/*
 !data/uploads/.gitkeep
 
+# Evaluation output (regenerated on every run).
+# eval/baseline.json is intentionally tracked: it is the regression reference.
+eval/reports/latest.json
+eval/reports/latest.md
+
 # Logs
 *.log
 

@@ -1,44 +1,119 @@
+# Policy Copilot: API, ingestion worker, PostgreSQL (pgvector), Redis.
+# Ollama runs on the host and is reached at host.docker.internal:11434.
+#
+#   docker compose up -d --build
+#   docker compose ps
+#   docker compose logs -f api worker
+
+# One image for api, worker and migrate. Only api builds it: when several
+# services build the same tag, Compose builds them in parallel and the
+# exports collide ("image ... already exists").
+x-app-image: &app-image
+  image: policy-copilot:latest
+  pull_policy: never   # local image only; never look for it on Docker Hub
+
+x-infra-env: &infra-env
+  POLICY_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-policy_user}:${POSTGRES_PASSWORD:-policy_password}@postgres:5432/${POSTGRES_DB:-policy_copilot}
+  POLICY_CELERY_BROKER_URL: redis://redis:6379/0
+  POLICY_CELERY_RESULT_BACKEND: redis://redis:6379/1
+  POLICY_RATE_LIMIT_REDIS_URL: redis://redis:6379/2
+  POLICY_OLLAMA_HOST: ${CONTAINER_OLLAMA_HOST:-http://host.docker.internal:11434}
+  POLICY_LOG_LEVEL: ${POLICY_LOG_LEVEL:-INFO}
+
 services:
 
   postgres:
     image: pgvector/pgvector:pg16
     container_name: policy-copilot-db
-
     environment:
-      POSTGRES_DB: policy_copilot
-      POSTGRES_USER: policy_user
-      POSTGRES_PASSWORD: policy_password
-
+      POSTGRES_DB: ${POSTGRES_DB:-policy_copilot}
+      POSTGRES_USER: ${POSTGRES_USER:-policy_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-policy_password}
     ports:
-      - "5433:5432"
-
+      - "127.0.0.1:5433:5432"   # host tools (tests, evals); not exposed to the LAN
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "pg_isready -U policy_user -d policy_copilot"
-        ]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-policy_user} -d ${POSTGRES_DB:-policy_copilot}"]
       interval: 5s
       timeout: 5s
-      retries: 5
-
+      retries: 10
 
   redis:
     image: redis:7-alpine
     container_name: policy-copilot-redis
-
+    command: redis-server --appendonly yes
     ports:
-      - "6379:6379"
-
+      - "127.0.0.1:6379:6379"
     volumes:
       - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
 
-    command: redis-server --appendonly yes
+  migrate:
+    <<: *app-image
+    command: ["alembic", "upgrade", "head"]
+    environment: *infra-env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
 
+  api:
+    <<: *app-image
+    build: .
+    pull_policy: build
+    environment:
+      <<: *infra-env
+      # Only the API gets the token-signing secret.
+      POLICY_JWT_SECRET: ${POLICY_JWT_SECRET:?POLICY_JWT_SECRET must be set in .env}
+      # One-click demo sign-in; off unless POLICY_DEMO_MODE=true in .env.
+      POLICY_DEMO_MODE: ${POLICY_DEMO_MODE:-false}
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - uploads:/app/data/uploads
+    extra_hosts:
+      - "host.docker.internal:host-gateway"   # Linux; Docker Desktop provides it
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    healthcheck:
+      # Readiness, not liveness: "healthy" means able to answer questions.
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=8).status == 200 else 1)"]
+      interval: 15s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+    restart: unless-stopped
+
+  worker:
+    <<: *app-image
+    command: ["celery", "-A", "app.core.celery_app", "worker", "--loglevel=INFO", "--concurrency=2"]
+    environment: *infra-env
+    volumes:
+      - uploads:/app/data/uploads
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "celery -A app.core.celery_app inspect ping -d celery@$$HOSTNAME --timeout 5 | grep -q pong"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
 
 volumes:
   postgres_data:
   redis_data:
+  uploads:
