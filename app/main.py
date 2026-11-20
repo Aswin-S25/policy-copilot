@@ -37,6 +37,8 @@ from app.rag.pipeline import answer_question, stream_answer_events
 from app.retrieval.search import search_policies
 from app.api.conversations import router as conversation_router
 from app.api.health import lifespan, router as health_router
+from app.api.sources import router as sources_router
+from app.api.documents import router as documents_router
 
 
 configure_logging(get_infra_settings().log_level)
@@ -50,6 +52,8 @@ app.add_middleware(RequestContextMiddleware)
 
 app.include_router(health_router)
 app.include_router(conversation_router)
+app.include_router(sources_router)
+app.include_router(documents_router)
 
 
 @app.exception_handler(ConversationNotFound)
