@@ -198,6 +198,41 @@ def test_revoked_role_hides_old_answers_and_keeps_them_out_of_new_turns(
     assert not set(latest.source_chunk_ids) & corpus["restricted"]
 
 
+def test_history_returns_citations_for_visible_answers(sessions, corpus, llm):
+    conversation_id = new_conversation("alice", ["employee"])
+    ask(conversation_id, "alice", ["employee"], "How many days of annual leave?")
+
+    shown = client.get(f"/conversations/{conversation_id}",
+                       headers=bearer("alice", ["employee"])).json()
+    question, answer = shown["messages"]
+    assert question["citations"] == []
+
+    # "[Source N]" in the answer is the N-th stored context chunk.
+    stored = stored_messages(sessions, conversation_id)[1]
+    assert [c["source"] for c in answer["citations"]] == list(
+        range(1, len(stored.source_chunk_ids) + 1)
+    )
+    assert [c["chunk_id"] for c in answer["citations"]] == [
+        str(chunk_id) for chunk_id in stored.source_chunk_ids
+    ]
+    first = answer["citations"][0]
+    # Stored title "leave.md" is a file name: shown as the first heading.
+    assert first["document"] == "S"
+    assert first["section"] == "S"
+    assert first["score"] is None  # not stored for history
+
+
+def test_withheld_answer_reveals_no_citations(sessions, corpus, llm):
+    conversation_id = new_conversation("alice", ["security"])
+    ask(conversation_id, "alice", ["security"], "How fast must SEV1 be acknowledged?")
+
+    shown = client.get(f"/conversations/{conversation_id}",
+                       headers=bearer("alice", ["employee"])).json()
+    answer = shown["messages"][1]
+    assert answer["withheld"] is True
+    assert answer["citations"] == []  # not even the readable document's title
+
+
 def test_stream_turn_emits_events_and_saves_answer(sessions, corpus, llm):
     conversation_id = new_conversation("alice", ["employee"])
 

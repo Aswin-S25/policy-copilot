@@ -20,6 +20,7 @@ from app.conversations.repository import (
     list_conversations,
 )
 from app.core.db import SessionLocal
+from app.core.display import relabel_citations
 from app.rag.pipeline import answer_from_chunks, stream_answer_events
 from app.core.rate_limit import llm_rate_limited
 from app.core.security import Principal, get_current_principal
@@ -131,11 +132,14 @@ def post_message(
             [uuid.UUID(c.chunk_id) for c in response.citations],
         )
 
+    with SessionLocal() as db:
+        citations = relabel_citations(db, [c.to_dict() for c in response.citations])
+
     return {
         "message_id": str(message_id),
         "standalone_question": turn.standalone_question,
         "answer": response.answer,
-        "citations": [c.to_dict() for c in response.citations],
+        "citations": citations,
     }
 
 
@@ -178,6 +182,8 @@ def post_message_stream(
                     answer = data["text"]
                 elif event == "citations":
                     sources = [uuid.UUID(s["chunk_id"]) for s in data["sources"]]
+                    with SessionLocal() as db:
+                        data = {"sources": relabel_citations(db, data["sources"])}
                 elif event == "error":
                     failed = True
                 yield sse_event(event, data)
