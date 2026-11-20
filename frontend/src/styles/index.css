@@ -1,0 +1,336 @@
+@import "@fontsource-variable/public-sans";
+@import "@fontsource-variable/source-serif-4";
+@import "tailwindcss";
+
+/*
+  Design tokens.
+
+  Two voices: the copilot (answers, UI chrome) speaks in Public Sans; the
+  policies themselves (document titles, section paths, evidence) speak in
+  Source Serif 4. Serif never appears in generated text.
+
+  One accent (teal) belongs to citations, focus and the primary action.
+  "marker" is the highlighter fill for the source a citation points to.
+*/
+@theme {
+  --color-canvas: #f6f7f9;
+  --color-surface: #ffffff;
+  --color-sunken: #eef0f3;
+  --color-ink: #1b2028;
+  --color-ink-soft: #3a414c;
+  --color-muted: #5d6573;
+  /* Lightest text colour that still meets WCAG AA (4.5:1) on canvas and surface. */
+  --color-faint: #6b7280;
+  --color-line: #e2e5ea;
+  --color-line-strong: #cfd4db;
+
+  --color-accent: #0e6e64;
+  --color-accent-hover: #0b5a52;
+  --color-accent-soft: #e3f1ef;
+  --color-accent-ink: #0a4f48;
+
+  --color-marker: #fdf1c7;
+  --color-marker-edge: #e9cf6f;
+
+  --color-danger: #b42318;
+  --color-danger-soft: #fdecea;
+  --color-warning: #8a5a00;
+  --color-warning-soft: #fdf4e3;
+
+  --font-sans: "Public Sans Variable", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+  --font-serif: "Source Serif 4 Variable", "Iowan Old Style", Georgia, serif;
+  --font-mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+
+  /* Type scale: UI sizes are compact; reading sizes are generous. */
+  --text-meta: 0.75rem;
+  --text-meta--line-height: 1rem;
+  --text-ui: 0.8125rem;
+  --text-ui--line-height: 1.25rem;
+  --text-control: 0.875rem;
+  --text-control--line-height: 1.25rem;
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.625rem;
+  --text-lead: 1.0625rem;
+  --text-lead--line-height: 1.625rem;
+  --text-heading: 1.375rem;
+  --text-heading--line-height: 1.875rem;
+  --text-display: 1.75rem;
+  --text-display--line-height: 2.25rem;
+
+  --radius-control: 6px;
+  --radius-panel: 10px;
+
+  --shadow-overlay: 0 12px 32px -8px rgb(27 32 40 / 0.18),
+    0 2px 6px rgb(27 32 40 / 0.06);
+  --shadow-composer: 0 1px 2px rgb(27 32 40 / 0.05), 0 4px 16px -6px rgb(27 32 40 / 0.08);
+
+  --ease-out-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-control);
+    line-height: var(--text-control--line-height);
+    font-feature-settings: "kern", "liga", "tnum" 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-marker);
+    color: var(--color-ink);
+  }
+
+  /* One focus treatment everywhere; visible for keyboard users only. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/*
+  Answer typography. Generated text, so it stays in the sans voice; only
+  rhythm and structure (lists, code, tables) are styled here.
+*/
+@layer components {
+  .answer-prose {
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    color: var(--color-ink);
+    overflow-wrap: anywhere;
+  }
+  .answer-prose > * + * {
+    margin-top: 0.75em;
+  }
+  .answer-prose :where(h1, h2, h3, h4) {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    margin-top: 1.4em;
+  }
+  .answer-prose :where(h1, h2) {
+    font-size: 1.0625rem;
+  }
+  .answer-prose :where(h3, h4) {
+    font-size: var(--text-body);
+  }
+  .answer-prose :where(ul, ol) {
+    padding-left: 1.35em;
+  }
+  .answer-prose ul {
+    list-style: disc;
+  }
+  .answer-prose ol {
+    list-style: decimal;
+  }
+  .answer-prose li + li,
+  .answer-prose li > :where(ul, ol) {
+    margin-top: 0.3em;
+  }
+  .answer-prose li::marker {
+    color: var(--color-faint);
+  }
+  .answer-prose strong {
+    font-weight: 600;
+  }
+  .answer-prose a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  }
+  .answer-prose a:hover {
+    text-decoration-color: currentColor;
+  }
+  .answer-prose :not(pre) > code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    background: var(--color-sunken);
+  }
+  .answer-prose pre {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-control);
+    background: var(--color-canvas);
+    overflow-x: auto;
+  }
+  .answer-prose blockquote {
+    padding-left: 0.9em;
+    border-left: 2px solid var(--color-line-strong);
+    color: var(--color-ink-soft);
+  }
+  .answer-prose hr {
+    border-color: var(--color-line);
+  }
+  .answer-table {
+    overflow-x: auto;
+  }
+  .answer-prose table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-ui);
+    line-height: var(--text-ui--line-height);
+  }
+  .answer-prose :where(th, td) {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.45rem 0.75rem 0.45rem 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .answer-prose th {
+    font-weight: 600;
+    border-bottom-color: var(--color-line-strong);
+  }
+}
+
+/*
+  Citations: the one place the interface spends its accent. Markers sit
+  inline in the copilot's (sans) text; everything that names or quotes a
+  policy is set in the serif document voice.
+*/
+@layer components {
+  .cite {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.25rem;
+    height: 1.125rem;
+    padding: 0 0.3rem;
+    margin: 0 0.125rem;
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    vertical-align: 0.14em;
+    color: var(--color-accent-ink);
+    background: var(--color-accent-soft);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 22%, transparent);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 150ms, color 150ms, border-color 150ms;
+  }
+  .cite:hover,
+  .cite[data-active] {
+    color: #fff;
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+  .cite-inert,
+  .cite-inert:hover {
+    cursor: default;
+    color: var(--color-muted);
+    background: var(--color-sunken);
+    border-color: var(--color-line);
+  }
+
+  .source-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 100%;
+    height: 1.75rem;
+    padding: 0 0.625rem 0 0.25rem;
+    font-size: var(--text-ui);
+    color: var(--color-ink-soft);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-control);
+    transition: border-color 150ms, background-color 150ms, color 150ms;
+  }
+  .source-chip:hover,
+  .source-chip[data-active] {
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-line));
+    background: var(--color-canvas);
+  }
+  .source-chip-number,
+  .source-number {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-accent-ink);
+    background: var(--color-accent-soft);
+    border-radius: 4px;
+  }
+  .source-number {
+    margin-top: 0.0625rem;
+  }
+  .source-number-active {
+    color: #fff;
+    background: var(--color-accent);
+  }
+
+  /* Quoted policy text: serif, set off by a rule, never mistaken for an answer. */
+  .policy-prose {
+    font-family: var(--font-serif);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-ink);
+  }
+  .passage {
+    padding: 0.625rem 0.75rem;
+    border-left: 2px solid var(--color-line-strong);
+    border-radius: 0 4px 4px 0;
+  }
+  /* Highlighter: a marker stroke drawn left to right when a source is chosen. */
+  .passage-active {
+    border-left-color: var(--color-marker-edge);
+    background-image: linear-gradient(var(--color-marker), var(--color-marker));
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    animation: marker-stroke 480ms var(--ease-out-soft);
+  }
+}
+
+@keyframes marker-stroke {
+  from {
+    background-size: 0% 100%;
+  }
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Scrollbars that stay out of the way in the sidebar and panels. */
+@utility scroll-quiet {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-strong) transparent;
+}
