@@ -44,8 +44,10 @@ billed while `render.yaml` says `plan: free`.
    isn't shown again.
 2. Check the model is offered to your account (PowerShell):
    ```powershell
-   $key = Read-Host "Groq key" -MaskInput
+   $secure = Read-Host "Groq key" -AsSecureString
+   $key = [System.Net.NetworkCredential]::new("", $secure).Password
    (Invoke-RestMethod https://api.groq.com/openai/v1/models -Headers @{Authorization="Bearer $key"}).data.id | Select-String gpt-oss
+   Remove-Variable key, secure
    ```
    If `openai/gpt-oss-120b` isn't listed, pick another listed model and use
    its id for `POLICY_LLM_MODEL` in step 4.
@@ -64,16 +66,27 @@ billed while `render.yaml` says `plan: free`.
 ## Step 3: Schema and knowledge base (from your machine)
 
 Run from the repository root with the local stack running
-(`docker compose up -d`). PowerShell:
+(`docker compose up -d`). Works in Windows PowerShell 5.1 and PowerShell 7:
 
 ```powershell
-$env:POLICY_DATABASE_URL = Read-Host "Neon URL" -MaskInput
-alembic upgrade head                      # creates the schema and pgvector in Neon
+# Read the Neon URL once. Paste with Ctrl+V or right-click; it shows as *****.
+$secure = Read-Host "Neon URL" -AsSecureString
+$neon = [System.Net.NetworkCredential]::new("", $secure).Password
+
+# Create the schema and pgvector in Neon. The output must include lines like
+# "Running upgrade  -> f596eed3342c"; if it doesn't, it ran against your local database.
+$env:POLICY_DATABASE_URL = $neon
+alembic upgrade head
 Remove-Item Env:POLICY_DATABASE_URL
 
+# Copy the knowledge base: local database (source) -> Neon (target).
 $env:SOURCE_DATABASE_URL = "postgresql://policy_user:policy_password@127.0.0.1:5433/policy_copilot"
-python deploy/copy_documents.py --dry-run # prompts for the Neon URL; checks only
+$env:TARGET_DATABASE_URL = $neon
+python deploy/copy_documents.py --dry-run # checks only
 python deploy/copy_documents.py           # copies documents, sections, chunks, access rules
+
+# Forget the secret in this window.
+Remove-Item Env:TARGET_DATABASE_URL; Remove-Variable neon, secure
 ```
 
 `copy_documents.py` copies only the policy knowledge base (no users, no
