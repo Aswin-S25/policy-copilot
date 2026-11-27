@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 from sqlalchemy.orm import Session
 
-from app.rag.citations import exact_citations, remove_invalid_citations
+from app.rag.citations import exact_citations, normalize_citations, remove_invalid_citations
 from app.rag.context import BuildContext, build_context
 from app.rag.llm import (
     UNAVAILABLE_MESSAGE,
@@ -83,7 +83,7 @@ def finalize_answer(raw_answer: str, context: BuildContext) -> str:
     no valid citation is not grounded and is replaced by a refusal."""
     available_sources = {item.source_number for item in context.chunks}
 
-    answer = remove_invalid_citations(raw_answer, available_sources)
+    answer = remove_invalid_citations(normalize_citations(raw_answer), available_sources)
 
     if not exact_citations(answer):
         return UNSUPPORTED_REFUSAL

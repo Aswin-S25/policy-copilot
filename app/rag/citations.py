@@ -2,6 +2,16 @@ import re
 
 SOURCE_PATTERN = re.compile(r"\[Source\s+(\d+)\]")
 
+# Some models cite in their own native style instead of the prompt's
+# "[Source N]": gpt-oss uses lenticular brackets, sometimes with a span
+# suffix ("【Source 1】", "【Source 1†L3-L5】"). Same meaning, so they are
+# normalized before validation; anything else is left to the usual checks.
+NATIVE_CITATION_PATTERN = re.compile(r"【\s*Source\s+(\d+)[^】\n]{0,40}】")
+
+
+def normalize_citations(answer: str) -> str:
+    return NATIVE_CITATION_PATTERN.sub(r"[Source \1]", answer)
+
 
 def exact_citations(answer: str) -> set[int]:
     return {
