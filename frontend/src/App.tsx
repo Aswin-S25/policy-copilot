@@ -6,11 +6,13 @@ import { NewChatView } from "./chat/NewChatView";
 import { ConversationsProvider } from "./conversations/ConversationsContext";
 import { DocumentsView } from "./documents/DocumentsView";
 import { AppShell } from "./layout/AppShell";
+import { WakeNotice } from "./layout/WakeNotice";
 import { NotFoundView } from "./NotFoundView";
 
 export function App() {
   return (
     <AuthProvider>
+      <WakeNotice />
       <Routes>
         <Route path="/login" element={<LoginView />} />
         <Route

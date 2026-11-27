@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getServiceState, type ServiceState } from "../api/health";
+import { useWakeState } from "../api/wake";
 import { Notice } from "../ui/feedback";
 
 /** Re-check quickly while degraded, rarely while healthy. */
@@ -27,6 +28,7 @@ const MESSAGES: Record<Exclude<ServiceState, "ready">, { tone: "warning" | "dang
  */
 export function ServiceBanner() {
   const [state, setState] = useState<ServiceState>("ready");
+  const wake = useWakeState();
 
   useEffect(() => {
     let timer: number | undefined;
@@ -61,7 +63,8 @@ export function ServiceBanner() {
     };
   }, []);
 
-  if (state === "ready") return null;
+  // While a sleeping API is waking, WakeNotice explains it; don't double up.
+  if (state === "ready" || wake !== "awake") return null;
   const message = MESSAGES[state];
 
   return (

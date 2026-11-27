@@ -1,0 +1,26 @@
+# Runtime dependencies of the deployed API (deploy/Dockerfile). The same
+# pins as ../requirements.txt, minus PyTorch / sentence-transformers:
+# embeddings run through onnxruntime (POLICY_EMBEDDING_BACKEND=onnx).
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.6
+pydantic==2.14.2
+pydantic-settings==2.1.0
+PyJWT==2.10.1
+argon2-cffi==23.1.0
+
+sqlalchemy==2.0.44
+psycopg[binary]==3.3.6
+alembic==1.20.1
+pgvector==0.5.1
+
+# Imported by app.main (document upload task); no worker runs in deployment.
+celery==5.6.3
+redis==8.1.0
+
+httpx==0.27.0
+ollama==0.6.3
+
+onnxruntime==1.32.0
+tokenizers==0.23.3
+numpy==2.5.5

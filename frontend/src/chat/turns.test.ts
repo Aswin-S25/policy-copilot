@@ -1,4 +1,5 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { noteApiResponse, resetWakeForTests } from "../api/wake";
 import { abortAllTurns, getTurn, startTurn, stopTurn, type Turn } from "./turns";
 
 /*
@@ -59,6 +60,12 @@ function run(question = "How many leave days?"): Promise<Turn | undefined> {
   // onSettled fires after the final state is written.
   return new Promise((resolve) => startTurn(id, question, 0, { onSettled: () => resolve(getTurn(id)) }));
 }
+
+beforeEach(() => {
+  // These tests are about the stream, not cold starts: the API is awake.
+  resetWakeForTests();
+  noteApiResponse();
+});
 
 afterEach(() => {
   abortAllTurns();
